@@ -28,6 +28,7 @@
   .dots{display:flex;gap:10px;justify-content:center;margin-top:12px}
   .dot{width:12px;height:12px;border-radius:50%;background:#1a62b5aa}.dot.active{background:#fff}.dot.done{background:#0f8a4f}
   footer{margin-top:24px;text-align:center;font-size:12px;color:#eaf3ffcc}
+  .note{margin-top:28px;text-align:center;color:#fff;font-size:14px;line-height:1.6;font-weight:600}
 </style>
 </head>
 <body>
@@ -41,23 +42,19 @@
         <!-- Paso 1 -->
         <div class="step active" id="step-1">
           <input type="text" id="name" placeholder="Escribí tu nombre"/>
-          <br><button class="btn yellow" id="to-2">Continuar</button>
+          <br><button class="btn yellow" id="to-2">Reclamá tu bono</button>
         </div>
 
-        <!-- Paso 2 (CBU/ALIAS + CONDICIONES CENTRADAS SIN EMOJIS) -->
+        <!-- Paso 2 -->
         <div class="step" id="step-2">
           <div class="bank">
             <div class="row">
               <div class="code" id="cbu">CBU_NUMBER</div>
-              <button class="btn yellow" data-copy="#cbu">Copiar</button>
-            </div>
-            <div class="row">
-              <div class="code" id="alias">ALIAS_BANCARIO</div>
-              <button class="btn yellow" data-copy="#alias">Copiar</button>
+              <button class="btn yellow" id="copy-cbu">Copiar CBU</button>
             </div>
           </div>
 
-          <!-- CONDICIONES (centradas, sin emojis) -->
+          <!-- CONDICIONES -->
           <div class="conditions">
             Visítanos: https://casinozeus.biz<br>
             Carga mínima: $2000<br>
@@ -66,17 +63,17 @@
             Atención 24 horas
           </div>
 
-          <button class="btn yellow" id="to-3">Continuar</button>
+          <button class="btn yellow" id="to-3" disabled>Reclamá tu bono</button>
         </div>
 
-        <!-- Paso 3 (Derivación automática a WhatsApp aleatorio) -->
+        <!-- Paso 3 -->
         <div class="step" id="step-3">
           <p>¡Listo <b id="n-preview"></b>! Tocá el botón para finalizar.</p>
-          <button class="btn green" id="auto-wa">Cargar y reclamar mi bono</button>
+          <button class="btn green" id="auto-wa">Reclamá tu bono</button>
         </div>
       </div>
 
-      <!-- TEXTO INFERIOR (se mantiene igual que antes) -->
+      <!-- TEXTO INFERIOR -->
       <div class="promo">100% en tu primera carga!!</div>
       <div class="list">
         <div class="muted">Mínimo de Carga $1000</div>
@@ -87,6 +84,12 @@
         <div class="dot active" data-step="1"></div>
         <div class="dot" data-step="2"></div>
         <div class="dot" data-step="3"></div>
+      </div>
+
+      <!-- NOTA FINAL -->
+      <div class="note">
+        No esperes mas, basta de intermediarios para registrarte,<br>
+        completá tus datos y carga y empeza a jugar
       </div>
     </section>
 
@@ -110,12 +113,21 @@
     if(n===3) $("#n-preview").textContent = $("#name").value.trim();
   }
   $("#to-2").addEventListener("click",()=>{ if($("#name").value.trim().length>=2) setStep(2); });
-  $("#to-3").addEventListener("click",()=> setStep(3));
 
-  document.addEventListener("click", e=>{
-    const b=e.target.closest("[data-copy]"); if(!b) return;
-    const sel=b.getAttribute("data-copy"); const txt=$(sel).textContent.trim();
-    navigator.clipboard.writeText(txt).then(()=>{ const t=b.textContent; b.textContent="Copiado"; setTimeout(()=>b.textContent=t,1000); });
+  // Copiar CBU + habilitar paso 3
+  let copiedCBU = false;
+  $("#copy-cbu").addEventListener("click",()=>{
+    const txt=$("#cbu").textContent.trim();
+    navigator.clipboard.writeText(txt).then(()=>{
+      copiedCBU = true;
+      $("#copy-cbu").textContent="CBU Copiado";
+      $("#to-3").disabled = false;
+      setTimeout(()=>$("#copy-cbu").textContent="Copiar CBU",1500);
+    });
+  });
+
+  $("#to-3").addEventListener("click",()=> {
+    if(copiedCBU) setStep(3);
   });
 
   function pickRandom(len){ if(crypto?.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; } return Math.floor(Math.random()*len); }
