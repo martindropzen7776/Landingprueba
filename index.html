@@ -102,7 +102,7 @@
     { phone:"56999888777" },
     { phone:"5215512345678" },
   ];
-  const DEFAULT_MSG = "Hola, soy {name}. Quiero crear mi cuenta, cargar y reclamar mi bono.";
+  const DEFAULT_MSG = "";
   const $=s=>document.querySelector(s); const $$=s=>Array.from(document.querySelectorAll(s));
 
   function setStep(n){
@@ -111,7 +111,9 @@
     $$(".dot").forEach((d,i)=>{ d.classList.toggle("active", i===n-1); d.classList.toggle("done", i<n-1); });
     if(n===3) $("#n-preview").textContent = $("#name").value.trim();
   }
-  $("#to-2").addEventListener("click",()=>{ if($("#name").value.trim().length>=2) setStep(2); });
+  $("#to-2").addEventListener("click",()=>{ 
+    if($("#name").value.trim().length>=2) setStep(2); 
+  });
 
   // Copiar CBU + habilitar paso 3
   let copiedCBU = false;
@@ -120,16 +122,26 @@
     navigator.clipboard.writeText(txt).then(()=>{
       copiedCBU = true;
       $("#copy-cbu").textContent="CBU Copiado";
-      $("#to-3").disabled = false;
       setTimeout(()=>$("#copy-cbu").textContent="Copiar CBU",1500);
     });
   });
 
   $("#to-3").addEventListener("click",()=> {
-    if(copiedCBU) setStep(3);
+    if(!copiedCBU){
+      alert("⚠️ Tenés que copiar el CBU antes de continuar.");
+      return;
+    }
+    setStep(3);
   });
 
-  function pickRandom(len){ if(crypto?.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; } return Math.floor(Math.random()*len); }
+  function pickRandom(len){ 
+    if(crypto?.getRandomValues){ 
+      const a=new Uint32Array(1); 
+      crypto.getRandomValues(a); 
+      return a[0]%len; 
+    } 
+    return Math.floor(Math.random()*len); 
+  }
   $("#auto-wa").addEventListener("click",()=>{
     const name=$("#name").value.trim() || "Cliente";
     const msg=encodeURIComponent(DEFAULT_MSG.replace("{name}", name));
