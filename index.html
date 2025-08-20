@@ -163,12 +163,16 @@
       </div>
 
       <!-- PASO 3 -->
-      <div class="step" id="step-3">
-        <h3 style="margin:0 0 8px 0">¡Listo, <span id="u-preview"></span>!</h3>
-        <p class="hint" style="margin:0 0 10px 0">Elegí a qué WhatsApp querés derivar para finalizar el alta.</p>
-        <div id="wa-list" class="wa-list"></div>
-        <div class="actions" style="margin-top:12px"><button class="pill secondary" data-back>Volver</button></div>
-      </div>
+<div class="step" id="step-3">
+  <h3 style="margin:0 0 8px 0">¡Listo, <span id="u-preview"></span>!</h3>
+  <p class="hint" style="margin:0 0 10px 0">
+    Tocá el botón para derivar a WhatsApp y finalizar el alta.
+  </p>
+  <div class="actions">
+    <button class="pill" id="auto-wa">Cargar y reclamar mi bono</button>
+    <button class="pill secondary" data-back>Volver</button>
+  </div>
+</div>
     </section>
 
     <footer>© 2025 • Lionel • Casino — Slots, Ruleta, Blackjack, Apuestas y más.</footer>
@@ -261,28 +265,51 @@
   }));
 
   // Paso 3 - WhatsApp
-  function renderWA(){
-    const list = $("#wa-list"); list.innerHTML = "";
-    const fileName = state.file ? state.file.name : "sin nombre";
-    const msg = encodeURIComponent(DEFAULT_MSG.replace("{username}", state.username).replace("{file}", fileName));
-    WHATSAPPS.forEach(w=>{
-      const url = `https://wa.me/${w.phone}?text=${msg}`;
-      const row = document.createElement("div");
-      row.className = "wa-item";
-      row.innerHTML = `<div class="meta"><strong>${w.label}</strong><small>${w.phone}</small></div>
-                       <button class="btn" type="button">Abrir</button>`;
-      row.querySelector(".btn").addEventListener("click", ()=> window.open(url, "_blank"));
-      list.appendChild(row);
-    });
-    const all = document.createElement("div");
-    all.className = "wa-item";
-    all.innerHTML = `<div class="meta"><strong>Enviar a todos</strong><small>Se abrirán nuevas pestañas</small></div>
-                     <button class="btn" type="button">Abrir todos</button>`;
-    all.querySelector(".btn").addEventListener("click", ()=>{
-      WHATSAPPS.forEach(w=> window.open(`https://wa.me/${w.phone}?text=${msg}`, "_blank"));
-    });
-    list.appendChild(all);
+ // Helper: elegir número de WhatsApp al azar de forma justa
+  function pickRandomIndex(len){
+    if (window.crypto && crypto.getRandomValues) {
+      const arr = new Uint32Array(1); crypto.getRandomValues(arr);
+      return arr[0] % len;
+    }
+    return Math.floor(Math.random() * len);
   }
+
+  function openRandomWhatsApp(){
+    const fileName = state.file ? state.file.name : "sin nombre";
+    const msg = encodeURIComponent(
+      DEFAULT_MSG
+        .replace("{username}", state.username)
+        .replace("{file}", fileName)
+    );
+
+    const i = pickRandomIndex(WHATSAPPS.length);
+    const w = WHATSAPPS[i];
+    const url = `https://wa.me/${w.phone}?text=${msg}`;
+
+    // (Opcional) tracking
+    // if (window.fbq) fbq('trackCustom','WA_Redirect',{phone:w.phone, step:3});
+
+    // Abrimos en nueva pestaña para evitar bloqueadores
+    window.open(url, "_blank");
+  }
+
+  // Botón de paso 3
+  document.addEventListener("click", (e)=>{
+    if (e.target && e.target.id === "auto-wa") openRandomWhatsApp();
+  });
+
+  // Al pasar a Paso 3 solo mostramos el nombre (no lista)
+  function stepTo(n){
+    $$(".step").forEach(s=>s.classList.remove('active'));
+    $("#step-"+n).classList.add('active');
+    $$("#dots .dot").forEach(d=>{
+      const k = +d.dataset.step;
+      d.classList.toggle('active', k===n);
+      d.classList.toggle('done', k<n);
+    });
+    if(n===3){ $("#u-preview").textContent = state.username; }
+  }
+
 </script>
 </body>
 </html>
