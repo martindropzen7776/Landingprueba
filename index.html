@@ -29,6 +29,23 @@
   .dot{width:12px;height:12px;border-radius:50%;background:#1a62b5aa}.dot.active{background:#fff}.dot.done{background:#0f8a4f}
   footer{margin-top:24px;text-align:center;font-size:12px;color:#eaf3ffcc}
   .note{margin-top:28px;text-align:center;color:#fff;font-size:14px;line-height:1.6;font-weight:600}
+
+  /* Aviso inline + shake */
+  .warn{
+    margin-top:10px;
+    color:#ffb3b3;
+    font-weight:800;
+    font-size:14px;
+    text-align:center;
+  }
+  .shake{animation:shake .3s linear}
+  @keyframes shake{
+    0%,100%{transform:translateX(0)}
+    20%{transform:translateX(-6px)}
+    40%{transform:translateX(6px)}
+    60%{transform:translateX(-4px)}
+    80%{transform:translateX(4px)}
+  }
 </style>
 </head>
 <body>
@@ -62,7 +79,10 @@
             Atención 24 horas
           </div>
 
-          <button class="btn yellow" id="to-3" disabled>Reclamá tu bono</button>
+          <button class="btn yellow" id="to-3">Reclamá tu bono</button>
+          <div id="warn-cbu" class="warn" role="alert" aria-live="assertive" hidden>
+            Tenés que copiar el CBU antes de continuar.
+          </div>
         </div>
 
         <!-- Paso 3 -->
@@ -87,8 +107,8 @@
 
       <!-- NOTA FINAL -->
       <div class="note">
-        No esperes mas, basta de intermediarios para registrarte,<br>
-        completá tus datos y carga y empeza a jugar
+        No esperes más, basta de intermediarios para registrarte,<br>
+        completá tus datos y carga y empezá a jugar
       </div>
     </section>
 
@@ -115,20 +135,28 @@
     if($("#name").value.trim().length>=2) setStep(2); 
   });
 
-  // Copiar CBU + habilitar paso 3
+  // Copiar CBU + control de avance con alerta inline
   let copiedCBU = false;
-  $("#copy-cbu").addEventListener("click",()=>{
-    const txt=$("#cbu").textContent.trim();
+  const btnCopy = document.getElementById("copy-cbu");
+  const warn = document.getElementById("warn-cbu");
+  const btnNext = document.getElementById("to-3");
+
+  btnCopy.addEventListener("click",()=>{
+    const txt=document.getElementById("cbu").textContent.trim();
     navigator.clipboard.writeText(txt).then(()=>{
       copiedCBU = true;
-      $("#copy-cbu").textContent="CBU Copiado";
-      setTimeout(()=>$("#copy-cbu").textContent="Copiar CBU",1500);
+      btnCopy.textContent="CBU Copiado";
+      warn.hidden = true;              // ocultar aviso si estaba visible
+      btnCopy.classList.remove("shake");
+      setTimeout(()=>btnCopy.textContent="Copiar CBU",1500);
     });
   });
 
-  $("#to-3").addEventListener("click",()=> {
+  btnNext.addEventListener("click",()=> {
     if(!copiedCBU){
-      alert("⚠️ Tenés que copiar el CBU antes de continuar.");
+      warn.hidden = false;             // mostrar aviso
+      btnCopy.classList.add("shake");  // efecto vibración en el botón de copiar
+      btnCopy.focus({preventScroll:true});
       return;
     }
     setStep(3);
