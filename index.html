@@ -6,51 +6,27 @@
 <title>Lionel • Casino</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --blue:#3A8DE6; --blue-dark:#2E7ED4;
-    --white:#fff; --muted:#e9f3ff; --yellow:#FFC72C; --green:#19c37d;
-    --pill:#0A0A0A;
-  }
+  :root{ --blue:#3A8DE6; --blue-dark:#2E7ED4; --white:#fff; --muted:#e9f3ff; --yellow:#FFC72C; --green:#19c37d; --pill:#0A0A0A; }
   *{box-sizing:border-box} html,body{height:100%}
-  body{
-    margin:0; font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    color:var(--white);
-    background: linear-gradient(180deg, var(--blue), var(--blue-dark));
-  }
-  .wrap{max-width:720px; margin:0 auto; padding:38px 18px 56px}
-  .hero{display:grid; place-items:center; text-align:center}
-  .avatar{
-    width:180px; height:180px; border-radius:50%;
-    background:#2a78c0 url('https://i.imgur.com/3r4f0w8.png') center/cover no-repeat;
-    border:8px solid #fff; box-shadow:0 14px 40px rgba(0,0,0,.35); margin-bottom:24px;
-  }
-  h1{margin:0 0 20px; text-transform:uppercase; letter-spacing:.6px; font-weight:900; font-size:clamp(22px,4vw,38px)}
-  .pill-panel{
-    background:var(--pill); border-radius:64px; width:min(620px, 100%);
-    padding:26px; box-shadow: 0 14px 28px rgba(0,0,0,.35);
-    display:flex; align-items:center; justify-content:center; margin:0 auto 22px;
-  }
-  .step{display:none;width:100%;text-align:center} .step.active{display:block}
-  input[type="text"]{
-    width:80%; max-width:360px; padding:14px 16px; border-radius:14px; border:2px solid #222;
-    background:#111; color:#fff; font-weight:800; outline:none;
-  }
-  .btn{
-    border:0; border-radius:999px; padding:12px 20px; font-weight:900;
-    text-transform:uppercase; cursor:pointer; margin-top:12px;
-  }
-  .btn.yellow{background:#111;color:var(--yellow)}
-  .btn.green{background:#0f2e20;color:#fff;border:2px solid #1b6b49}
+  body{ margin:0; font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--white);
+        background:linear-gradient(180deg,var(--blue),var(--blue-dark)); }
+  .wrap{max-width:720px;margin:0 auto;padding:38px 18px 56px}
+  .hero{display:grid;place-items:center;text-align:center}
+  .avatar{width:180px;height:180px;border-radius:50%;background:#2a78c0 url('https://i.imgur.com/3r4f0w8.png') center/cover no-repeat;border:8px solid #fff;margin-bottom:24px}
+  h1{margin:0 0 20px;text-transform:uppercase;letter-spacing:.6px;font-weight:900;font-size:clamp(22px,4vw,38px)}
+  .pill-panel{background:#0A0A0A;border-radius:64px;width:min(620px,100%);padding:26px;box-shadow:0 14px 28px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+  .step{display:none;width:100%;text-align:center}.step.active{display:block}
+  input[type="text"]{width:80%;max-width:360px;padding:14px 16px;border-radius:14px;border:2px solid #222;background:#111;color:#fff;font-weight:800;outline:none}
+  .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;margin-top:12px}
+  .btn.yellow{background:#111;color:var(--yellow)} .btn.green{background:#0f2e20;color:#fff;border:2px solid #1b6b49}
   .bank{display:grid;gap:10px;justify-items:center}
   .row{display:flex;align-items:center;gap:8px}
-  .code{
-    font-family:monospace;background:#111;color:#fff;border:2px solid #222;
-    padding:10px 14px;border-radius:12px;white-space:nowrap;max-width:260px;overflow:auto
-  }
-  .conditions{text-align:left;font-size:14px;line-height:1.5;margin-top:16px;color:var(--muted)}
+  .code{font-family:monospace;background:#111;color:#fff;border:2px solid #222;padding:10px 14px;border-radius:12px;white-space:nowrap;max-width:260px;overflow:auto}
+  .promo{color:#FFC72C;font-weight:900;text-transform:uppercase;letter-spacing:.6px;margin-top:8px;margin-bottom:6px;text-align:center;font-size:clamp(14px,2.2vw,18px)}
+  .list{text-align:center;font-weight:800;line-height:1.5;font-size:clamp(14px,2.2vw,18px)} .list .muted{color:var(--muted)}
+  .conditions{margin-top:16px;text-align:center;color:var(--muted);line-height:1.6}
   .dots{display:flex;gap:10px;justify-content:center;margin-top:12px}
-  .dot{width:12px;height:12px;border-radius:50%;background:#1a62b5aa}
-  .dot.active{background:#fff}.dot.done{background:#0f8a4f}
+  .dot{width:12px;height:12px;border-radius:50%;background:#1a62b5aa}.dot.active{background:#fff}.dot.done{background:#0f8a4f}
   footer{margin-top:24px;text-align:center;font-size:12px;color:#eaf3ffcc}
 </style>
 </head>
@@ -58,8 +34,9 @@
   <div class="wrap" id="app">
     <section class="hero">
       <div class="avatar"></div>
-      <h1>Seguí estos pasos para crear tu cuenta</h1>
+      <h1>Envíanos un mensaje para crear tu cuenta</h1>
 
+      <!-- CONTENEDOR EN PÍLDORA: 3 PASOS -->
       <div class="pill-panel">
         <!-- Paso 1 -->
         <div class="step active" id="step-1">
@@ -67,7 +44,7 @@
           <br><button class="btn yellow" id="to-2">Continuar</button>
         </div>
 
-        <!-- Paso 2 -->
+        <!-- Paso 2 (CBU/ALIAS + CONDICIONES CENTRADAS SIN EMOJIS) -->
         <div class="step" id="step-2">
           <div class="bank">
             <div class="row">
@@ -79,21 +56,31 @@
               <button class="btn yellow" data-copy="#alias">Copiar</button>
             </div>
           </div>
+
+          <!-- CONDICIONES (centradas, sin emojis) -->
           <div class="conditions">
-            🌐 Visítanos: https://casinozeus.biz<br>
-            💲 Carga mínima: $2000<br>
-            ❗ Retiros (con cvu) de 10 a 16 hs. sin límites<br>
-            ⚠️ Fines de semana: hasta $50,000<br>
-            🕐 Atención 24 horas
+            Visítanos: https://casinozeus.biz<br>
+            Carga mínima: $2000<br>
+            Retiros (con CVU) de 10 a 16 hs. sin límites<br>
+            Fines de semana: hasta $50,000<br>
+            Atención 24 horas
           </div>
+
           <button class="btn yellow" id="to-3">Continuar</button>
         </div>
 
-        <!-- Paso 3 -->
+        <!-- Paso 3 (Derivación automática a WhatsApp aleatorio) -->
         <div class="step" id="step-3">
           <p>¡Listo <b id="n-preview"></b>! Tocá el botón para finalizar.</p>
           <button class="btn green" id="auto-wa">Cargar y reclamar mi bono</button>
         </div>
+      </div>
+
+      <!-- TEXTO INFERIOR (se mantiene igual que antes) -->
+      <div class="promo">100% en tu primera carga!!</div>
+      <div class="list">
+        <div class="muted">Mínimo de Carga $1000</div>
+        <div class="muted">Ruleta en Vivo - Slots - Apuestas Deportivas y Mucho más.</div>
       </div>
 
       <div class="dots">
@@ -102,10 +89,12 @@
         <div class="dot" data-step="3"></div>
       </div>
     </section>
+
     <footer>© 2025 • Lionel • Casino</footer>
   </div>
 
 <script>
+  // WhatsApps (aleatorio)
   const WHATSAPPS = [
     { phone:"5491122223333" },
     { phone:"56999888777" },
@@ -113,25 +102,28 @@
   ];
   const DEFAULT_MSG = "Hola, soy {name}. Quiero crear mi cuenta, cargar y reclamar mi bono.";
   const $=s=>document.querySelector(s); const $$=s=>Array.from(document.querySelectorAll(s));
+
   function setStep(n){
     $$(".step").forEach(s=>s.classList.remove("active"));
     $("#step-"+n).classList.add("active");
-    $$(".dot").forEach((d,i)=>{d.classList.toggle("active",i===n-1);d.classList.toggle("done",i<n-1)});
-    if(n===3) $("#n-preview").textContent=$("#name").value.trim();
+    $$(".dot").forEach((d,i)=>{ d.classList.toggle("active", i===n-1); d.classList.toggle("done", i<n-1); });
+    if(n===3) $("#n-preview").textContent = $("#name").value.trim();
   }
-  $("#to-2").addEventListener("click",()=>{if($("#name").value.trim().length>=2)setStep(2)});
-  $("#to-3").addEventListener("click",()=>setStep(3));
-  document.addEventListener("click",e=>{
-    const b=e.target.closest("[data-copy]"); if(!b)return;
+  $("#to-2").addEventListener("click",()=>{ if($("#name").value.trim().length>=2) setStep(2); });
+  $("#to-3").addEventListener("click",()=> setStep(3));
+
+  document.addEventListener("click", e=>{
+    const b=e.target.closest("[data-copy]"); if(!b) return;
     const sel=b.getAttribute("data-copy"); const txt=$(sel).textContent.trim();
-    navigator.clipboard.writeText(txt).then(()=>{const old=b.textContent;b.textContent="Copiado";setTimeout(()=>b.textContent=old,1000)});
+    navigator.clipboard.writeText(txt).then(()=>{ const t=b.textContent; b.textContent="Copiado"; setTimeout(()=>b.textContent=t,1000); });
   });
-  function pickRandom(len){if(crypto?.getRandomValues){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%len}return Math.floor(Math.random()*len)}
+
+  function pickRandom(len){ if(crypto?.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; } return Math.floor(Math.random()*len); }
   $("#auto-wa").addEventListener("click",()=>{
-    const name=$("#name").value.trim()||"Cliente";
-    const msg=encodeURIComponent(DEFAULT_MSG.replace("{name}",name));
+    const name=$("#name").value.trim() || "Cliente";
+    const msg=encodeURIComponent(DEFAULT_MSG.replace("{name}", name));
     const w=WHATSAPPS[pickRandom(WHATSAPPS.length)];
-    window.open(`https://wa.me/${w.phone}?text=${msg}`,"_blank");
+    window.open(`https://wa.me/${w.phone}?text=${msg}`, "_blank");
   });
 </script>
 </body>
