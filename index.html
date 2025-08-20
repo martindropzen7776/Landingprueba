@@ -4,205 +4,203 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Lionel • Casino</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue:#2f8fe0; --blue-deep:#1d6bb6; --text:#fff; --muted:#eaf3ffcc;
-    --accent:#ffd147; --green:#19c37d;
+    --blue:#3A8DE6; --blue-dark:#2E7ED4;
+    --white:#fff; --muted:#e9f3ff; --yellow:#FFC72C; --shadow:rgba(0,0,0,.35);
+    --pill:#0A0A0A;
   }
-  *{box-sizing:border-box} html,body{height:100%}
+  *{box-sizing:border-box}
+  html,body{height:100%}
   body{
-    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    color:var(--text);
-    background:linear-gradient(0deg,var(--blue-deep),var(--blue));
+    margin:0; font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color:var(--white);
+    background: linear-gradient(180deg, var(--blue), var(--blue-dark));
   }
-  .wrap{max-width:720px;margin:0 auto;padding:28px 16px 40px}
-  /* HERO simple */
-  .hero{display:grid;place-items:center;text-align:center;gap:14px;margin-top:8px}
-  .avatar{width:140px;height:140px;border-radius:50%;background:#2a78c0 url('https://i.imgur.com/3r4f0w8.png') center/cover no-repeat;border:6px solid #ffffffcc}
-  h1{margin:0;font-size:clamp(22px,4.2vw,38px);line-height:1.05}
-  .sub{font-size:clamp(14px,2.4vw,18px);color:var(--muted)}
-  .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-  .badge{padding:8px 12px;border-radius:999px;border:1px solid #ffffff30;background:#00000022;font-weight:800;text-transform:uppercase;font-size:12px}
-  .promo{margin-top:4px;font-weight:900;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
+  .wrap{max-width:780px; margin:0 auto; padding:38px 18px 56px}
+  .hero{display:grid; place-items:center; text-align:center}
+  .avatar{
+    width:220px; height:220px; border-radius:50%;
+    background:#2a78c0 url('https://i.imgur.com/3r4f0w8.png') center/cover no-repeat;
+    border:10px solid #fff; box-shadow:0 14px 40px var(--shadow); margin-bottom:28px;
+  }
+  h1{
+    margin:0 0 24px 0; text-transform:uppercase; letter-spacing:.8px;
+    font-weight:900; line-height:1.05; font-size:clamp(24px,4.2vw,42px);
+    text-shadow: 0 2px 0 rgba(0,0,0,.08);
+  }
 
-  /* Pasos minimalistas */
-  .steps{margin-top:22px}
-  .progress{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
-  .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;border:1px solid #ffffff40;background:#00000022;color:#d7e8ff}
-  .dot.active{background:#00000035;color:#fff}
-  .dot.done{background:#07291b}
-  .card{background:#00000020;border:1px solid #ffffff30;border-radius:16px;padding:16px}
-  .step{display:none} .step.active{display:block;animation:fade .15s ease}
-  @keyframes fade{from{opacity:.7;transform:translateY(3px)}to{opacity:1;transform:none}}
+  /* --- LA PÍLDORA NEGRA (igual que tu botón, pero contenedor) --- */
+  .pill-panel{
+    background:var(--pill); border-radius:64px; width:min(620px, 100%);
+    padding:24px 26px; box-shadow: 0 14px 28px var(--shadow);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 26px;
+  }
+  .pill-panel inner{ width:100%; display:flex; align-items:center; justify-content:center; gap:14px }
+  .step-title{
+    font-weight:900; text-transform:uppercase; letter-spacing:.6px; text-align:center;
+    font-size:clamp(16px, 2.6vw, 22px);
+  }
+  .wa-badge{
+    width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
+    background:#25D366; color:#0b2; font-weight:900;
+    box-shadow:0 6px 16px rgba(0,0,0,.35);
+  }
 
-  label{font-size:13px;color:#eaf3ffcc;display:block;margin-bottom:6px}
+  /* texto inferior igual a la captura */
+  .promo{
+    color:#FFC72C; font-weight:900; text-transform:uppercase; letter-spacing:.6px;
+    margin-top:8px; margin-bottom:6px; text-align:center; font-size:clamp(14px,2.2vw,18px);
+  }
+  .list{ text-align:center; font-weight:800; line-height:1.5; font-size:clamp(14px,2.2vw,18px)}
+  .list .muted{ color:var(--muted) }
+
+  /* ------- PASOS (misma píldora, cambia el contenido) ------- */
+  .step{display:none; width:100%} .step.active{display:block}
+  .field{ display:flex; gap:10px; width:100%; justify-content:center; align-items:center }
+  label{ display:none } /* para mantenerlo minimal */
   input[type="text"]{
-    width:100%;padding:14px;border-radius:12px;border:1px solid #ffffff40;background:#00000022;color:#fff;outline:none
+    width:min(380px, 80%); border:0; outline:none; font-family:inherit;
+    padding:14px 16px; border-radius:16px; font-weight:800;
+    background:#111; color:#fff; border:2px solid #222;
   }
-  input[type="text"]:focus{box-shadow:0 0 0 4px #8ec6ff33;border-color:#8ec6ff}
-  .error{color:#ff5a74;font-size:12px;margin-top:6px}
-  .hint{font-size:12px;color:#eaf3ffcc;margin-top:6px}
-
   .btn{
-    border:1px solid #ffffff30;background:#00000022;color:#fff;border-radius:999px;
-    padding:12px 18px;font-weight:800;cursor:pointer
+    appearance:none; border:0; border-radius:999px; padding:14px 20px;
+    font-weight:900; text-transform:uppercase; letter-spacing:.5px; cursor:pointer;
+    background:#111; color:#fff; border:2px solid #222;
   }
-  .btn.primary{background:#00000030}
-  .btn.green{background:#0f2e20;border-color:#1b6b49}
-  .actions{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .btn.yellow{ background:#111; color:#FFC72C; border-color:#333 }
+  .btn.green{ background:#0f2e20; border-color:#184f3a }
 
-  /* Bloque CBU minimal */
-  .bank{margin-top:10px;padding:12px;border-radius:14px;border:1px solid #ffffff3a;background:#00000022}
-  .bank-row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:8px 0}
-  .code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#00000030;border:1px solid #ffffff30;color:#fff;border-radius:10px;padding:8px 10px;white-space:nowrap;overflow:auto;max-width:100%}
-  .small{font-size:12px;color:#eaf3ffcc}
-  footer{margin-top:16px;text-align:center;font-size:12px;color:#eaf3ffcc}
+  .bank{
+    display:grid; gap:10px; width:100%; justify-items:center;
+  }
+  .code{
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    background:#111; color:#fff; border:2px solid #222; border-radius:14px;
+    padding:10px 14px; max-width:520px; overflow:auto; white-space:nowrap;
+    font-weight:800;
+  }
+
+  /* progreso simple (3 puntitos) */
+  .dots{ display:flex; gap:10px; justify-content:center; margin:14px 0 6px }
+  .dot{ width:12px; height:12px; border-radius:50%; background:#1a62b5aa; }
+  .dot.active{ background:#fff }
+  .dot.done{ background:#0f8a4f }
+  footer{margin-top:24px; text-align:center; font-size:12px; color:#eaf3ffcc}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- HERO -->
+  <div class="wrap" id="app">
     <section class="hero">
-      <div class="avatar"></div>
-      <h1>Seguí estos 3 pasos para crear tu cuenta y cargar</h1>
-      <div class="sub">Duplicamos tu <b>primera carga</b>. Atención 24/7.</div>
-      <div class="badges">
-        <span class="badge">Slots</span><span class="badge">Ruleta</span>
-        <span class="badge">Blackjack</span><span class="badge">Apuestas</span>
-      </div>
-      <div class="promo">100% en tu primera carga</div>
-    </section>
+      <div class="avatar" aria-hidden="true"></div>
+      <h1>Envíanos un mensaje para crear tu cuenta</h1>
 
-    <!-- PASOS -->
-    <section class="steps" id="app">
-      <div class="progress" id="dots">
-        <div class="dot active" data-step="1">1</div>
-        <div class="dot" data-step="2">2</div>
-        <div class="dot" data-step="3">3</div>
-      </div>
-
-      <!-- Paso 1: SOLO NOMBRE -->
-      <div class="card step active" id="step-1">
-        <label for="name">Escribí tu nombre *</label>
-        <input type="text" id="name" placeholder="Ej: Federico" autocomplete="name"/>
-        <div class="error" id="e-name" hidden>Ingresá un nombre válido (mín. 2 caracteres).</div>
-        <div class="actions">
-          <button class="btn primary" id="to-2">Continuar</button>
-        </div>
-        <div class="hint">Paso 1 de 3</div>
-      </div>
-
-      <!-- Paso 2: INFO CARGA (sin comprobante) -->
-      <div class="card step" id="step-2">
-        <div class="small">
-          Transferí a nuestro <b>CBU/ALIAS</b>. Retiros <b>24 h</b> (validación y pago al instante).
-          El titular debe coincidir con el nombre registrado.
-        </div>
-        <div class="bank">
-          <div class="bank-row"><strong>CBU</strong></div>
-          <div class="bank-row">
-            <div class="code" id="cbu">CBU_NUMBER</div>
-            <button class="btn" data-copy="#cbu">Copiar</button>
+      <!-- PÍLDORA = CONTENEDOR DE LOS PASOS -->
+      <div class="pill-panel">
+        <inner>
+          <!-- PASO 1: SOLO NOMBRE -->
+          <div class="step active" id="step-1">
+            <div class="field">
+              <input type="text" id="name" placeholder="Escribí tu nombre"/>
+              <button class="btn yellow" id="to-2">Continuar</button>
+            </div>
           </div>
-          <div class="bank-row"><strong>Alias</strong></div>
-          <div class="bank-row">
-            <div class="code" id="alias">ALIAS_BANCARIO</div>
-            <button class="btn" data-copy="#alias">Copiar</button>
+
+          <!-- PASO 2: INFO CBU / ALIAS -->
+          <div class="step" id="step-2">
+            <div class="bank">
+              <div class="step-title">Completa tu carga</div>
+              <div class="code" id="cbu">CBU_NUMBER</div>
+              <div class="code" id="alias">ALIAS_BANCARIO</div>
+              <div class="field" style="gap:8px">
+                <button class="btn" data-copy="#cbu">Copiar CBU</button>
+                <button class="btn" data-copy="#alias">Copiar Alias</button>
+                <button class="btn yellow" id="to-3">Continuar</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="actions">
-          <button class="btn" data-back>Volver</button>
-          <button class="btn primary" id="to-3">Continuar</button>
-        </div>
-        <div class="hint">Paso 2 de 3</div>
+
+          <!-- PASO 3: AUTO → WA RANDOM -->
+          <div class="step" id="step-3">
+            <div class="field" style="flex-wrap:wrap; gap:14px">
+              <div class="step-title">Cargar y reclamar mi bono</div>
+              <button class="btn green" id="auto-wa">Abrir WhatsApp</button>
+              <div class="wa-badge" aria-hidden="true">WA</div>
+            </div>
+          </div>
+        </inner>
       </div>
 
-      <!-- Paso 3: BOTÓN AUTO → WA RANDOM -->
-      <div class="card step" id="step-3">
-        <div class="small" style="text-align:center;margin-bottom:8px">
-          ¡Listo, <b id="n-preview"></b>! Tocá el botón para finalizar por WhatsApp.
-        </div>
-        <div class="actions">
-          <button class="btn green" id="auto-wa">Cargar y reclamar mi bono</button>
-          <button class="btn" data-back>Volver</button>
-        </div>
-        <div class="hint">Paso 3 de 3</div>
+      <!-- textos de abajo, como en la captura -->
+      <div class="promo">100% en tu primera carga!!</div>
+      <div class="list">
+        <div class="muted">Mínimo de Carga $1000</div>
+        <div class="muted">Ruleta en Vivo - Slots - Apuestas Deportivas y mucho más.</div>
+      </div>
+
+      <div class="dots">
+        <div class="dot active" data-step="1"></div>
+        <div class="dot" data-step="2"></div>
+        <div class="dot" data-step="3"></div>
       </div>
     </section>
 
-    <footer>© 2025 • Lionel • Casino — Slots, Ruleta, Blackjack, Apuestas.</footer>
+    <footer>© 2025 • Lionel • Casino — Slots, Ruleta, Apuestas.</footer>
   </div>
 
 <script>
-  // === CONFIGURACIÓN ===
+  // === CONFIG ===
   const WHATSAPPS = [
     { label:"Atención 1 (AR)", phone:"5491122223333" },
     { label:"Atención 2 (CL)", phone:"56999888777" },
     { label:"Atención 3 (MX)", phone:"5215512345678" },
   ];
-  const DEFAULT_MSG = "Hola, soy {name}. Quiero cargar y reclamar mi bono. ¿Me ayudan?";
+  const DEFAULT_MSG = "Hola, soy {name}. Quiero crear mi cuenta, cargar y reclamar mi bono.";
 
   // === HELPERS ===
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
-  const hide = (el,v)=> v ? el.setAttribute('hidden','') : el.removeAttribute('hidden');
-
-  const state = { name:'' };
-
-  function stepTo(n){
-    $$(".step").forEach(s=>s.classList.remove('active'));
-    $("#step-"+n).classList.add('active');
-    $$("#dots .dot").forEach(d=>{
-      const k=+d.dataset.step;
-      d.classList.toggle('active',k===n);
-      d.classList.toggle('done',k<n);
+  function setStep(n){
+    $$(".step").forEach(s=> s.classList.remove("active"));
+    $("#step-"+n).classList.add("active");
+    $$(".dot").forEach((d,i)=>{
+      d.classList.toggle("active", i===n-1);
+      d.classList.toggle("done", i < n-1);
     });
-    if(n===3){ $("#n-preview").textContent = state.name; }
   }
-
-  // Paso 1 → 2
-  $("#to-2").addEventListener("click", ()=>{
-    const v = $("#name").value.trim();
-    const ok = v.length >= 2;
-    hide($("#e-name"), ok);
-    if(!ok) return;
-    state.name = v;
-    stepTo(2);
-  });
-
-  // Paso 2 → 3
-  $("#to-3").addEventListener("click", ()=> stepTo(3));
-
-  // Volver
-  $$("[data-back]").forEach(b=> b.addEventListener("click", ()=>{
-    const cur = +document.querySelector(".step.active").id.split("-")[1];
-    stepTo(Math.max(1, cur-1));
-  }));
-
-  // Copiar CBU/Alias
-  document.addEventListener("click", e=>{
-    const btn = e.target.closest("[data-copy]");
-    if(!btn) return;
-    const sel = btn.getAttribute("data-copy");
-    const el = document.querySelector(sel);
-    const txt = el.textContent.trim();
-    navigator.clipboard.writeText(txt).then(()=>{
-      const t = btn.textContent; btn.textContent="Copiado"; setTimeout(()=>btn.textContent=t,1000);
+  function copy(sel,btn){
+    const t = document.querySelector(sel).textContent.trim();
+    navigator.clipboard.writeText(t).then(()=>{
+      const old = btn.textContent; btn.textContent="Copiado"; setTimeout(()=>btn.textContent=old,1000);
     });
-  });
-
-  // WhatsApp aleatorio (estilo multilink)
+  }
   function pickRandomIndex(len){
-    if (crypto?.getRandomValues) { const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; }
+    if (crypto?.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; }
     return Math.floor(Math.random()*len);
   }
   function openRandomWA(){
-    const msg = encodeURIComponent(DEFAULT_MSG.replace("{name}", state.name));
+    const name = $("#name").value.trim() || "Cliente";
+    const msg = encodeURIComponent(DEFAULT_MSG.replace("{name}", name));
     const i = pickRandomIndex(WHATSAPPS.length);
     const w = WHATSAPPS[i];
     const url = `https://wa.me/${w.phone}?text=${msg}`;
-    window.open(url,"_blank");
+    window.open(url, "_blank");
   }
+
+  // === EVENTS ===
+  $("#to-2").addEventListener("click", ()=>{
+    const v = $("#name").value.trim();
+    if(v.length < 2){ $("#name").focus(); return; }
+    setStep(2);
+  });
+  $("#to-3").addEventListener("click", ()=> setStep(3));
+  document.addEventListener("click", e=>{
+    const btn = e.target.closest("[data-copy]");
+    if(btn){ copy(btn.getAttribute("data-copy"), btn); }
+  });
   $("#auto-wa").addEventListener("click", openRandomWA);
 </script>
 </body>
