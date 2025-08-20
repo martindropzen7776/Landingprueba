@@ -121,12 +121,12 @@
     { phone:"5215512345678" },
   ];
   const DEFAULT_MSG = "Hola, soy {name}. Quiero crear mi cuenta, cargar y reclamar mi bono.";
-  const $=s=>document.querySelector(s); const $$=s=>Array.from(document.querySelectorAll(s));
+
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
 
   function setStep(n){
-    // Paneles
     $$(".step").forEach((s,i)=> s.classList.toggle("active", i===n-1));
-    // Dots
     $$("#dots .dot").forEach((d,i)=>{
       d.classList.toggle("active", i===n-1);
       d.classList.toggle("done", i < n-1);
@@ -135,34 +135,59 @@
   }
 
   // Paso 1: validar nombre (>=3)
-  $("#to-2").addEventListener("click",()=>{ 
+  $("#to-2").addEventListener("click", ()=> {
     const v = $("#name").value.trim();
     const ok = v.length >= 3;
     $("#warn-name").hidden = ok;
     if(ok) setStep(2);
   });
 
-  // Copiar CBU + control de avance
+  // Paso 2: copiar CBU + control de avance
   let copiedCBU = false;
   const btnCopy = document.getElementById("copy-cbu");
-  const warn = document.getElementById("warn-cbu");
+  const warn    = document.getElementById("warn-cbu");
   const btnNext = document.getElementById("to-3");
 
-  btnCopy.addEventListener("click",()=>{
-    const txt=document.getElementById("cbu").textContent.trim();
+  btnCopy.addEventListener("click", ()=> {
+    const txt = document.getElementById("cbu").textContent.trim();
     navigator.clipboard.writeText(txt).then(()=>{
       copiedCBU = true;
-      btnCopy.textContent="CBU Copiado";
+      btnCopy.textContent = "CBU Copiado";
       warn.hidden = true;
       btnCopy.classList.remove("shake");
-      setTimeout(()=>btnCopy.textContent="Copiar CBU",1500);
+      setTimeout(()=> btnCopy.textContent = "Copiar CBU", 1500);
+    }).catch(()=>{
+      // Si el navegador bloquea el clipboard (p.ej. file://), avisamos.
+      warn.textContent = "No se pudo copiar automáticamente. Copiá el CBU manualmente.";
+      warn.hidden = false;
+      btnCopy.classList.add("shake");
     });
   });
 
-  btnNext.addEventListener("click",()=> {
+  btnNext.addEventListener("click", ()=> {
     if(!copiedCBU){
-      warn.hidden = false;             // mostrar aviso
-      btnCopy.classList.add("shake");  // vibrar botón de copiar
+      warn.hidden = false;            // mostrar aviso
+      btnCopy.classList.add("shake"); // vibrar botón de copiar
       btnCopy.focus({preventScroll:true});
       return;
     }
+    setStep(3);
+  });
+
+  // Paso 3: WhatsApp aleatorio con nombre en el mensaje
+  function pickRandom(len){
+    if (crypto?.getRandomValues) {
+      const a = new Uint32Array(1);
+      crypto.getRandomValues(a);
+      return a[0] % len;
+    }
+    return Math.floor(Math.random() * len);
+  }
+
+  $("#auto-wa").addEventListener("click", ()=> {
+    const name = $("#name").value.trim() || "Cliente";
+    const msg  = encodeURIComponent(DEFAULT_MSG.replace("{name}", name));
+    const w    = WHATSAPPS[pickRandom(WHATSAPPS.length)];
+    window.open(`https://wa.me/${w.phone}?text=${msg}`, "_blank");
+  });
+</script>
