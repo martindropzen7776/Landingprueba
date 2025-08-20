@@ -1,262 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Lionel • Casino • Alta en 3 pasos</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lionel • Casino</title>
 <style>
   :root{
-    --blue:#2f8fe0; --blue-deep:#1d6bb6; --text:#ffffff; --muted:#e5f0ffcc;
-    --panel:#0c1324; --panel-2:#121a33; --accent:#ffd147; --accent-2:#00e08f;
-    --err:#ff5a74; --stroke:rgba(255,255,255,.18); --radius:20px;
+    --blue:#2f8fe0; --blue-deep:#1d6bb6; --text:#fff; --muted:#eaf3ffcc;
+    --accent:#ffd147; --green:#19c37d;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{
-    margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
     color:var(--text);
-    background: radial-gradient(1200px 600px at 70% -10%, #6bb6ff55 0%, transparent 60%),
-               linear-gradient(0deg,var(--blue-deep),var(--blue));
+    background:linear-gradient(0deg,var(--blue-deep),var(--blue));
   }
-  .wrap{max-width:1000px; margin:0 auto; padding:28px 18px 40px}
-  .hero{display:grid; gap:18px; place-items:center; text-align:center; margin-top:12px}
-  .avatar{width:160px;height:160px;border-radius:50%;background:#2a78c0 url('avatar.jpeg') center/cover no-repeat;border:6px solid #ffffffcc;box-shadow:0 8px 30px #00000030}
-  h1{margin:0;font-size:clamp(24px,3.6vw,40px);line-height:1.05;letter-spacing:.3px}
-  .sub{font-size:clamp(14px,2.2vw,18px);color:var(--muted)}
-  .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px}
-  .badge{background:#0002;border:1px solid var(--stroke);color:#fff;padding:8px 12px;border-radius:999px;font-weight:700;text-transform:uppercase;font-size:12px;box-shadow:inset 0 0 0 1px #fff0}
-  .promo{margin-top:6px;font-weight:900;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
+  .wrap{max-width:720px;margin:0 auto;padding:28px 16px 40px}
+  /* HERO simple */
+  .hero{display:grid;place-items:center;text-align:center;gap:14px;margin-top:8px}
+  .avatar{width:140px;height:140px;border-radius:50%;background:#2a78c0 url('https://i.imgur.com/3r4f0w8.png') center/cover no-repeat;border:6px solid #ffffffcc}
+  h1{margin:0;font-size:clamp(22px,4.2vw,38px);line-height:1.05}
+  .sub{font-size:clamp(14px,2.4vw,18px);color:var(--muted)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .badge{padding:8px 12px;border-radius:999px;border:1px solid #ffffff30;background:#00000022;font-weight:800;text-transform:uppercase;font-size:12px}
+  .promo{margin-top:4px;font-weight:900;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
 
-  .steps{margin-top:24px;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid #ffffff14;border-radius:calc(var(--radius) + 6px);box-shadow:0 20px 80px #0006;overflow:hidden}
-  .steps header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:#0a1020aa;border-bottom:1px solid #ffffff14}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.3px}
-  .brand .chip{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 30deg,#ffd147,#ff7ae0,#60b6ff,#ffd147);box-shadow:0 0 0 3px #ffffff1a inset}
-  .progress{display:flex;gap:8px}
-  .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#0a122a;color:#9db8ff;border:1px solid #ffffff14}
-  .dot.active{background:linear-gradient(45deg,#111a38,#1f2a56);color:#fff;box-shadow:0 8px 18px #0008}
-  .dot.done{background:linear-gradient(45deg,#0c2b1f,#14553f);color:#c4ffe6}
+  /* Pasos minimalistas */
+  .steps{margin-top:22px}
+  .progress{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
+  .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;border:1px solid #ffffff40;background:#00000022;color:#d7e8ff}
+  .dot.active{background:#00000035;color:#fff}
+  .dot.done{background:#07291b}
+  .card{background:#00000020;border:1px solid #ffffff30;border-radius:16px;padding:16px}
+  .step{display:none} .step.active{display:block;animation:fade .15s ease}
+  @keyframes fade{from{opacity:.7;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-  .step{display:none;padding:20px;animation:fade .2s ease} .step.active{display:block}
-  @keyframes fade{from{opacity:.7;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .grid{display:grid;gap:14px} @media (min-width:760px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+  label{font-size:13px;color:#eaf3ffcc;display:block;margin-bottom:6px}
+  input[type="text"]{
+    width:100%;padding:14px;border-radius:12px;border:1px solid #ffffff40;background:#00000022;color:#fff;outline:none
+  }
+  input[type="text"]:focus{box-shadow:0 0 0 4px #8ec6ff33;border-color:#8ec6ff}
+  .error{color:#ff5a74;font-size:12px;margin-top:6px}
+  .hint{font-size:12px;color:#eaf3ffcc;margin-top:6px}
 
-  label{font-size:13px;color:#a9b8e6}
-  input[type="text"],input[type="password"]{width:100%;padding:14px;border-radius:14px;outline:none;background:#0a122a;color:#fff;border:1px solid #ffffff1f;box-shadow:inset 0 0 10px #0004}
-  input:focus{border-color:#8ec6ff;box-shadow:0 0 0 4px #8ec6ff33}
-  .hint{font-size:12px;color:#a9b8e6} .error{color:var(--err);font-size:12px;margin-top:6px}
+  .btn{
+    border:1px solid #ffffff30;background:#00000022;color:#fff;border-radius:999px;
+    padding:12px 18px;font-weight:800;cursor:pointer
+  }
+  .btn.primary{background:#00000030}
+  .btn.green{background:#0f2e20;border-color:#1b6b49}
+  .actions{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-  .pill{border-radius:999px;padding:12px 18px;border:1px solid #ffffff1f;background:linear-gradient(180deg,#0d0f14,#0b0f18);color:#fff;font-weight:800;letter-spacing:.2px;cursor:pointer;transition:.15s;box-shadow:0 8px 24px #0006}
-  .pill.secondary{background:transparent;border:1px solid #ffffff33;color:#dfe9ff}
-  .actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-
-  .drop{border:1.5px dashed #ffffff40;border-radius:16px;padding:18px;text-align:center;background:#0a122a}
-  .drop.drag{border-color:#9ad1ff;background:#0a122acc}
-  .file-meta{font-size:13px;color:#cbd6ff;margin-top:8px}
-
-  .info{background:#0a122a;border:1px solid #ffffff2e;border-radius:16px;padding:16px;color:#e9f2ff}
-  .info h4{margin:0 0 8px 0;color:#fff} .info li{margin:6px 0}
-
-  .bank{margin-top:12px;background:#0b152e;border:1px solid #5ea1ff3d;border-radius:16px;padding:14px}
+  /* Bloque CBU minimal */
+  .bank{margin-top:10px;padding:12px;border-radius:14px;border:1px solid #ffffff3a;background:#00000022}
   .bank-row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:8px 0}
-  .bank-code{font-family:ui-monospace, SFMono-Regular, Menlo, monospace;background:#081024;border:1px solid #4f78ff33;color:#dff1ff;border-radius:10px;padding:8px 10px;white-space:nowrap;overflow:auto;max-width:100%}
-  .bank .btn{border:1px solid #4f78ff66;background:#0e1b3a;color:#cfe8ff;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
-  .toggle{cursor:pointer;font-size:12px;color:#9fc6ff;text-decoration:underline;text-underline-offset:3px}
-
-  .wa-list{display:grid;gap:10px;margin-top:10px}
-  .wa-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 14px;border-radius:14px;background:#0a122a;border:1px solid #ffffff1f}
-  .wa-item .meta{display:flex;flex-direction:column} .wa-item .meta small{color:#9fb1df}
-  .wa-item .btn{background:linear-gradient(180deg,#0e2417,#103a24);color:#caffec;border:1px solid #1d6b4b;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer}
-  footer{color:#eaf3ffb0;text-align:center;font-size:12px;padding:16px 8px}
+  .code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#00000030;border:1px solid #ffffff30;color:#fff;border-radius:10px;padding:8px 10px;white-space:nowrap;overflow:auto;max-width:100%}
+  .small{font-size:12px;color:#eaf3ffcc}
+  footer{margin-top:16px;text-align:center;font-size:12px;color:#eaf3ffcc}
 </style>
 </head>
 <body>
   <div class="wrap">
     <!-- HERO -->
     <section class="hero">
-      <div class="avatar" aria-hidden="true"></div>
-      <h1>Seguí estos pasos para crear tu cuenta y cargar</h1>
+      <div class="avatar"></div>
+      <h1>Seguí estos 3 pasos para crear tu cuenta y cargar</h1>
       <div class="sub">Duplicamos tu <b>primera carga</b>. Atención 24/7.</div>
       <div class="badges">
-        <span class="badge">Slots</span><span class="badge">Ruleta en Vivo</span>
-        <span class="badge">Blackjack</span><span class="badge">Apuestas Deportivas</span><span class="badge">Aviator</span>
+        <span class="badge">Slots</span><span class="badge">Ruleta</span>
+        <span class="badge">Blackjack</span><span class="badge">Apuestas</span>
       </div>
       <div class="promo">100% en tu primera carga</div>
     </section>
 
-    <!-- STEPS -->
+    <!-- PASOS -->
     <section class="steps" id="app">
-      <header>
-        <div class="brand"><div class="chip"></div> LIONEL • CASINO</div>
-        <div class="progress" id="dots">
-          <div class="dot active" data-step="1">1</div><div class="dot" data-step="2">2</div><div class="dot" data-step="3">3</div>
-        </div>
-      </header>
-
-      <!-- PASO 1 -->
-      <div class="step active" id="step-1">
-        <div class="grid cols-2">
-          <div>
-            <label for="username">Nombre de usuario *</label>
-            <input type="text" id="username" placeholder="Ej: Jesus" autocomplete="username"/>
-            <div class="error" id="e-username" hidden>Ingresá un usuario válido (mín. 3 caracteres).</div>
-          </div>
-          <div>
-            <label for="password">Contraseña *</label>
-            <input type="password" id="password" placeholder="Tu contraseña" autocomplete="new-password"/>
-            <div class="error" id="e-password" hidden>Mínimo 6 caracteres.</div>
-          </div>
-        </div>
-        <div class="hint" style="margin-top:6px">Paso 1 de 3 — Creá tus credenciales.</div>
-        <div class="actions"><button class="pill" id="to-2">Continuar</button></div>
+      <div class="progress" id="dots">
+        <div class="dot active" data-step="1">1</div>
+        <div class="dot" data-step="2">2</div>
+        <div class="dot" data-step="3">3</div>
       </div>
 
-      <!-- PASO 2 -->
-      <div class="step" id="step-2">
-        <div class="grid cols-2">
-          <div>
-            <label>Comprobante de pago *</label>
-            <div class="drop" id="drop">
-              <input type="file" id="receipt" accept="image/*,.pdf" style="display:none"/>
-              <button class="pill secondary" id="pick-file" type="button">Seleccionar archivo</button>
-              <div class="hint">Arrastrá y soltá una imagen o PDF (máx. 10MB).</div>
-              <div class="file-meta" id="file-meta" hidden></div>
-              <div class="error" id="e-file" hidden>Subí el comprobante.</div>
-            </div>
-          </div>
-
-          <div class="info">
-            <h4>Información para la carga</h4>
-            <ul style="margin:0 0 8px 18px; line-height:1.6">
-              <li>Transferí a nuestro <b>CBU/ALIAS</b> (abajo).</li>
-              <li><b>Retiros 24 h</b> — validación y pago al instante.</li>
-              <li>El titular debe coincidir con el usuario registrado.</li>
-              <li>Guardá el comprobante para verificación.</li>
-              <li>Soporte y altas por WhatsApp.</li>
-            </ul>
-
-            <!-- BLOQUE CBU/ALIAS -->
-            <div class="bank">
-              <div class="bank-row">
-                <strong>CBU</strong>
-                <span class="toggle" id="toggle-cbu">Ocultar</span>
-              </div>
-              <div class="bank-row">
-                <div class="bank-code" id="cbu">CBU_NUMBER</div>
-                <button class="btn" data-copy="#cbu">Copiar</button>
-              </div>
-              <div class="bank-row" style="margin-top:10px">
-                <strong>Alias</strong>
-                <span></span>
-              </div>
-              <div class="bank-row">
-                <div class="bank-code" id="alias">ALIAS_BANCARIO</div>
-                <button class="btn" data-copy="#alias">Copiar</button>
-              </div>
-            </div>
-            <!-- /BLOQUE CBU/ALIAS -->
-          </div>
-        </div>
-
+      <!-- Paso 1: SOLO NOMBRE -->
+      <div class="card step active" id="step-1">
+        <label for="name">Escribí tu nombre *</label>
+        <input type="text" id="name" placeholder="Ej: Federico" autocomplete="name"/>
+        <div class="error" id="e-name" hidden>Ingresá un nombre válido (mín. 2 caracteres).</div>
         <div class="actions">
-          <button class="pill secondary" data-back>Volver</button>
-          <button class="pill" id="to-3">Continuar</button>
+          <button class="btn primary" id="to-2">Continuar</button>
         </div>
+        <div class="hint">Paso 1 de 3</div>
       </div>
 
-      <!-- PASO 3 -->
-<div class="step" id="step-3">
-  <h3 style="margin:0 0 8px 0">¡Listo, <span id="u-preview"></span>!</h3>
-  <p class="hint" style="margin:0 0 10px 0">
-    Tocá el botón para derivar a WhatsApp y finalizar el alta.
-  </p>
-  <div class="actions">
-    <button class="pill" id="auto-wa">Cargar y reclamar mi bono</button>
-    <button class="pill secondary" data-back>Volver</button>
-  </div>
-</div>
+      <!-- Paso 2: INFO CARGA (sin comprobante) -->
+      <div class="card step" id="step-2">
+        <div class="small">
+          Transferí a nuestro <b>CBU/ALIAS</b>. Retiros <b>24 h</b> (validación y pago al instante).
+          El titular debe coincidir con el nombre registrado.
+        </div>
+        <div class="bank">
+          <div class="bank-row"><strong>CBU</strong></div>
+          <div class="bank-row">
+            <div class="code" id="cbu">CBU_NUMBER</div>
+            <button class="btn" data-copy="#cbu">Copiar</button>
+          </div>
+          <div class="bank-row"><strong>Alias</strong></div>
+          <div class="bank-row">
+            <div class="code" id="alias">ALIAS_BANCARIO</div>
+            <button class="btn" data-copy="#alias">Copiar</button>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-back>Volver</button>
+          <button class="btn primary" id="to-3">Continuar</button>
+        </div>
+        <div class="hint">Paso 2 de 3</div>
+      </div>
+
+      <!-- Paso 3: BOTÓN AUTO → WA RANDOM -->
+      <div class="card step" id="step-3">
+        <div class="small" style="text-align:center;margin-bottom:8px">
+          ¡Listo, <b id="n-preview"></b>! Tocá el botón para finalizar por WhatsApp.
+        </div>
+        <div class="actions">
+          <button class="btn green" id="auto-wa">Cargar y reclamar mi bono</button>
+          <button class="btn" data-back>Volver</button>
+        </div>
+        <div class="hint">Paso 3 de 3</div>
+      </div>
     </section>
 
-    <footer>© 2025 • Lionel • Casino — Slots, Ruleta, Blackjack, Apuestas y más.</footer>
+    <footer>© 2025 • Lionel • Casino — Slots, Ruleta, Blackjack, Apuestas.</footer>
   </div>
 
 <script>
-  // ===== CONFIG =====
+  // === CONFIGURACIÓN ===
   const WHATSAPPS = [
-    { label: "Atención 1 (AR)", phone: "5491122223333" },
-    { label: "Atención 2 (AR)", phone: "56999888777" },
-    { label: "Atención 3 (AR)", phone: "5215512345678" },
+    { label:"Atención 1 (AR)", phone:"5491122223333" },
+    { label:"Atención 2 (CL)", phone:"56999888777" },
+    { label:"Atención 3 (MX)", phone:"5215512345678" },
   ];
-  const DEFAULT_MSG = "Hola, soy {username}. Creé mi cuenta y subí el comprobante. me pueden cargar?;
+  const DEFAULT_MSG = "Hola, soy {name}. Quiero cargar y reclamar mi bono. ¿Me ayudan?";
 
-  // ===== HELPERS =====
+  // === HELPERS ===
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
-  const hide = (el, v) => v ? el.setAttribute('hidden','') : el.removeAttribute('hidden');
+  const hide = (el,v)=> v ? el.setAttribute('hidden','') : el.removeAttribute('hidden');
 
-  const state = { username:'', password:'', file:null };
+  const state = { name:'' };
 
   function stepTo(n){
     $$(".step").forEach(s=>s.classList.remove('active'));
     $("#step-"+n).classList.add('active');
     $$("#dots .dot").forEach(d=>{
-      const k = +d.dataset.step;
-      d.classList.toggle('active', k===n);
-      d.classList.toggle('done', k<n);
+      const k=+d.dataset.step;
+      d.classList.toggle('active',k===n);
+      d.classList.toggle('done',k<n);
     });
-    if(n===3){ $("#u-preview").textContent = state.username; renderWA(); }
+    if(n===3){ $("#n-preview").textContent = state.name; }
   }
 
-  // Paso 1
+  // Paso 1 → 2
   $("#to-2").addEventListener("click", ()=>{
-    const u = $("#username").value.trim();
-    const p = $("#password").value;
-    const uOk = u.length >= 3, pOk = p.length >= 6;
-    hide($("#e-username"), uOk); hide($("#e-password"), pOk);
-    if(!(uOk && pOk)) return;
-    state.username = u; state.password = p;
+    const v = $("#name").value.trim();
+    const ok = v.length >= 2;
+    hide($("#e-name"), ok);
+    if(!ok) return;
+    state.name = v;
     stepTo(2);
   });
 
-  // Paso 2 - archivo
-  const drop = $("#drop"), inputFile=$("#receipt"), pickBtn=$("#pick-file"), fileMeta=$("#file-meta");
-  pickBtn.addEventListener("click", ()=> inputFile.click());
-  ["dragenter","dragover"].forEach(ev=> drop.addEventListener(ev, e=>{e.preventDefault(); drop.classList.add("drag");}));
-  ["dragleave","drop"].forEach(ev=> drop.addEventListener(ev, e=>{e.preventDefault(); drop.classList.remove("drag");}));
-  drop.addEventListener("drop", e=>{ const f = e.dataTransfer.files?.[0]; if(f) setFile(f); });
-  inputFile.addEventListener("change", e=>{ const f = e.target.files?.[0]; if(f) setFile(f); });
-  function setFile(f){
-    if(f.size > 10*1024*1024){ fileMeta.textContent="El archivo supera 10MB."; hide(fileMeta,false); return; }
-    state.file = f; fileMeta.textContent = `Archivo: ${f.name} (${(f.size/1024/1024).toFixed(2)} MB)`; hide(fileMeta,false); hide($("#e-file"), true);
-  }
-
-  // Copiar CBU / Alias
-  document.addEventListener("click", e=>{
-    const btn = e.target.closest("[data-copy]");
-    if(!btn) return;
-    const sel = btn.getAttribute("data-copy");
-    const el = document.querySelector(sel);
-    const txt = el.textContent.trim();
-    navigator.clipboard.writeText(txt).then(()=>{
-      const original = btn.textContent;
-      btn.textContent = "Copiado";
-      setTimeout(()=> btn.textContent = original, 1200);
-    });
-  });
-
-  // Mostrar/Ocultar CBU
-  const cbuEl = $("#cbu"); const toggle = $("#toggle-cbu");
-  let cbuMasked = false, cbuRaw = cbuEl.textContent.trim();
-  function maskCBU(s){ return s.replace(/\d(?=\d{4})/g, "•"); }
-  toggle.addEventListener("click", ()=>{
-    cbuMasked = !cbuMasked;
-    cbuEl.textContent = cbuMasked ? maskCBU(cbuRaw) : cbuRaw;
-    toggle.textContent = cbuMasked ? "Mostrar" : "Ocultar";
-  });
-
-  $("#to-3").addEventListener("click", ()=>{
-    const ok = !!state.file;
-    hide($("#e-file"), ok);
-    if(ok) stepTo(3);
-  });
+  // Paso 2 → 3
+  $("#to-3").addEventListener("click", ()=> stepTo(3));
 
   // Volver
   $$("[data-back]").forEach(b=> b.addEventListener("click", ()=>{
@@ -264,52 +179,31 @@
     stepTo(Math.max(1, cur-1));
   }));
 
-  // Paso 3 - WhatsApp
- // Helper: elegir número de WhatsApp al azar de forma justa
+  // Copiar CBU/Alias
+  document.addEventListener("click", e=>{
+    const btn = e.target.closest("[data-copy]");
+    if(!btn) return;
+    const sel = btn.getAttribute("data-copy");
+    const el = document.querySelector(sel);
+    const txt = el.textContent.trim();
+    navigator.clipboard.writeText(txt).then(()=>{
+      const t = btn.textContent; btn.textContent="Copiado"; setTimeout(()=>btn.textContent=t,1000);
+    });
+  });
+
+  // WhatsApp aleatorio (estilo multilink)
   function pickRandomIndex(len){
-    if (window.crypto && crypto.getRandomValues) {
-      const arr = new Uint32Array(1); crypto.getRandomValues(arr);
-      return arr[0] % len;
-    }
-    return Math.floor(Math.random() * len);
+    if (crypto?.getRandomValues) { const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%len; }
+    return Math.floor(Math.random()*len);
   }
-
-  function openRandomWhatsApp(){
-    const fileName = state.file ? state.file.name : "sin nombre";
-    const msg = encodeURIComponent(
-      DEFAULT_MSG
-        .replace("{username}", state.username)
-        .replace("{file}", fileName)
-    );
-
+  function openRandomWA(){
+    const msg = encodeURIComponent(DEFAULT_MSG.replace("{name}", state.name));
     const i = pickRandomIndex(WHATSAPPS.length);
     const w = WHATSAPPS[i];
     const url = `https://wa.me/${w.phone}?text=${msg}`;
-
-    // (Opcional) tracking
-    // if (window.fbq) fbq('trackCustom','WA_Redirect',{phone:w.phone, step:3});
-
-    // Abrimos en nueva pestaña para evitar bloqueadores
-    window.open(url, "_blank");
+    window.open(url,"_blank");
   }
-
-  // Botón de paso 3
-  document.addEventListener("click", (e)=>{
-    if (e.target && e.target.id === "auto-wa") openRandomWhatsApp();
-  });
-
-  // Al pasar a Paso 3 solo mostramos el nombre (no lista)
-  function stepTo(n){
-    $$(".step").forEach(s=>s.classList.remove('active'));
-    $("#step-"+n).classList.add('active');
-    $$("#dots .dot").forEach(d=>{
-      const k = +d.dataset.step;
-      d.classList.toggle('active', k===n);
-      d.classList.toggle('done', k<n);
-    });
-    if(n===3){ $("#u-preview").textContent = state.username; }
-  }
-
+  $("#auto-wa").addEventListener("click", openRandomWA);
 </script>
 </body>
 </html>
