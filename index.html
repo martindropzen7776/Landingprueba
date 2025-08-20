@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Registro • Paso a paso</title>
+<style>
+  :root{
+    --bg:#0f1221; --panel:#171a2b; --muted:#8a90a6; --text:#e9ecf8;
+    --primary:#7b5cff; --primary2:#f33ea1; --ok:#18c37d; --err:#ff5a74;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background: radial-gradient(60% 80% at 70% 10%, #251d58 0%, #0f1221 60%) no-repeat, var(--bg);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial;
+    color:var(--text); display:flex; align-items:center; justify-content:center; padding:32px;
+  }
+  .card{
+    width:min(920px, 100%); background:var(--panel); border-radius:calc(var(--radius) + 6px);
+    box-shadow: 0 10px 40px rgba(0,0,0,.35); overflow:hidden; border:1px solid rgba(255,255,255,.06)
+  }
+  header{
+    padding:22px 24px; border-bottom:1px solid rgba(255,255,255,.06);
+    display:flex; align-items:center; gap:14px; justify-content:space-between;
+  }
+  .title{font-size:22px; font-weight:800; letter-spacing:.2px}
+  .progress{display:flex; gap:10px; align-items:center}
+  .dot{
+    width:28px; height:28px; border-radius:50%;
+    background:#2a2f4a; color:#a9afd0; display:grid; place-items:center; font-size:14px;
+    border:1px solid rgba(255,255,255,.05)
+  }
+  .dot.active{background:linear-gradient(45deg,var(--primary),var(--primary2)); color:white}
+  .dot.done{background:var(--ok); color:#04100b}
+  main{padding:28px}
+  .step{display:none; animation:fade .18s ease}
+  .step.active{display:block}
+  @keyframes fade{from{opacity:.6; transform:translateY(4px)} to{opacity:1; transform:none}}
+  .grid{display:grid; gap:16px}
+  @media (min-width:720px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+  label{font-size:13px; color:var(--muted)}
+  input[type="text"], input[type="file"] + label, .fake-input{
+    width:100%; background:#0f1221; color:var(--text); border:1px solid #2a2f4a;
+    padding:14px 14px; border-radius:12px; outline:none; transition:.15s;
+  }
+  input[type="text"]:focus, .fake-input:focus-within{border-color:#5b62ff; box-shadow:0 0 0 4px rgba(123,92,255,.12)}
+  .hint{font-size:12px; color:var(--muted)}
+  .actions{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+  .btn{
+    appearance:none; border:0; border-radius:999px; padding:12px 18px; font-weight:700;
+    background:#232846; color:#dfe2f7; cursor:pointer; transition:.15s; letter-spacing:.2px
+  }
+  .btn:hover{filter:brightness(1.05)}
+  .btn.primary{
+    background:linear-gradient(45deg, var(--primary), var(--primary2));
+    color:white; box-shadow: 0 8px 22px rgba(123,92,255,.35)
+  }
+  .btn.ghost{background:transparent; border:1px solid #2a2f4a; color:#c7cbe6}
+  .btn.success{background:var(--ok); color:#071a11}
+  .error{color:var(--err); font-size:12px; margin-top:6px}
+  .drop{
+    border:1.5px dashed #3a4069; border-radius:14px; padding:20px; text-align:center; background:#0f1221;
+  }
+  .drop.drag{border-color:#9aa2ff; background:#0f1221cc}
+  .file-meta{font-size:13px; color:#cbd1ea; margin-top:8px}
+  .terms{display:flex; gap:10px; align-items:flex-start; margin-top:8px; font-size:14px}
+  .terms a{color:#9aa2ff; text-decoration:underline; text-underline-offset:2px}
+  /* Modal */
+  .modal{
+    position:fixed; inset:0; display:none; place-items:center; background:rgba(4,6,14,.6); padding:20px; z-index:10
+  }
+  .modal.open{display:grid}
+  .modal .box{
+    width:min(520px,100%); background:var(--panel); border:1px solid rgba(255,255,255,.06);
+    border-radius:16px; padding:18px
+  }
+  .wa-list{display:grid; gap:10px; margin-top:10px}
+  .wa-item{
+    display:flex; justify-content:space-between; align-items:center; gap:14px;
+    padding:12px 14px; border-radius:12px; background:#0f1221; border:1px solid #2a2f4a
+  }
+  .wa-item .meta{display:flex; flex-direction:column}
+  .wa-item .meta small{color:var(--muted)}
+  .wa-item button{white-space:nowrap}
+  footer{padding:14px 24px; border-top:1px solid rgba(255,255,255,.06); color:#7d83a1; font-size:12px}
+</style>
+</head>
+<body>
+  <div class="card" id="app">
+    <header>
+      <div class="title">Registro</div>
+      <div class="progress" id="progressDots" aria-label="Progreso">
+        <div class="dot active" data-step="1">1</div>
+        <div class="dot" data-step="2">2</div>
+        <div class="dot" data-step="3">3</div>
+      </div>
+    </header>
+
+    <main>
+      <!-- PASO 1: USUARIO -->
+      <section class="step active" id="step-1">
+        <div class="grid">
+          <div>
+            <label for="username">Nombre de usuario *</label>
+            <input type="text" id="username" autocomplete="username" placeholder="Ej: fede_master" />
+            <div class="hint">Solo este campo. Guardamos temporalmente para los siguientes pasos.</div>
+            <div class="error" id="e-username" hidden>Ingresá un usuario válido (mín. 3 caracteres).</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="to-step-2">Continuar</button>
+        </div>
+      </section>
+
+      <!-- PASO 2: COMPROBANTE + CONDICIONES -->
+      <section class="step" id="step-2">
+        <div class="grid">
+          <div>
+            <label>Comprobante de pago *</label>
+            <div class="drop" id="drop">
+              <input type="file" id="receipt" accept="image/*,.pdf" style="display:none" />
+              <button class="btn ghost" id="pick-file" type="button">Seleccionar archivo</button>
+              <div class="hint">Arrastrá y soltá una imagen o PDF (máx. 10MB).</div>
+              <div class="file-meta" id="file-meta" hidden></div>
+              <div class="error" id="e-file" hidden>Subí el comprobante.</div>
+            </div>
+
+            <div class="terms">
+              <input type="checkbox" id="agree" />
+              <label for="agree">Acepto las <a href="#" id="open-terms">condiciones del casino</a> *</label>
+            </div>
+            <div class="error" id="e-terms" hidden>Debés aceptar las condiciones.</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" data-back>Volver</button>
+          <button class="btn primary" id="to-step-3">Continuar</button>
+        </div>
+      </section>
+
+      <!-- PASO 3: MULTI-WHATSAPP -->
+      <section class="step" id="step-3">
+        <h3 style="margin:0 0 10px 0;">¡Listo, <span id="u-preview"></span>!</h3>
+        <p class="hint" style="margin:0 0 16px 0;">Elegí por qué WhatsApp querés ser atendido.</p>
+        <div class="actions">
+          <button class="btn success" id="open-multiwa">Contactar por WhatsApp</button>
+          <button class="btn ghost" data-back>Volver</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2025 • Demo de 3 pasos. Cambiá números y textos en el script.</footer>
+  </div>
+
+  <!-- MODAL CONDICIONES -->
+  <div class="modal" id="modal-terms" aria-modal="true" role="dialog">
+    <div class="box">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <strong>Condiciones del casino</strong>
+        <button class="btn ghost" id="close-terms">Cerrar</button>
+      </div>
+      <div style="margin-top:10px; max-height:45vh; overflow:auto; color:#cbd1ea; font-size:14px; line-height:1.55">
+        <p>1) Solo mayores de 18 años. 2) El depósito debe coincidir con el titular. 3) Comisiones y límites según método. 4) Cuentas en revisión pueden demorar. 5) Prohibido uso fraudulento. 6) Al aceptar, confirmás que leíste y entendiste estas condiciones.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MULTI WHATSAPP -->
+  <div class="modal" id="modal-wa" aria-modal="true" role="dialog">
+    <div class="box">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <strong>Elegí un WhatsApp</strong>
+        <button class="btn ghost" id="close-wa">Cerrar</button>
+      </div>
+      <div class="wa-list" id="wa-list"></div>
+    </div>
+  </div>
+
+<script>
+  // ==== CONFIGURACIÓN RÁPIDA ====
+  const WHATSAPPS = [
+    { label: "Atención 1 (AR)", phone: "5491122223333" },
+    { label: "Atención 2 (CL)", phone: "56999888777" },
+    { label: "Atención 3 (MX)", phone: "5215512345678" },
+  ];
+  const DEFAULT_MSG = "Hola, me registré como {username} y ya subí el comprobante. ¿Me ayudan a continuar?";
+
+  // ==== UTILIDADES ====
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  const setHidden = (el, v) => v ? el.setAttribute("hidden", "") : el.removeAttribute("hidden");
+
+  const state = {
+    username: "",
+    file: null,
+    agree: false
+  };
+
+  function goTo(step){
+    $$(".step").forEach(s => s.classList.remove("active"));
+    $("#step-"+step).classList.add("active");
+    // Dots
+    $$("#progressDots .dot").forEach(dot => {
+      const n = +dot.dataset.step;
+      dot.classList.toggle("active", n === step);
+      dot.classList.toggle("done", n < step);
+    });
+    if(step === 3){ $("#u-preview").textContent = state.username; }
+  }
+
+  // ==== PASO 1 ====
+  $("#to-step-2").addEventListener("click", () => {
+    const v = $("#username").value.trim();
+    const valid = v.length >= 3;
+    setHidden($("#e-username"), valid);
+    if(!valid) return;
+    state.username = v;
+    goTo(2);
+  });
+
+  // ==== PASO 2: archivo + términos ====
+  const drop = $("#drop");
+  const inputFile = $("#receipt");
+  const pickBtn = $("#pick-file");
+  const fileMeta = $("#file-meta");
+
+  pickBtn.addEventListener("click", ()=> inputFile.click());
+
+  ["dragenter","dragover"].forEach(ev=>{
+    drop.addEventListener(ev, e=>{ e.preventDefault(); drop.classList.add("drag"); });
+  });
+  ["dragleave","drop"].forEach(ev=>{
+    drop.addEventListener(ev, e=>{ e.preventDefault(); drop.classList.remove("drag"); });
+  });
+  drop.addEventListener("drop", e=>{
+    const f = e.dataTransfer.files?.[0];
+    if(f) setFile(f);
+  });
+  inputFile.addEventListener("change", e=>{
+    const f = e.target.files?.[0];
+    if(f) setFile(f);
+  });
+
+  function setFile(f){
+    if(f.size > 10 * 1024 * 1024){
+      fileMeta.textContent = "El archivo supera 10MB.";
+      setHidden(fileMeta, false);
+      return;
+    }
+    state.file = f;
+    fileMeta.textContent = `Archivo: ${f.name} (${(f.size/1024/1024).toFixed(2)} MB)`;
+    setHidden(fileMeta, false);
+    setHidden($("#e-file"), true);
+  }
+
+  $("#open-terms").addEventListener("click", (e)=>{ e.preventDefault(); $("#modal-terms").classList.add("open"); });
+  $("#close-terms").addEventListener("click", ()=> $("#modal-terms").classList.remove("open"));
+
+  $("#to-step-3").addEventListener("click", ()=>{
+    const fileOk = !!state.file;
+    const agree = $("#agree").checked;
+    state.agree = agree;
+
+    setHidden($("#e-file"), fileOk);
+    setHidden($("#e-terms"), agree);
+
+    if(fileOk && agree) goTo(3);
+  });
+
+  // ==== NAVEGACIÓN GENÉRICA BACK ====
+  $$("[data-back]").forEach(b=> b.addEventListener("click", ()=>{
+    const active = +document.querySelector(".step.active").id.split("-")[1];
+    goTo(Math.max(1, active-1));
+  }));
+
+  // ==== MULTI WHATSAPP ====
+  $("#open-multiwa").addEventListener("click", ()=>{
+    const list = $("#wa-list");
+    list.innerHTML = "";
+    const msg = encodeURIComponent(DEFAULT_MSG.replace("{username}", state.username));
+
+    WHATSAPPS.forEach(w=>{
+      const url = `https://wa.me/${w.phone}?text=${msg}`;
+      const row = document.createElement("div");
+      row.className = "wa-item";
+      row.innerHTML = `
+        <div class="meta"><strong>${w.label}</strong><small>${w.phone}</small></div>
+        <button class="btn success">Abrir</button>
+      `;
+      row.querySelector("button").addEventListener("click", ()=> window.open(url, "_blank"));
+      list.appendChild(row);
+    });
+
+    // Extra: botón para abrir todos a la vez (opcional)
+    const all = document.createElement("div");
+    all.className = "wa-item";
+    all.innerHTML = `
+      <div class="meta"><strong>Enviar a todos</strong><small>Se abrirán en nuevas pestañas</small></div>
+      <button class="btn primary">Abrir todos</button>
+    `;
+    all.querySelector("button").addEventListener("click", ()=>{
+      WHATSAPPS.forEach(w=>{
+        const u = `https://wa.me/${w.phone}?text=${msg}`;
+        window.open(u, "_blank");
+      });
+    });
+    list.appendChild(all);
+
+    $("#modal-wa").classList.add("open");
+  });
+  $("#close-wa").addEventListener("click", ()=> $("#modal-wa").classList.remove("open"));
+
+  // Accesibilidad: cerrar modales con ESC
+  window.addEventListener("keydown", e=>{
+    if(e.key === "Escape"){ $("#modal-terms").classList.remove("open"); $("#modal-wa").classList.remove("open"); }
+  });
+</script>
+</body>
+</html>
