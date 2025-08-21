@@ -16,7 +16,18 @@
   h1{margin:0 0 20px;text-transform:uppercase;letter-spacing:.6px;font-weight:900;font-size:clamp(22px,4vw,38px)}
   .pill-panel{background:#0A0A0A;border-radius:64px;width:min(620px,100%);padding:26px;box-shadow:0 14px 28px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
   .step{display:none;width:100%;text-align:center}.step.active{display:block}
-  input[type="text"]{width:80%;max-width:360px;padding:14px 16px;border-radius:14px;border:2px solid #222;background:#111;color:#fff;font-weight:800;outline:none}
+  /* Input con borde dorado horizontal */
+  input[type="text"] {
+    width:80%;
+    max-width:360px;
+    padding:14px 16px;
+    border:none;
+    border-bottom:2px solid var(--yellow); /* solo borde abajo dorado */
+    background:#111;
+    color:#fff;
+    font-weight:800;
+    outline:none;
+  }  
   .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;margin-top:12px}
   .btn.yellow{background:var(--yellow);color:#111;}   /* invertido */
   .btn.green{background:#1b6b49;color:#fff;border:2px solid #0f2e20;}  /* invertido */
