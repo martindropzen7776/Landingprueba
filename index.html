@@ -60,6 +60,19 @@ input[type="text"] {
   .shake{animation:shake .3s linear}
   .whatsapp-icon { width: 16px; height: 16px; }
   
+#auto-wa {
+  animation: bounceZoom 0.6s ease infinite;
+  animation-delay: 2s;   /* empieza después de 2s */
+  animation-iteration-count: infinite; /* se repite siempre */
+  animation-direction: normal;
+}
+
+@keyframes bounceZoom {
+  0%   { transform: scale(0.9); }
+  50%  { transform: scale(1.1); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
   @keyframes shake{
     0%,100%{transform:translateX(0)}
     20%{transform:translateX(-6px)}
