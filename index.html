@@ -17,16 +17,31 @@
   .pill-panel{background:#0A0A0A;border-radius:64px;width:min(620px,100%);padding:26px;box-shadow:0 14px 28px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
   .step{display:none;width:100%;text-align:center}.step.active{display:block}
 
-  input[type="text"]{
-  width:80%;
-  max-width:360px;
-  padding:14px 16px;
-  border-radius:14px;
-  border:2px solid #FFC72C;  /* dorado */
-  background:#111;
-  color:#fff;
-  font-weight:800;
-  outline:none;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #FFC72C; /* dorado */
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  width: 80%;
+  max-width: 360px;
+  padding: 14px 16px;
+  border: none;
+  border-bottom: 2px solid #FFC72C; /* borde dorado */
+  background: #111;
+  color: #fff;
+  font-weight: 800;
+  outline: none;
+  text-align: center;
 }
   .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;margin-top:12px}
   .btn.yellow{background:var(--yellow);color:#111;}   /* invertido */
@@ -62,6 +77,10 @@
       <div class="pill-panel">
         <!-- Paso 1 -->
         <div class="step active" id="step-1">
+          <div class="input-group">
+        <label for="name">Tu Nombre</label>
+        <input type="text" id="name" placeholder="Escribí tu nombre"/>
+         </div>
           <input type="text" id="name" placeholder="Escribí tu nombre"/>
           <br><button class="btn yellow" id="to-2">DUPLICA TU PRIMER CARGA</button>
           <div id="warn-name" class="warn" role="alert" aria-live="assertive" hidden>
