@@ -25,13 +25,11 @@
   .code{font-family:monospace;background:#111;color:#fff;border:2px solid #222;padding:10px 14px;border-radius:12px;white-space:nowrap;max-width:260px;overflow:auto}
   .promo{color:#FFC72C;font-weight:900;text-transform:uppercase;letter-spacing:.6px;margin-top:8px;margin-bottom:6px;text-align:center;font-size:clamp(14px,2.2vw,18px)}
   .list{text-align:center;font-weight:800;line-height:1.5;font-size:clamp(14px,2.2vw,18px)} .list .muted{color:var(--muted)}
-  .conditions{margin-top:16px;text-align:center;color:var(--muted);line-height:1.6}
+  .conditions{margin-top:16px;text-align:center;color:#e9f3ff;line-height:1.6}
   .dots{display:flex;gap:10px;justify-content:center;margin-top:12px}
   .dot{width:12px;height:12px;border-radius:50%;background:#1a62b5aa}.dot.active{background:#fff}.dot.done{background:#0f8a4f}
   footer{margin-top:24px;text-align:center;font-size:12px;color:#eaf3ffcc}
   .note{margin-top:5px;text-align:center;color:#fff;font-size:14px;line-height:1.6;font-weight:600}
-
-  /* Avisos + shake */
   .warn{margin-top:10px;color:#ffb3b3;font-weight:800;font-size:14px}
   .shake{animation:shake .3s linear}
   @keyframes shake{
@@ -69,7 +67,7 @@
             </div>
           </div>
 
-          <!-- CONDICIONES (centradas, sin emojis) -->
+          <!-- CONDICIONES -->
           <div class="conditions">
             <span style="color:#FFC72C; font-weight:900;">JUEGA en CASINO ZEUS</span><br>
             Carga mínima: $2000<br>
@@ -84,21 +82,21 @@
         </div>
 
         <!-- Paso 3 -->
-<div class="step" id="step-3">
-  <p>¡Listo <b id="n-preview"></b>! Tocá el botón para finalizar.</p>
-  <button class="btn green" id="auto-wa">Reclamá tu 100% de BONO</button>
-  <p class="note">Al tocar el botón vas a ser dirigido automáticamente a WhatsApp.</p>
-</div>
-        
+        <div class="step" id="step-3">
+          <p>¡Listo <b id="n-preview"></b>! Tocá el botón para finalizar.</p>
+          <button class="btn green" id="auto-wa">Reclamá tu 100% de BONO</button>
+          <p class="note">Al tocar el botón vas a ser dirigido automáticamente a WhatsApp.</p>
+        </div>
+      </div> <!-- 👈 CIERRE DE .pill-panel, antes todo lo de abajo quedaba adentro -->
+
       <!-- NOTA FINAL -->
       <div class="note">
-No esperes mas, basta de intermediarios para registrarte,<br> completá tus datos y carga y empeza a jugar
+        No esperes mas, basta de intermediarios para registrarte,<br>
+        completá tus datos y carga y empeza a jugar
       </div>
 
-    
-      <!-- TEXTO INFERIOR (se mantiene) -->
+      <!-- TEXTO INFERIOR -->
       <div class="promo">100% en tu primera carga!!</div>
-
 
       <div class="dots" id="dots">
         <div class="dot active" data-step="1"></div>
@@ -118,7 +116,7 @@ No esperes mas, basta de intermediarios para registrarte,<br> completá tus dato
     { phone:"56999888777" },
     { phone:"5215512345678" },
   ];
-  const DEFAULT_MSG = "Hola, soy {name}. Quiero crear mi cuenta, cargar y reclamar mi bono.";
+  const DEFAULT_MSG = "";
 
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
@@ -155,7 +153,6 @@ No esperes mas, basta de intermediarios para registrarte,<br> completá tus dato
       btnCopy.classList.remove("shake");
       setTimeout(()=> btnCopy.textContent = "Copiar CBU", 1500);
     }).catch(()=>{
-      // Si el navegador bloquea el clipboard (p.ej. file://), avisamos.
       warn.textContent = "No se pudo copiar automáticamente. Copiá el CBU manualmente.";
       warn.hidden = false;
       btnCopy.classList.add("shake");
@@ -164,8 +161,8 @@ No esperes mas, basta de intermediarios para registrarte,<br> completá tus dato
 
   btnNext.addEventListener("click", ()=> {
     if(!copiedCBU){
-      warn.hidden = false;            // mostrar aviso
-      btnCopy.classList.add("shake"); // vibrar botón de copiar
+      warn.hidden = false;
+      btnCopy.classList.add("shake");
       btnCopy.focus({preventScroll:true});
       return;
     }
