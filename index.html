@@ -58,6 +58,11 @@ input[type="text"] {
   .note{margin-top:5px;text-align:center;color:#fff;font-size:14px;line-height:1.6;font-weight:600}
   .warn{margin-top:10px;color:#ffb3b3;font-weight:800;font-size:14px}
   .shake{animation:shake .3s linear}
+      .whatsapp-icon { width: 32px; height: 32px; }
+    .footer { margin-top: 35px; font-size: 18px; }
+    .footer p { margin: 5px 0; color: #fff; }
+    .footer p:first-child { font-weight: bold; color: #FFEB3B; }
+  
   @keyframes shake{
     0%,100%{transform:translateX(0)}
     20%{transform:translateX(-6px)}
@@ -112,8 +117,9 @@ input[type="text"] {
 
         <!-- Paso 3 -->
         <div class="step" id="step-3">
-          <p>¡Listo <b id="n-preview"></b>! Tocá el botón para finalizar.</p>
+          <p>¡Listo <b id="n-preview"></b>! Tocá el botón para continuar por WhatsApp.</p>
           <button class="btn green" id="auto-wa">Reclamá tu 100% de BONO</button>
+          <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
           <p class="note">Al tocar el botón vas a ser dirigido automáticamente a WhatsApp.</p>
         </div>
       </div> <!-- 👈 CIERRE DE .pill-panel, antes todo lo de abajo quedaba adentro -->
