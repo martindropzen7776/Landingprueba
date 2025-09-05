@@ -14,25 +14,24 @@
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial}
 
-  /* ===== LAYOUT SIN SCROLL + CTA FIJA ===== */
   .frame{height:100svh;display:flex;align-items:center;justify-content:center;padding:8px}
   .sheet{
-    width:100%;max-width:740px;height:100%; /* 100svh real en iOS */
+    width:100%;max-width:740px;height:100%;
     background:var(--card);border-radius:16px;box-shadow:0 12px 36px rgba(0,0,0,.35);
     display:flex;flex-direction:column;overflow:hidden;border:1px solid #0f1114;
   }
 
-  .header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
-  .logo{height:28px;width:auto}
-  .title{font-weight:900;font-size:18px;text-transform:uppercase;color:var(--accent)}
+  /* Header con logo y título */
+  .header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+  .logo{height:30px;width:auto}
+  .title{font-weight:900;font-size:20px;text-transform:uppercase;color:var(--accent)}
 
   .content{
-    padding:10px 12px 92px;           /* espacio inferior para la barra fija */
-    overflow:auto;                     /* si algo se pasa, sólo scrollea el cuerpo, nunca tapa el CTA */
-    -webkit-overflow-scrolling:touch;
+    padding:12px 14px 110px;
+    overflow:auto;-webkit-overflow-scrolling:touch;
   }
 
-  .field{padding:8px 0;border-bottom:1px solid var(--line)}
+  .field{padding:10px 0;border-bottom:1px solid var(--line)}
   .field:last-child{border-bottom:none}
   .label{font-weight:900;color:var(--accent);margin-bottom:8px;text-transform:uppercase;font-size:12px;letter-spacing:.3px}
 
@@ -55,10 +54,17 @@
   .custom{margin-top:6px;display:none}
   .error{margin-top:6px;color:var(--error);font-weight:800;font-size:12px;display:none}
 
-  /* ===== BARRA FIJA (CTA SIEMPRE A LA VISTA) ===== */
+  /* Bloque de bonos/casino */
+  .promo{
+    margin-top:18px;padding:12px;border-radius:10px;background:#111;border:2px solid var(--accent);
+    text-align:center;font-weight:900;font-size:14px;line-height:1.5;color:var(--ink);
+  }
+  .promo span{color:var(--accent)}
+
+  /* Footer fijo */
   .bar{
-    position:fixed;left:0;right:0;bottom:0; /* fija al viewport */
-    padding:10px 12px calc(10px + env(safe-area-inset-bottom)); /* respeta safe area iOS */
+    position:fixed;left:0;right:0;bottom:0;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
     background:rgba(11,15,19,.98);border-top:1px solid var(--line);
     display:flex;justify-content:center;
   }
@@ -81,7 +87,7 @@
       <!-- Header -->
       <div class="header">
         <img src="logo.png" class="logo" alt="Lionel">
-        <div class="title">Completá tu pedido</div>
+        <div class="title">Lionel</div>
       </div>
 
       <!-- Contenido -->
@@ -93,7 +99,7 @@
           <div class="error" id="eName">Ingresá un nombre válido (mínimo 3 caracteres).</div>
         </div>
 
-        <!-- Monto (4 opciones + “Otro”) -->
+        <!-- Monto -->
         <div class="field">
           <div class="label">Monto a cargar</div>
           <div class="options">
@@ -103,17 +109,23 @@
             <label class="radio"><input type="radio" name="amount" value="5000"><span class="main">$ 5.000</span></label>
             <label class="radio full"><input type="radio" name="amount" value="custom"><span class="main">Otro monto (mínimo $ 2.000)</span></label>
           </div>
-
           <div class="custom" id="customBox">
             <input id="customAmount" class="input" type="number" inputmode="numeric" min="2000" step="1" placeholder="Ej: 7500">
           </div>
           <div class="error" id="eAmount">Seleccioná un monto válido (mínimo $ 2.000).</div>
         </div>
+
+        <!-- Bonos y casino -->
+        <div class="promo">
+          🎁 <span>100% BONO</span> en tu primera carga <br>
+          🎲 Jugá en <span>Casino Zeus</span><br>
+          🕑 Atención <span>24 horas</span> • Retiros sin límites
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Barra fija con CTA -->
+  <!-- Barra fija CTA -->
   <div class="bar">
     <div class="bar-inner">
       <div class="total"><span>Total estimado</span> <strong id="total">$ 0</strong></div>
@@ -182,7 +194,7 @@
     window.open(url, "_blank");
   });
 
-  update(); // init
+  update();
 </script>
 </body>
 </html>
