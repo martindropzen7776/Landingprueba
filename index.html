@@ -1,99 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-  <title>Lionel — Registro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      /* Lionel + Pency */
-      --bg:#1c8dc3;         /* azul Lionel */
-      --card:#0A0A0A;       /* panel negro Lionel */
-      --ink:#ffffff;        /* texto principal */
-      --muted:#9ec9ea;      /* texto secundario */
-      --line:#1c2430;       /* divisor */
-      --accent:#FFC72C;     /* dorado Lionel */
-      --cta:#1b6b49;        /* botón WhatsApp Lionel */
-      --cta-b:#0f2e20;      /* borde botón */
-      --error:#ff7d7d;
-      --chip-border:#141a22;
-      --chip-bg:#101417;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Lionel — Registro</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1c8dc3; --card:#0A0A0A; --ink:#fff; --muted:#9ec9ea; --line:#1c2430;
+    --accent:#FFC72C; --cta:#1b6b49; --cta-b:#0f2e20; --error:#ff7d7d;
+    --chip-border:#141a22; --chip-bg:#101417;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial}
 
-    /* Layout sin scroll: todo en 100vh */
-    .frame{height:100vh;display:flex;align-items:center;justify-content:center;padding:10px}
-    .sheet{
-      width:100%;max-width:740px;height:100%;max-height:100vh;
-      background:var(--card);border-radius:16px;box-shadow:0 12px 36px rgba(0,0,0,.35);
-      display:flex;flex-direction:column;overflow:hidden;border:1px solid #0f1114;
-    }
+  /* ===== LAYOUT SIN SCROLL + CTA FIJA ===== */
+  .frame{height:100svh;display:flex;align-items:center;justify-content:center;padding:8px}
+  .sheet{
+    width:100%;max-width:740px;height:100%; /* 100svh real en iOS */
+    background:var(--card);border-radius:16px;box-shadow:0 12px 36px rgba(0,0,0,.35);
+    display:flex;flex-direction:column;overflow:hidden;border:1px solid #0f1114;
+  }
 
-    /* Header con logo, Pency-like */
-    .header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);flex:0 0 auto}
-    .logo{height:30px;width:auto}
-    .title{font-weight:900;font-size:18px;text-transform:uppercase;color:var(--accent)}
+  .header{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .logo{height:28px;width:auto}
+  .title{font-weight:900;font-size:18px;text-transform:uppercase;color:var(--accent)}
 
-    /* Contenido compacto (sin scroll) */
-    .content{padding:10px 14px;flex:1 1 auto;display:flex;flex-direction:column;gap:10px;overflow:hidden}
-    .field{padding:8px 0;border-bottom:1px solid var(--line)}
-    .field:last-child{border-bottom:none}
-    .label{display:flex;align-items:center;gap:8px;font-weight:900;margin-bottom:8px;color:var(--accent);text-transform:uppercase;font-size:12px;letter-spacing:.3px}
+  .content{
+    padding:10px 12px 92px;           /* espacio inferior para la barra fija */
+    overflow:auto;                     /* si algo se pasa, sólo scrollea el cuerpo, nunca tapa el CTA */
+    -webkit-overflow-scrolling:touch;
+  }
 
-    .input{
-      width:100%;padding:12px;border:2px solid #1a1f26;border-radius:10px;background:#111;color:#fff;
-      font-weight:800;outline:none;text-align:left;font-size:14px;
-    }
-    .input::placeholder{color:#93a6b5;font-weight:700}
-    .input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,199,44,.18)}
+  .field{padding:8px 0;border-bottom:1px solid var(--line)}
+  .field:last-child{border-bottom:none}
+  .label{font-weight:900;color:var(--accent);margin-bottom:8px;text-transform:uppercase;font-size:12px;letter-spacing:.3px}
 
-    /* Radios estilo lista (Pency) pero Lionel */
-    .options{display:grid;gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
-    .radio{
-      display:flex;align-items:center;gap:10px;padding:10px;border:2px solid var(--chip-border);border-radius:10px;background:var(--chip-bg);cursor:pointer;
-    }
-    .radio input{appearance:none;width:16px;height:16px;border:2px solid #2b3744;border-radius:50%;outline:none;background:#0d1217;flex:0 0 auto}
-    .radio input:checked{border-color:var(--accent);box-shadow:inset 0 0 0 4px var(--chip-bg);background:var(--accent)}
-    .radio .main{font-weight:900;font-size:14px}
+  .input{
+    width:100%;padding:12px;border:2px solid #1a1f26;border-radius:10px;background:#111;color:#fff;
+    font-weight:800;outline:none;text-align:left;font-size:14px;
+  }
+  .input::placeholder{color:#93a6b5;font-weight:700}
+  .input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,199,44,.18)}
 
-    /* “Otro monto” ocupa la fila completa para ahorrar espacio vertical */
-    .radio.full{grid-column:1/-1}
+  .options{display:grid;gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .radio{
+    display:flex;align-items:center;gap:10px;padding:10px;border:2px solid var(--chip-border);border-radius:10px;background:var(--chip-bg);cursor:pointer;
+  }
+  .radio input{appearance:none;width:16px;height:16px;border:2px solid #2b3744;border-radius:50%;outline:none;background:#0d1217;flex:0 0 auto}
+  .radio input:checked{border-color:var(--accent);box-shadow:inset 0 0 0 4px var(--chip-bg);background:var(--accent)}
+  .radio .main{font-weight:900;font-size:14px}
+  .radio.full{grid-column:1/-1}
 
-    .custom{margin-top:6px;display:none}
-    .error{margin-top:6px;color:var(--error);font-weight:800;font-size:12px;display:none}
+  .custom{margin-top:6px;display:none}
+  .error{margin-top:6px;color:var(--error);font-weight:800;font-size:12px;display:none}
 
-    /* Footer fijo con CTA siempre a la vista */
-    .footer{
-      padding:12px 14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#0b0f13;flex:0 0 auto
-    }
-    .total span{color:#a7c8de;font-weight:800;margin-right:8px;font-size:13px}
-    .total strong{font-weight:900;font-size:16px}
-    .btn{
-      background:var(--cta);color:#fff;border:2px solid var(--cta-b);border-radius:12px;padding:12px 16px;
-      font-weight:900;text-transform:uppercase;display:flex;align-items:center;gap:8px;cursor:not-allowed;font-size:13px;
-    }
-    .btn.ready{cursor:pointer}
-    .btn img{width:16px;height:16px}
-
-    /* Escalado por altura para mantener “above the fold” */
-    @media (max-height:740px){ .sheet{transform:scale(.98);transform-origin:center top;} }
-    @media (max-height:700px){ .sheet{transform:scale(.95);} }
-    @media (max-height:660px){ .sheet{transform:scale(.92);} }
-    @media (max-height:620px){ .sheet{transform:scale(.88);} }
-  </style>
+  /* ===== BARRA FIJA (CTA SIEMPRE A LA VISTA) ===== */
+  .bar{
+    position:fixed;left:0;right:0;bottom:0; /* fija al viewport */
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom)); /* respeta safe area iOS */
+    background:rgba(11,15,19,.98);border-top:1px solid var(--line);
+    display:flex;justify-content:center;
+  }
+  .bar-inner{
+    width:min(740px,100%);display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .total span{color:#a7c8de;font-weight:800;margin-right:8px;font-size:13px}
+  .total strong{font-weight:900;font-size:16px}
+  .btn{
+    background:var(--cta);color:#fff;border:2px solid var(--cta-b);border-radius:12px;padding:12px 16px;
+    font-weight:900;text-transform:uppercase;display:flex;align-items:center;gap:8px;cursor:not-allowed;font-size:13px;
+  }
+  .btn.ready{cursor:pointer}
+  .btn img{width:16px;height:16px}
+</style>
 </head>
 <body>
   <div class="frame">
     <div class="sheet" id="app">
       <!-- Header -->
       <div class="header">
-        <img src="logo.png" alt="Lionel" class="logo">
+        <img src="logo.png" class="logo" alt="Lionel">
         <div class="title">Completá tu pedido</div>
       </div>
 
-      <!-- Contenido (todo visible sin bajar) -->
+      <!-- Contenido -->
       <div class="content">
         <!-- Nombre -->
         <div class="field">
@@ -102,10 +93,10 @@
           <div class="error" id="eName">Ingresá un nombre válido (mínimo 3 caracteres).</div>
         </div>
 
-        <!-- Monto (5 opciones + “Otro”) -->
+        <!-- Monto (4 opciones + “Otro”) -->
         <div class="field">
           <div class="label">Monto a cargar</div>
-          <div class="options" id="amountOptions">
+          <div class="options">
             <label class="radio"><input type="radio" name="amount" value="2000"><span class="main">$ 2.000</span></label>
             <label class="radio"><input type="radio" name="amount" value="3000"><span class="main">$ 3.000</span></label>
             <label class="radio"><input type="radio" name="amount" value="4000"><span class="main">$ 4.000</span></label>
@@ -119,78 +110,79 @@
           <div class="error" id="eAmount">Seleccioná un monto válido (mínimo $ 2.000).</div>
         </div>
       </div>
-
-      <!-- Footer (CTA visible siempre) -->
-      <div class="footer">
-        <div class="total"><span>Total estimado</span> <strong id="total">$ 0</strong></div>
-        <button id="go" class="btn" disabled><img src="whatsapp.png" alt="">Ir a WhatsApp</button>
-      </div>
     </div>
   </div>
 
-  <script>
-    const FINAL_PHONE = "5491139416439"; // Cambiá el destino si querés
-    const $ = s => document.querySelector(s);
-    const $$ = s => Array.from(document.querySelectorAll(s));
+  <!-- Barra fija con CTA -->
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="total"><span>Total estimado</span> <strong id="total">$ 0</strong></div>
+      <button id="go" class="btn" disabled><img src="whatsapp.png" alt="">Ir a WhatsApp</button>
+    </div>
+  </div>
 
-    const nameEl = $("#name");
-    const radios = $$("input[name='amount']");
-    const customBox = $("#customBox");
-    const customInput = $("#customAmount");
-    const totalEl = $("#total");
-    const btn = $("#go");
-    const eName = $("#eName");
-    const eAmount = $("#eAmount");
+<script>
+  const FINAL_PHONE = "5491139416439";
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
 
-    const validName = v => v && v.trim().length >= 3;
-    const getAmount = () => {
-      const sel = radios.find(r=>r.checked);
-      if(!sel) return "";
-      return sel.value==="custom" ? (customInput.value || "") : sel.value;
-    };
-    const validAmount = v => !!v && Number(v)>=2000;
-    const fmt = n => Number(n||0).toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
+  const nameEl = $("#name");
+  const radios = $$("input[name='amount']");
+  const customBox = $("#customBox");
+  const customInput = $("#customAmount");
+  const totalEl = $("#total");
+  const btn = $("#go");
+  const eName = $("#eName");
+  const eAmount = $("#eAmount");
 
-    function update(){
-      const nameOk = validName(nameEl.value);
-      const amt = getAmount();
-      const amtOk = validAmount(amt);
+  const validName = v => v && v.trim().length >= 3;
+  const getAmount = () => {
+    const sel = radios.find(r=>r.checked);
+    if(!sel) return "";
+    return sel.value==="custom" ? (customInput.value || "") : sel.value;
+  };
+  const validAmount = v => !!v && Number(v)>=2000;
+  const fmt = n => Number(n||0).toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 
-      eName.style.display = nameOk ? "none" : "block";
-      eAmount.style.display = amtOk ? "none" : "block";
-      totalEl.textContent = amtOk ? fmt(amt) : "$ 0";
+  function update(){
+    const nameOk = validName(nameEl.value);
+    const amt = getAmount();
+    const amtOk = validAmount(amt);
 
-      const ok = nameOk && amtOk;
-      btn.disabled = !ok;
-      btn.classList.toggle("ready", ok);
-    }
+    eName.style.display = nameOk ? "none" : "block";
+    eAmount.style.display = amtOk ? "none" : "block";
+    totalEl.textContent = amtOk ? fmt(amt) : "$ 0";
 
-    radios.forEach(r=>{
-      r.addEventListener("change", ()=>{
-        const custom = r.value==="custom";
-        customBox.style.display = custom ? "block" : "none";
-        if(!custom) customInput.value = "";
-        update();
-      });
-    });
+    const ok = nameOk && amtOk;
+    btn.disabled = !ok;
+    btn.classList.toggle("ready", ok);
+  }
 
-    nameEl.addEventListener("input", update);
-    customInput.addEventListener("input", ()=>{
-      if(Number(customInput.value)<2000) customInput.value=2000;
+  radios.forEach(r=>{
+    r.addEventListener("change", ()=>{
+      const custom = r.value==="custom";
+      customBox.style.display = custom ? "block" : "none";
+      if(!custom) customInput.value = "";
       update();
     });
+  });
+  nameEl.addEventListener("input", update);
+  customInput.addEventListener("input", ()=>{
+    if(Number(customInput.value)<2000) customInput.value=2000;
+    update();
+  });
 
-    btn.addEventListener("click", e=>{
-      e.preventDefault();
-      const name = nameEl.value.trim();
-      const amount = getAmount();
-      if(!(validName(name)&&validAmount(amount))) return;
-      const text = `Hola, soy ${name}. Quiero cargar ${amount}. Quiero que me pasen CBU para continuar.`;
-      const url = `https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
-    });
+  btn.addEventListener("click", e=>{
+    e.preventDefault();
+    const name = nameEl.value.trim();
+    const amount = getAmount();
+    if(!(validName(name)&&validAmount(amount))) return;
+    const text = `Hola, soy ${name}. Quiero cargar ${amount}. Quiero que me pasen CBU para continuar.`;
+    const url = `https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  });
 
-    update(); // init
-  </script>
+  update(); // init
+</script>
 </body>
 </html>
