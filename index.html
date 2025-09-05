@@ -10,10 +10,11 @@
     *{box-sizing:border-box} html,body{height:100%}
     body{ margin:0; background:var(--bg); color:var(--ink); font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial; }
     .wrap{max-width:760px;margin:0 auto;padding:42px 18px}
-    .hero{display:grid;place-items:center;text-align:center;margin-bottom:18px}
+    .hero{display:grid;place-items:center;text-align:center;margin-bottom:22px}
     .avatar{width:160px;height:160px;border-radius:50%;background:var(--bg) url('avatar.jpeg') center/cover no-repeat;border:8px solid #fff;margin-bottom:18px}
-    h1{margin:0 0 8px;letter-spacing:.6px;text-transform:uppercase;font-weight:900;font-size:clamp(22px,4vw,36px)}
-    .sub{color:var(--muted);font-weight:700}
+    h1{margin:0;letter-spacing:.6px;text-transform:uppercase;font-weight:900;font-size:clamp(22px,4vw,36px)}
+    .bojo{color:var(--yellow);font-weight:900;margin-top:8px;font-size:clamp(16px,3vw,22px);letter-spacing:.5px}
+    .sub{color:var(--muted);font-weight:700;margin-top:6px}
 
     .card{background:var(--panel);border-radius:28px;padding:26px;box-shadow:0 14px 28px rgba(0,0,0,.35)}
     .grid{display:grid;gap:18px}
@@ -26,7 +27,7 @@
     .chip{position:relative}
     .chip input{position:absolute;inset:0;opacity:0}
     .chip label{
-      display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
       padding:12px 10px;border:2px solid #222;background:#111;border-radius:12px;font-weight:800
     }
     .chip input:checked + label{border-color:var(--yellow);box-shadow:0 0 8px rgba(255,199,44,.45)}
@@ -49,6 +50,7 @@
     <section class="hero">
       <div class="avatar"></div>
       <h1>Creá tu cuenta</h1>
+      <div class="bojo">100% en tu primera carga!!</div>
       <div class="sub">Completá tus datos y continuá por WhatsApp</div>
     </section>
 
@@ -56,7 +58,7 @@
       <!-- Nombre -->
       <div class="input-group">
         <span class="label">Nombre</span>
-        <input class="text" id="name" name="name" type="text" placeholder="Ej: Sebast" autocomplete="name" required>
+        <input class="text" id="name" name="name" type="text" placeholder="Ej: Federico" autocomplete="name" required>
         <div class="warn" id="w-name" hidden>Ingresá un nombre válido (mínimo 3 caracteres).</div>
       </div>
 
@@ -64,17 +66,14 @@
       <div class="input-group">
         <span class="label">Elegí el monto</span>
         <div class="amounts" role="radiogroup" aria-label="Montos">
-          <!-- chips predefinidos -->
           <div class="chip"><input type="radio" name="amount" id="a2000" value="2000"><label for="a2000">$2000</label></div>
           <div class="chip"><input type="radio" name="amount" id="a3000" value="3000"><label for="a3000">$3000</label></div>
           <div class="chip"><input type="radio" name="amount" id="a4000" value="4000"><label for="a4000">$4000</label></div>
           <div class="chip"><input type="radio" name="amount" id="a5000" value="5000"><label for="a5000">$5000</label></div>
           <div class="chip"><input type="radio" name="amount" id="a6000" value="6000"><label for="a6000">$6000</label></div>
           <div class="chip"><input type="radio" name="amount" id="a10000" value="10000"><label for="a10000">$10000</label></div>
-          <!-- otro -->
           <div class="chip" style="grid-column:1/-1">
-            <input type="radio" name="amount" id="aCustom" value="custom">
-            <label for="aCustom">Otro monto</label>
+            <input type="radio" name="amount" id="aCustom" value="custom"><label for="aCustom">Otro monto</label>
           </div>
         </div>
 
@@ -93,7 +92,7 @@
   </div>
 
   <script>
-    const FINAL_PHONE = "5491139416439"; // cambiá aquí si querés otro número
+    const FINAL_PHONE = "5491139416439";
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
 
@@ -107,7 +106,6 @@
     const btn = $("#go");
     const form = $("#form");
 
-    // Helpers
     const validName = v => v && v.trim().length >= 3;
     const selectedAmount = () => {
       const checked = chips.find(c => c.checked);
@@ -127,7 +125,6 @@
       btn.setAttribute("aria-disabled", ok ? "false" : "true");
     }
 
-    // Listeners
     nameEl.addEventListener("input", ()=>{
       warnName.hidden = validName(nameEl.value);
       updateButtonState();
@@ -136,7 +133,6 @@
     chips.forEach(ch=>{
       ch.addEventListener("change", ()=>{
         toggleCustom(ch.value === "custom");
-        // si cambia a un monto predefinido, limpiar custom
         if(ch.value !== "custom") customInput.value = "";
         warnAmount.hidden = validAmount(selectedAmount());
         updateButtonState();
@@ -144,31 +140,26 @@
     });
 
     customInput.addEventListener("input", ()=>{
-      // autolimitar mínimo
       const v = Number(customInput.value || 0);
       if(v && v < 2000) customInput.value = 2000;
       warnAmount.hidden = validAmount(selectedAmount());
       updateButtonState();
     });
 
-    // Submit
     form.addEventListener("submit", (e)=>{
       e.preventDefault();
       const name = nameEl.value.trim();
       const amount = selectedAmount();
 
-      // Mostrar warnings si corresponde
       warnName.hidden = validName(name);
       warnAmount.hidden = validAmount(amount);
 
       if(!(validName(name) && validAmount(amount))) return;
 
       const text = `Hola, soy ${name}. Quiero cargar ${amount}. Quiero que me pasen CBU para continuar.`;
-      const url = `https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
+      window.open(`https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`,"_blank");
     });
 
-    // Estado inicial
     updateButtonState();
   </script>
 </body>
