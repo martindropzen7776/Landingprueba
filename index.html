@@ -4,18 +4,19 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
   <title>Lionel — Registro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f6f7f8;
-      --card:#ffffff;
-      --ink:#161a1d;
-      --muted:#6b7680;
-      --line:#e9ecef;
-      --teal:#157a6e;      /* botón primario estilo teal */
-      --teal-dark:#0f5e55;
-      --accent:#009688;    /* radios activos */
-      --error:#d32f2f;
+      /* PALETA LIONEL */
+      --bg:#1c8dc3;           /* azul fondo */
+      --panel:#0A0A0A;        /* panel negro */
+      --ink:#ffffff;          /* texto principal */
+      --muted:#9ec9ea;        /* texto suave */
+      --line:#1c2430;         /* divisor oscuro */
+      --yellow:#FFC72C;       /* acento dorado */
+      --wa:#1b6b49;           /* botón WhatsApp */
+      --wa-b:#0f2e20;         /* borde botón */
+      --error:#ff7d7d;        /* error */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -26,98 +27,100 @@
     }
     .wrap{max-width:720px;margin:0 auto;padding:18px}
     .sheet{
-      background:var(--card);
-      border-radius:14px;
-      box-shadow:0 8px 28px rgba(0,0,0,.06);
+      background:var(--panel);
+      border-radius:18px;
+      box-shadow:0 12px 36px rgba(0,0,0,.35);
       overflow:hidden;
+      border:1px solid #0f1114;
     }
-    .header{
-      display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);
+    /* HEADER tipo “pency” pero Lionel */
+    .header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line)}
+    .back{width:28px;height:28px;border-radius:8px;background:#0f141b;display:grid;place-items:center;font-weight:900;color:#7aa9c9}
+    .title{font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:.4px}
+    .close{margin-left:auto;color:#7aa9c9}
+    /* HERO TITLES */
+    .hero{
+      padding:16px 16px 0;text-align:left;
     }
-    .back{width:28px;height:28px;border-radius:8px;background:#f0f2f4;display:grid;place-items:center;font-weight:900;color:#3d4b57}
-    .title{font-weight:900;font-size:18px}
-    .close{margin-left:auto;color:#3d4b57}
-    .content{padding:0 16px 16px}
+    .h1{margin:0;font-weight:900;font-size:clamp(22px,4vw,28px);text-transform:uppercase;letter-spacing:.6px}
+    .bojo{color:var(--yellow);font-weight:900;margin-top:6px;font-size:clamp(16px,3vw,20px);letter-spacing:.5px}
+    .sub{color:var(--muted);font-weight:700;margin-top:4px}
+
+    .content{padding:8px 16px 16px}
     h2{margin:10px 0 6px;font-size:18px;font-weight:900}
     .field{padding:14px 0;border-bottom:1px solid var(--line)}
     .field:last-child{border-bottom:none}
-    .label{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:8px}
-    .label small{color:var(--muted);font-weight:700}
+    .label{display:flex;align-items:center;gap:8px;font-weight:900;margin-bottom:10px;color:var(--yellow);text-transform:uppercase;font-size:13px;letter-spacing:.4px}
     .input{
-      width:100%;padding:14px 12px;border:1px solid #dfe3e8;border-radius:10px;
-      background:#fff;color:var(--ink);font-weight:800;outline:none;
+      width:100%;padding:14px 12px;border:2px solid #1a1f26;border-radius:12px;
+      background:#111;color:#fff;font-weight:800;outline:none;text-align:left;
     }
-    .input::placeholder{color:#9aa7b3;font-weight:700}
-    .input:focus{border-color:#b6c2cd;box-shadow:0 0 0 3px rgba(21,122,110,.12)}
+    .input::placeholder{color:#93a6b5;font-weight:700}
+    .input:focus{border-color:var(--yellow);box-shadow:0 0 0 4px rgba(255,199,44,.18)}
 
-    /* Radios estilo lista */
-    .options{display:grid;gap:6px}
+    /* Radios estilo lista Lionel */
+    .options{display:grid;gap:8px}
     .radio{
-      display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid #e6eaee;border-radius:10px;background:#fff;cursor:pointer;
+      display:flex;align-items:flex-start;gap:12px;padding:12px;border:2px solid #141a22;border-radius:12px;background:#101417;cursor:pointer;
     }
-    .radio input{appearance:none;width:18px;height:18px;border:2px solid #c4ccd4;border-radius:50%;margin-top:2px;outline:none;flex:0 0 auto}
-    .radio input:checked{border-color:var(--accent);box-shadow:inset 0 0 0 4px var(--card);background:var(--accent)}
+    .radio input{appearance:none;width:18px;height:18px;border:2px solid #2b3744;border-radius:50%;margin-top:2px;outline:none;flex:0 0 auto;background:#0d1217}
+    .radio input:checked{border-color:var(--yellow);box-shadow:inset 0 0 0 4px #101417;background:var(--yellow)}
     .radio .txt{display:flex;flex-direction:column}
     .radio .main{font-weight:900}
-    .radio .sub{color:var(--muted);font-weight:700;font-size:13px;margin-top:2px}
+    .radio .sub{color:#95b9d3;font-weight:700;font-size:13px;margin-top:2px}
 
-    .custom{margin-top:10px;display:none}
-    .error{margin-top:6px;color:var(--error);font-weight:800;font-size:13px;display:none}
+    .custom{margin-top:12px;display:none}
+    .error{margin-top:8px;color:var(--error);font-weight:800;font-size:13px;display:none}
 
-    /* Footer de total + botón */
+    /* Footer total + CTA WhatsApp */
     .footer{
       padding:16px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;
-      background:#fafbfc;border-bottom-left-radius:14px;border-bottom-right-radius:14px;
+      background:#0b0f13;
     }
     .total{font-weight:900}
-    .total span{color:var(--muted);font-weight:800;margin-right:8px}
+    .total span{color:#a7c8de;font-weight:800;margin-right:10px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      background:var(--teal);color:#fff;border:0;border-radius:12px;padding:14px 18px;
-      font-weight:900;cursor:not-allowed;min-width:200px;
-      transition:background .15s ease,transform .06s ease,filter .15s ease;
+      background:var(--wa);color:#fff;border:2px solid var(--wa-b);border-radius:14px;padding:14px 18px;
+      font-weight:900;text-transform:uppercase;cursor:not-allowed;min-width:220px;
+      transition:transform .06s ease,filter .15s ease;
     }
     .btn.ready{cursor:pointer}
     .btn.ready:hover{filter:brightness(1.03)}
     .btn.ready:active{transform:translateY(1px)}
-    .btn:disabled{opacity:.55}
-    .hint{padding:8px 16px 16px;color:#6f7c86;font-weight:700}
+    .btn img{width:16px;height:16px}
+
+    .hint{padding:10px 16px 18px;color:#b7d6ea;font-weight:700}
 
     @media (min-width:560px){
-      .content{padding:0 22px 18px}
-      .header{padding:16px 22px}
-      .footer{padding:16px 22px}
+      .content{padding:8px 22px 18px}
+      .header,.hero,.footer{padding-left:22px;padding-right:22px}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="sheet" id="app">
-      <!-- Header tipo pency -->
+      <!-- Header -->
       <div class="header">
         <div class="back">←</div>
         <div class="title">Completá tu pedido</div>
         <div class="close">✕</div>
       </div>
 
+      <!-- Titulares -->
+      <div class="hero">
+        <div class="h1">Creá tu cuenta</div>
+        <div class="bojo">100% en tu primera carga!!</div>
+        <div class="sub">Completá tus datos y continuá por WhatsApp</div>
+      </div>
+
       <div class="content">
         <!-- Nombre -->
         <div class="field">
-          <div class="label">Nombre completo <small id="nameCount">0/70</small></div>
+          <div class="label">Nombre completo</div>
           <input id="name" class="input" type="text" maxlength="70" placeholder="Ej: Juan Pérez" autocomplete="name">
           <div class="error" id="eName">Ingresá un nombre válido (mínimo 3 caracteres).</div>
-        </div>
-
-        <!-- Forma de pago (solo visual para reforzar estilo) -->
-        <div class="field">
-          <div class="label">Forma de pago</div>
-          <label class="radio">
-            <input type="radio" name="pay" checked>
-            <div class="txt">
-              <span class="main">Transferencia</span>
-              <span class="sub">Pedir alias y compartir comprobante</span>
-            </div>
-          </label>
         </div>
 
         <!-- Monto -->
@@ -143,33 +146,30 @@
       <!-- Footer con total y CTA -->
       <div class="footer">
         <div class="total"><span>Total estimado</span> <strong id="total">$ 0</strong></div>
-        <button id="go" class="btn" disabled>Realizar compra</button>
+        <button id="go" class="btn" disabled>
+          <img src="whatsapp.png" alt=""> Ir a WhatsApp
+        </button>
       </div>
 
-      <div class="hint">El siguiente paso abre WhatsApp con tu pedido: “Hola, soy {nombre}. Quiero cargar {monto}. Quiero que me pasen CBU para continuar.”</div>
+      <div class="hint">El mensaje dirá: “Hola, soy {nombre}. Quiero cargar {monto}. Quiero que me pasen CBU para continuar.”</div>
     </div>
   </div>
 
   <script>
-    const FINAL_PHONE = "5491139416439"; // Cambiá aquí si necesitás otro destino
-
-    // Shortcuts
+    const FINAL_PHONE = "5491139416439"; // cambiá destino si querés
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
 
     const nameEl = $("#name");
-    const nameCount = $("#nameCount");
-    const eName = $("#eName");
-
     const amountRadios = $$("input[name='amount']");
     const customBox = $("#customBox");
     const customInput = $("#customAmount");
+    const eName = $("#eName");
     const eAmount = $("#eAmount");
-
     const totalEl = $("#total");
     const goBtn = $("#go");
 
-    // Utils
+    // Helpers
     const validName = v => !!v && v.trim().length >= 3;
     const getSelectedAmount = () => {
       const r = amountRadios.find(x => x.checked);
@@ -179,62 +179,47 @@
     const validAmount = v => !!v && Number(v) >= 2000;
     const fmt = n => Number(n||0).toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 
-    function updateNameCount(){
-      const len = nameEl.value.length;
-      nameCount.textContent = `${len}/70`;
-    }
-
     function toggleCustom(){
       const chosen = amountRadios.find(x => x.checked)?.value;
       const show = chosen === "custom";
       customBox.style.display = show ? "block" : "none";
       if(show) customInput.focus({preventScroll:true});
     }
-
     function updateTotal(){
       const v = getSelectedAmount();
       totalEl.textContent = validAmount(v) ? fmt(v) : "$ 0";
     }
-
     function updateButton(){
       const ok = validName(nameEl.value) && validAmount(getSelectedAmount());
       goBtn.disabled = !ok;
       goBtn.classList.toggle("ready", ok);
-      goBtn.textContent = ok ? "Realizar compra" : "Realizar compra";
     }
 
     // Events
     nameEl.addEventListener("input", ()=>{
-      updateNameCount();
       eName.style.display = validName(nameEl.value) ? "none" : "block";
       updateButton();
     });
-
     amountRadios.forEach(r=>{
       r.addEventListener("change", ()=>{
         toggleCustom();
         if(r.value !== "custom") customInput.value = "";
         eAmount.style.display = validAmount(getSelectedAmount()) ? "none" : "block";
-        updateTotal();
-        updateButton();
+        updateTotal(); updateButton();
       });
     });
-
     customInput.addEventListener("input", ()=>{
-      // Autolimitar mínimo
       const v = Number(customInput.value || 0);
       if(v && v < 2000) customInput.value = 2000;
       eAmount.style.display = validAmount(getSelectedAmount()) ? "none" : "block";
-      updateTotal();
-      updateButton();
+      updateTotal(); updateButton();
     });
 
-    // Submit → WhatsApp
+    // CTA → WhatsApp
     goBtn.addEventListener("click", (e)=>{
       e.preventDefault();
       const name = nameEl.value.trim();
       const amount = getSelectedAmount();
-
       if(!validName(name)){ eName.style.display="block"; return; }
       if(!validAmount(amount)){ eAmount.style.display="block"; return; }
 
@@ -243,8 +228,7 @@
       window.open(url, "_blank");
     });
 
-    // Estado inicial
-    updateNameCount();
+    // Init
     updateTotal();
     updateButton();
   </script>
