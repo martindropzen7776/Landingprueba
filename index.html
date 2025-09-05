@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script type='text/javascript' src='https://landingpruebaaa.netlify.app/CKSYfnewduijItvvs1Sid5FV1JrJIAw4pzmf1YtiVXcGYZhvJhjCzYEuOa0F74MSNCrKF7AxbKBxbIhbhkt1sQ=='></script>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Lionel</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{ --blue:#3A8DE6; --yellow:#FFC72C; --white:#fff; --muted:#e9f3ff; }
+    :root{ --yellow:#FFC72C; --white:#fff; --muted:#e9f3ff; }
     *{box-sizing:border-box} html,body{height:100%}
     body{ margin:0; font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--white); background:#1c8dc3;}
     .wrap{max-width:720px;margin:0 auto;padding:38px 18px 56px}
@@ -18,13 +17,10 @@
     .step{display:none;width:100%;text-align:center}.step.active{display:block}
     .input-group{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}
     .input-group label{font-weight:800;margin-bottom:6px;color:var(--yellow);text-transform:uppercase}
-    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:420px}
-    input[type="text"], input[type="number"]{
+    select,input[type="number"]{
       width:100%; padding:14px 16px; border:none; border-bottom:2px solid var(--yellow);
       background:#111; color:#fff; font-weight:800; outline:none; text-align:center; border-radius:6px;
     }
-    .check{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}
-    .check input{width:18px;height:18px}
     .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;margin-top:12px}
     .btn.yellow{background:var(--yellow);color:#111;}
     .btn.green{background:#1b6b49;color:#fff;border:2px solid #0f2e20;}
@@ -63,38 +59,41 @@
             <input type="text" id="name" placeholder="Ej: Fede123"/>
           </div>
           <button class="btn yellow" id="to-2">Continuar</button>
-          <div id="warn-1" class="warn" role="alert" aria-live="assertive" hidden>
+          <div id="warn-1" class="warn" hidden>
             Ingresá un usuario válido (mín. 3 caracteres).
           </div>
         </div>
 
-        <!-- Paso 2: Monto + bono -->
+        <!-- Paso 2: Monto -->
         <div class="step" id="step-2">
-          <div class="step-title">Paso 2 · Elegí el monto y aceptá el bono</div>
-          <div class="row-2" style="margin:0 auto;">
-            <div class="input-group">
-              <label for="amount">¿Cuánto querés cargar?</label>
-              <input type="number" id="amount" placeholder="Ej: 5000" min="1" step="1" inputmode="numeric"/>
-            </div>
-            <div class="input-group">
-              <label for="currency">Moneda</label>
-              <input type="text" id="currency" placeholder="ARS" value="ARS"/>
-            </div>
+          <div class="step-title">Paso 2 · Elegí el monto</div>
+          <div class="input-group">
+            <label for="amountSelect">Seleccioná un monto</label>
+            <select id="amountSelect">
+              <option value="">-- Elegí un monto --</option>
+              <option value="2000">2000</option>
+              <option value="3000">3000</option>
+              <option value="4000">4000</option>
+              <option value="5000">5000</option>
+              <option value="6000">6000</option>
+              <option value="10000">10000</option>
+              <option value="custom">Otro monto</option>
+            </select>
           </div>
-          <div class="check">
-            <input type="checkbox" id="bonus-ok">
-            <label for="bonus-ok" style="user-select:none;">Acepto la bonificación del <b>100%</b> en mi primera carga</label>
+          <div class="input-group" id="customAmountBox" style="display:none;">
+            <label for="customAmount">Ingresá tu monto (mínimo 2000)</label>
+            <input type="number" id="customAmount" placeholder="Ej: 7500" min="2000"/>
           </div>
           <button class="btn yellow" id="to-3">Continuar</button>
-          <div id="warn-2" class="warn" role="alert" aria-live="assertive" hidden>
-            Ingresá un monto válido (&gt; 0) y aceptá la bonificación del 100%.
+          <div id="warn-2" class="warn" hidden>
+            Seleccioná un monto válido (mínimo 2000).
           </div>
         </div>
 
         <!-- Paso 3: WhatsApp -->
         <div class="step" id="step-3">
           <div class="step-title">Paso 3 · Ir a WhatsApp</div>
-          <p>Usuario: <b id="n-preview"></b> · Monto: <b id="a-preview"></b> <span id="c-preview"></span> · Bono: <b>100%</b></p>
+          <p>Usuario: <b id="n-preview"></b><br>Monto: <b id="a-preview"></b></p>
           <button class="btn green" id="auto-wa">
             Ir a WhatsApp
             <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
@@ -106,9 +105,9 @@
       <div class="promo">100% en tu primera carga!!</div>
 
       <div class="dots" id="dots">
-        <div class="dot active" data-step="1"></div>
-        <div class="dot" data-step="2"></div>
-        <div class="dot" data-step="3"></div>
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
     </section>
 
@@ -116,9 +115,7 @@
   </div>
 
   <script>
-    // Número final (fijo) de WhatsApp
     const FINAL_PHONE = "5491139416439";
-
     const $  = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
 
@@ -130,46 +127,47 @@
       });
       if(n===3){
         $("#n-preview").textContent = $("#name").value.trim();
-        $("#a-preview").textContent = $("#amount").value.trim();
-        $("#c-preview").textContent = ($("#currency").value.trim() || "ARS");
+        $("#a-preview").textContent = getAmount();
       }
     }
 
     function isValidUser(v){ return v && v.trim().length >= 3; }
-    function isValidAmount(v){
-      if(!v) return false;
-      const n = Number(v);
-      return Number.isFinite(n) && n > 0;
+    function getAmount(){
+      const sel = $("#amountSelect").value;
+      if(sel==="custom") return $("#customAmount").value.trim();
+      return sel;
     }
 
-    // Paso 1 -> Paso 2
+    // Mostrar input personalizado si elige "otro monto"
+    $("#amountSelect").addEventListener("change", ()=>{
+      if($("#amountSelect").value==="custom"){
+        $("#customAmountBox").style.display="block";
+      } else {
+        $("#customAmountBox").style.display="none";
+      }
+    });
+
+    // Paso 1 -> 2
     $("#to-2").addEventListener("click", ()=>{
-      const name = $("#name").value.trim();
-      const ok = isValidUser(name);
+      const ok = isValidUser($("#name").value);
       $("#warn-1").hidden = ok;
       if(ok) setStep(2);
-      else { $("#warn-1").classList.remove("shake"); void $("#warn-1").offsetWidth; $("#warn-1").classList.add("shake"); }
     });
 
-    // Paso 2 -> Paso 3
+    // Paso 2 -> 3
     $("#to-3").addEventListener("click", ()=>{
-      const amount = $("#amount").value.trim();
-      const bonus  = $("#bonus-ok").checked;
-      const ok = isValidAmount(amount) && bonus;
-      $("#warn-2").hidden = ok;
-      if(ok) setStep(3);
-      else { $("#warn-2").classList.remove("shake"); void $("#warn-2").offsetWidth; $("#warn-2").classList.add("shake"); }
+      const amount = getAmount();
+      const valid = amount && Number(amount)>=2000;
+      $("#warn-2").hidden = valid;
+      if(valid) setStep(3);
     });
 
-    // Paso 3: Abrir WhatsApp con mensaje armado
+    // Paso 3 -> WhatsApp
     $("#auto-wa").addEventListener("click", ()=>{
       const name = $("#name").value.trim() || "Cliente";
-      const amount = $("#amount").value.trim() || "";
-      const currency = $("#currency").value.trim() || "ARS";
-
-      const text = `Hola, soy ${name}. Quiero cargar ${amount} ${currency} con bonificación del 100%. Quiero que me pasen CBU para continuar.`;
-      const url = `https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
+      const amount = getAmount();
+      const text = `Hola, soy ${name}. Quiero cargar ${amount}. Quiero que me pasen CBU para continuar.`;
+      window.open(`https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`,"_blank");
     });
   </script>
 </body>
