@@ -6,20 +6,33 @@
   <title>Lionel</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{ --yellow:#FFC72C; --white:#fff; --muted:#e9f3ff; }
+    :root{ --yellow:#FFC72C; --white:#fff; }
     *{box-sizing:border-box} html,body{height:100%}
     body{ margin:0; font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--white); background:#1c8dc3;}
     .wrap{max-width:720px;margin:0 auto;padding:38px 18px 56px}
     .hero{display:grid;place-items:center;text-align:center}
     .avatar{width:180px;height:180px;border-radius:50%;background:#1c8dc3 url('avatar.jpeg') center/cover no-repeat;border:8px solid #fff;margin-bottom:24px}
     h1{margin:0 0 20px;text-transform:uppercase;letter-spacing:.6px;font-weight:900;font-size:clamp(22px,4vw,38px)}
-    .pill-panel{background:#0A0A0A;border-radius:64px;width:min(620px,100%);padding:26px;box-shadow:0 14px 28px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+    .pill-panel{background:#0A0A0A;border-radius:32px;width:min(620px,100%);padding:28px;box-shadow:0 14px 28px rgba(0,0,0,.35);margin:0 auto 22px}
     .step{display:none;width:100%;text-align:center}.step.active{display:block}
-    .input-group{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}
-    .input-group label{font-weight:800;margin-bottom:6px;color:var(--yellow);text-transform:uppercase}
-    select,input[type="number"]{
-      width:100%; padding:14px 16px; border:none; border-bottom:2px solid var(--yellow);
-      background:#111; color:#fff; font-weight:800; outline:none; text-align:center; border-radius:6px;
+    .input-group{display:flex;flex-direction:column;align-items:center;margin-bottom:20px;width:100%}
+    .input-group label{font-weight:800;margin-bottom:8px;color:var(--yellow);text-transform:uppercase;font-size:14px;letter-spacing:.5px}
+    select,input[type="text"],input[type="number"]{
+      width:80%; max-width:360px;
+      padding:14px 16px;
+      border:2px solid #222;
+      border-radius:12px;
+      background:#111;
+      color:#fff;
+      font-weight:700;
+      font-size:16px;
+      text-align:center;
+      outline:none;
+      transition:all .25s ease;
+    }
+    select:focus,input:focus{
+      border-color:var(--yellow);
+      box-shadow:0 0 8px rgba(255,199,44,0.6);
     }
     .btn{border:0;border-radius:999px;padding:12px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;margin-top:12px}
     .btn.yellow{background:var(--yellow);color:#111;}
@@ -41,7 +54,7 @@
       60%{transform:translateX(-4px)}
       80%{transform:translateX(4px)}
     }
-    .step-title{font-weight:900;letter-spacing:.6px;margin-bottom:10px}
+    .step-title{font-weight:900;letter-spacing:.6px;margin-bottom:14px}
   </style>
 </head>
 <body>
@@ -51,16 +64,16 @@
       <h1>Seguí estos pasos para crear tu cuenta</h1>
 
       <div class="pill-panel">
-        <!-- Paso 1: Usuario -->
+        <!-- Paso 1: Nombre -->
         <div class="step active" id="step-1">
-          <div class="step-title">Paso 1 · Colocá tu usuario</div>
+          <div class="step-title">Paso 1 · Colocá tu nombre</div>
           <div class="input-group">
-            <label for="name">Tu usuario</label>
-            <input type="text" id="name" placeholder="Ej: Fede123"/>
+            <label for="name">Tu nombre</label>
+            <input type="text" id="name" placeholder="Ej: Federico"/>
           </div>
           <button class="btn yellow" id="to-2">Continuar</button>
           <div id="warn-1" class="warn" hidden>
-            Ingresá un usuario válido (mín. 3 caracteres).
+            Ingresá un nombre válido (mín. 3 caracteres).
           </div>
         </div>
 
@@ -93,7 +106,7 @@
         <!-- Paso 3: WhatsApp -->
         <div class="step" id="step-3">
           <div class="step-title">Paso 3 · Ir a WhatsApp</div>
-          <p>Usuario: <b id="n-preview"></b><br>Monto: <b id="a-preview"></b></p>
+          <p>Nombre: <b id="n-preview"></b><br>Monto: <b id="a-preview"></b></p>
           <button class="btn green" id="auto-wa">
             Ir a WhatsApp
             <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
@@ -131,25 +144,21 @@
       }
     }
 
-    function isValidUser(v){ return v && v.trim().length >= 3; }
+    function isValidName(v){ return v && v.trim().length >= 3; }
     function getAmount(){
       const sel = $("#amountSelect").value;
       if(sel==="custom") return $("#customAmount").value.trim();
       return sel;
     }
 
-    // Mostrar input personalizado si elige "otro monto"
+    // Mostrar input personalizado
     $("#amountSelect").addEventListener("change", ()=>{
-      if($("#amountSelect").value==="custom"){
-        $("#customAmountBox").style.display="block";
-      } else {
-        $("#customAmountBox").style.display="none";
-      }
+      $("#customAmountBox").style.display = $("#amountSelect").value==="custom" ? "block" : "none";
     });
 
     // Paso 1 -> 2
     $("#to-2").addEventListener("click", ()=>{
-      const ok = isValidUser($("#name").value);
+      const ok = isValidName($("#name").value);
       $("#warn-1").hidden = ok;
       if(ok) setStep(2);
     });
