@@ -7,23 +7,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* PALETA LIONEL */
-      --bg:#1c8dc3;           /* azul fondo */
-      --panel:#0A0A0A;        /* panel negro */
-      --ink:#ffffff;          /* texto principal */
-      --muted:#9ec9ea;        /* texto suave */
-      --line:#1c2430;         /* divisor oscuro */
-      --yellow:#FFC72C;       /* acento dorado */
-      --wa:#1b6b49;           /* botón WhatsApp */
-      --wa-b:#0f2e20;         /* borde botón */
-      --error:#ff7d7d;        /* error */
+      --bg:#1c8dc3;
+      --panel:#0A0A0A;
+      --ink:#ffffff;
+      --muted:#9ec9ea;
+      --line:#1c2430;
+      --yellow:#FFC72C;
+      --wa:#1b6b49;
+      --wa-b:#0f2e20;
+      --error:#ff7d7d;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;background:var(--bg);color:var(--ink);
       font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      -webkit-font-smoothing:antialiased;line-height:1.35;
     }
     .wrap{max-width:720px;margin:0 auto;padding:18px}
     .sheet{
@@ -31,84 +28,63 @@
       border-radius:18px;
       box-shadow:0 12px 36px rgba(0,0,0,.35);
       overflow:hidden;
-      border:1px solid #0f1114;
     }
-    /* HEADER tipo “pency” pero Lionel */
+    /* HEADER con logo */
     .header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--line)}
-    .back{width:28px;height:28px;border-radius:8px;background:#0f141b;display:grid;place-items:center;font-weight:900;color:#7aa9c9}
-    .title{font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:.4px}
-    .close{margin-left:auto;color:#7aa9c9}
+    .logo{height:36px;width:auto}
+    .title{font-weight:900;font-size:20px;text-transform:uppercase;color:var(--yellow)}
     /* HERO TITLES */
-    .hero{
-      padding:16px 16px 0;text-align:left;
-    }
+    .hero{text-align:left;padding:16px}
     .h1{margin:0;font-weight:900;font-size:clamp(22px,4vw,28px);text-transform:uppercase;letter-spacing:.6px}
     .bojo{color:var(--yellow);font-weight:900;margin-top:6px;font-size:clamp(16px,3vw,20px);letter-spacing:.5px}
     .sub{color:var(--muted);font-weight:700;margin-top:4px}
 
-    .content{padding:8px 16px 16px}
-    h2{margin:10px 0 6px;font-size:18px;font-weight:900}
+    .content{padding:0 16px 16px}
     .field{padding:14px 0;border-bottom:1px solid var(--line)}
-    .field:last-child{border-bottom:none}
-    .label{display:flex;align-items:center;gap:8px;font-weight:900;margin-bottom:10px;color:var(--yellow);text-transform:uppercase;font-size:13px;letter-spacing:.4px}
+    .label{font-weight:900;color:var(--yellow);margin-bottom:10px;text-transform:uppercase;font-size:13px}
     .input{
-      width:100%;padding:14px 12px;border:2px solid #1a1f26;border-radius:12px;
+      width:100%;padding:14px;border:2px solid #1a1f26;border-radius:12px;
       background:#111;color:#fff;font-weight:800;outline:none;text-align:left;
     }
     .input::placeholder{color:#93a6b5;font-weight:700}
     .input:focus{border-color:var(--yellow);box-shadow:0 0 0 4px rgba(255,199,44,.18)}
 
-    /* Radios estilo lista Lionel */
     .options{display:grid;gap:8px}
     .radio{
       display:flex;align-items:flex-start;gap:12px;padding:12px;border:2px solid #141a22;border-radius:12px;background:#101417;cursor:pointer;
     }
-    .radio input{appearance:none;width:18px;height:18px;border:2px solid #2b3744;border-radius:50%;margin-top:2px;outline:none;flex:0 0 auto;background:#0d1217}
+    .radio input{appearance:none;width:18px;height:18px;border:2px solid #2b3744;border-radius:50%;margin-top:2px;background:#0d1217}
     .radio input:checked{border-color:var(--yellow);box-shadow:inset 0 0 0 4px #101417;background:var(--yellow)}
-    .radio .txt{display:flex;flex-direction:column}
     .radio .main{font-weight:900}
-    .radio .sub{color:#95b9d3;font-weight:700;font-size:13px;margin-top:2px}
 
     .custom{margin-top:12px;display:none}
     .error{margin-top:8px;color:var(--error);font-weight:800;font-size:13px;display:none}
 
-    /* Footer total + CTA WhatsApp */
     .footer{
-      padding:16px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;
-      background:#0b0f13;
+      padding:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#0b0f13
     }
-    .total{font-weight:900}
     .total span{color:#a7c8de;font-weight:800;margin-right:10px}
+    .total strong{font-weight:900}
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      background:var(--wa);color:#fff;border:2px solid var(--wa-b);border-radius:14px;padding:14px 18px;
-      font-weight:900;text-transform:uppercase;cursor:not-allowed;min-width:220px;
-      transition:transform .06s ease,filter .15s ease;
+      background:var(--wa);color:#fff;border:2px solid var(--wa-b);
+      border-radius:14px;padding:14px 20px;font-weight:900;text-transform:uppercase;
+      display:flex;align-items:center;gap:8px;cursor:not-allowed;
     }
     .btn.ready{cursor:pointer}
-    .btn.ready:hover{filter:brightness(1.03)}
-    .btn.ready:active{transform:translateY(1px)}
-    .btn img{width:16px;height:16px}
-
-    .hint{padding:10px 16px 18px;color:#b7d6ea;font-weight:700}
-
-    @media (min-width:560px){
-      .content{padding:8px 22px 18px}
-      .header,.hero,.footer{padding-left:22px;padding-right:22px}
-    }
+    .btn img{width:18px}
+    .hint{padding:10px 16px 18px;color:#b7d6ea;font-weight:700;font-size:13px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="sheet" id="app">
-      <!-- Header -->
+    <div class="sheet">
+      <!-- Header con logo -->
       <div class="header">
-        <div class="back">←</div>
-        <div class="title">Completá tu pedido</div>
-        <div class="close">✕</div>
+        <img src="logo.png" alt="Lionel" class="logo">
+        <div class="title">Lionel Casino</div>
       </div>
 
-      <!-- Titulares -->
+      <!-- Hero -->
       <div class="hero">
         <div class="h1">Creá tu cuenta</div>
         <div class="bojo">100% en tu primera carga!!</div>
@@ -119,118 +95,96 @@
         <!-- Nombre -->
         <div class="field">
           <div class="label">Nombre completo</div>
-          <input id="name" class="input" type="text" maxlength="70" placeholder="Ej: Juan Pérez" autocomplete="name">
+          <input id="name" class="input" type="text" placeholder="Ej: Juan Pérez" maxlength="70">
           <div class="error" id="eName">Ingresá un nombre válido (mínimo 3 caracteres).</div>
         </div>
 
         <!-- Monto -->
         <div class="field">
           <div class="label">Monto a cargar</div>
-          <div class="options" id="amountOptions">
-            <label class="radio"><input type="radio" name="amount" value="2000"><div class="txt"><span class="main">$ 2.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="3000"><div class="txt"><span class="main">$ 3.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="4000"><div class="txt"><span class="main">$ 4.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="5000"><div class="txt"><span class="main">$ 5.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="6000"><div class="txt"><span class="main">$ 6.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="10000"><div class="txt"><span class="main">$ 10.000</span></div></label>
-            <label class="radio"><input type="radio" name="amount" value="custom"><div class="txt"><span class="main">Otro monto</span><span class="sub">Mínimo $ 2.000</span></div></label>
+          <div class="options">
+            <label class="radio"><input type="radio" name="amount" value="2000"><span class="main">$ 2.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="3000"><span class="main">$ 3.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="4000"><span class="main">$ 4.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="5000"><span class="main">$ 5.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="6000"><span class="main">$ 6.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="10000"><span class="main">$ 10.000</span></label>
+            <label class="radio"><input type="radio" name="amount" value="custom"><span class="main">Otro monto (mínimo $2.000)</span></label>
           </div>
-
           <div class="custom" id="customBox">
-            <input id="customAmount" class="input" type="number" inputmode="numeric" min="2000" step="1" placeholder="Ingresá un monto (mínimo 2000)">
+            <input id="customAmount" class="input" type="number" min="2000" placeholder="Ej: 7500">
           </div>
           <div class="error" id="eAmount">Seleccioná un monto válido (mínimo $ 2.000).</div>
         </div>
       </div>
 
-      <!-- Footer con total y CTA -->
+      <!-- Footer -->
       <div class="footer">
         <div class="total"><span>Total estimado</span> <strong id="total">$ 0</strong></div>
-        <button id="go" class="btn" disabled>
-          <img src="whatsapp.png" alt=""> Ir a WhatsApp
-        </button>
+        <button id="go" class="btn" disabled><img src="whatsapp.png" alt="">Ir a WhatsApp</button>
       </div>
 
-      <div class="hint">El mensaje dirá: “Hola, soy {nombre}. Quiero cargar {monto}. Quiero que me pasen CBU para continuar.”</div>
+      <div class="hint">El mensaje incluirá tu nombre y monto: “Hola, soy {nombre}. Quiero cargar {monto}. Quiero que me pasen CBU para continuar.”</div>
     </div>
   </div>
 
   <script>
-    const FINAL_PHONE = "5491139416439"; // cambiá destino si querés
+    const FINAL_PHONE = "5491139416439";
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
 
     const nameEl = $("#name");
-    const amountRadios = $$("input[name='amount']");
+    const radios = $$("input[name='amount']");
     const customBox = $("#customBox");
     const customInput = $("#customAmount");
+    const totalEl = $("#total");
+    const btn = $("#go");
     const eName = $("#eName");
     const eAmount = $("#eAmount");
-    const totalEl = $("#total");
-    const goBtn = $("#go");
 
-    // Helpers
-    const validName = v => !!v && v.trim().length >= 3;
-    const getSelectedAmount = () => {
-      const r = amountRadios.find(x => x.checked);
-      if(!r) return "";
-      return r.value === "custom" ? (customInput.value || "") : r.value;
+    const validName = v => v.trim().length >= 3;
+    const getAmount = () => {
+      const sel = radios.find(r=>r.checked);
+      if(!sel) return "";
+      return sel.value==="custom" ? customInput.value : sel.value;
     };
-    const validAmount = v => !!v && Number(v) >= 2000;
+    const validAmount = v => !!v && Number(v)>=2000;
     const fmt = n => Number(n||0).toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 
-    function toggleCustom(){
-      const chosen = amountRadios.find(x => x.checked)?.value;
-      const show = chosen === "custom";
-      customBox.style.display = show ? "block" : "none";
-      if(show) customInput.focus({preventScroll:true});
-    }
-    function updateTotal(){
-      const v = getSelectedAmount();
-      totalEl.textContent = validAmount(v) ? fmt(v) : "$ 0";
-    }
-    function updateButton(){
-      const ok = validName(nameEl.value) && validAmount(getSelectedAmount());
-      goBtn.disabled = !ok;
-      goBtn.classList.toggle("ready", ok);
-    }
-
-    // Events
-    nameEl.addEventListener("input", ()=>{
-      eName.style.display = validName(nameEl.value) ? "none" : "block";
-      updateButton();
-    });
-    amountRadios.forEach(r=>{
+    radios.forEach(r=>{
       r.addEventListener("change", ()=>{
-        toggleCustom();
-        if(r.value !== "custom") customInput.value = "";
-        eAmount.style.display = validAmount(getSelectedAmount()) ? "none" : "block";
-        updateTotal(); updateButton();
+        customBox.style.display = r.value==="custom" ? "block" : "none";
+        if(r.value!=="custom") customInput.value="";
+        update();
       });
     });
+    nameEl.addEventListener("input", update);
     customInput.addEventListener("input", ()=>{
-      const v = Number(customInput.value || 0);
-      if(v && v < 2000) customInput.value = 2000;
-      eAmount.style.display = validAmount(getSelectedAmount()) ? "none" : "block";
-      updateTotal(); updateButton();
+      if(Number(customInput.value)<2000) customInput.value=2000;
+      update();
     });
 
-    // CTA → WhatsApp
-    goBtn.addEventListener("click", (e)=>{
+    function update(){
+      const nameOk = validName(nameEl.value);
+      const amt = getAmount();
+      const amtOk = validAmount(amt);
+
+      eName.style.display = nameOk?"none":"block";
+      eAmount.style.display = amtOk?"none":"block";
+
+      totalEl.textContent = amtOk?fmt(amt):"$ 0";
+      btn.disabled = !(nameOk && amtOk);
+      btn.classList.toggle("ready", nameOk && amtOk);
+    }
+
+    btn.addEventListener("click", e=>{
       e.preventDefault();
       const name = nameEl.value.trim();
-      const amount = getSelectedAmount();
-      if(!validName(name)){ eName.style.display="block"; return; }
-      if(!validAmount(amount)){ eAmount.style.display="block"; return; }
-
+      const amount = getAmount();
+      if(!(validName(name)&&validAmount(amount))) return;
       const text = `Hola, soy ${name}. Quiero cargar ${amount}. Quiero que me pasen CBU para continuar.`;
-      const url = `https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
+      window.open(`https://wa.me/${FINAL_PHONE}?text=${encodeURIComponent(text)}`,"_blank");
     });
-
-    // Init
-    updateTotal();
-    updateButton();
   </script>
 </body>
 </html>
