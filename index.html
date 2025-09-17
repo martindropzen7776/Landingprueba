@@ -1,235 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Lionel — Registro (1 pantalla)</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0f7fb2; --card:#0B0F13; --ink:#fff; --muted:#9ec9ea; --line:#1a2430;
-    --accent:#FFC72C; --good:#4ad395; --cta:#1b6b49; --cta-b:#0f2e20; --error:#ff7d7d;
-    --chip-b:#141a22; --chip-bg:#101417;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:linear-gradient(160deg,#0d5f85 0%,#0b3347 45%,#071e2d 100%);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-  a{color:inherit}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carga Segura | Lionel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#121212" />
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --card: #1e1e1e;
+      --accent: #00ff88;
+      --danger: #ff4646;
+      --text: #fff;
+      --muted: #ccc;
+      --highlight: #ffcc00;
+    }
 
-  /* ===== LAYOUT 1 PANTALLA ===== */
-  .frame{height:100svh;display:grid;place-items:center;padding:8px}
-  .sheet{width:min(820px,100%);height:100%;background:var(--card);border-radius:16px;border:1px solid #0f1114;box-shadow:0 12px 36px rgba(0,0,0,.35);display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;position:relative}
-  .fit-wrap{height:100%;display:grid;grid-template-rows:auto 1fr;}
-  .fit{height:100%;display:grid;grid-template-rows:auto 1fr;transform-origin:top center}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* Header super compacto */
-  .header{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);background:#0b0f13}
-  .logo{height:26px;width:auto;border-radius:6px}
-  .title{font-weight:900;font-size:16px;text-transform:uppercase;color:var(--accent);letter-spacing:.3px}
-  .pills{margin-left:auto;display:flex;gap:6px}
-  .pill{font-size:10px;padding:4px 8px;border:1px solid #15202b;background:#0e141a;border-radius:999px;font-weight:900;color:#a7c8de;display:flex;gap:6px;align-items:center}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 0;
+      margin: 0;
+    }
 
-  /* Contenido en grilla fija (sin scroll) */
-  .content{display:grid;grid-template-columns:1.1fr .9fr;gap:10px;padding:10px;min-height:0}
-  @media (max-width:720px){.content{grid-template-columns:1fr}}
-  .card{padding:10px;border:1px solid #11161d;background:#0f141a;border-radius:12px;min-height:0}
+    .container {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 30px 20px 100px;
+    }
 
-  .label{font-weight:900;color:var(--accent);margin-bottom:6px;text-transform:uppercase;font-size:11px;letter-spacing:.3px}
-  .input{width:100%;padding:12px 10px;border:2px solid #1a1f26;border-radius:10px;background:#0b0f13;color:#fff;font-weight:800;outline:none;text-align:left;font-size:14px}
-  .input::placeholder{color:#93a6b5;font-weight:700}
-  .input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(255,199,44,.18)}
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  .options{display:grid;gap:8px;grid-template-columns:repeat(4,minmax(0,1fr))}
-  .radio{display:flex;align-items:center;gap:8px;padding:10px;border:2px solid var(--chip-b);border-radius:10px;background:var(--chip-bg);cursor:pointer;user-select:none}
-  .radio input{appearance:none;width:16px;height:16px;border:2px solid #2b3744;border-radius:50%;outline:none;background:#0d1217;flex:0 0 auto}
-  .radio input:checked{border-color:var(--accent);box-shadow:inset 0 0 0 4px var(--chip-bg);background:var(--accent)}
-  .radio .main{font-weight:900;font-size:13px}
-  .radio.full{grid-column:1/-1}
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
 
-  .row{display:flex;justify-content:space-between;gap:10px}
-  .row .l{color:#a7c8de;font-weight:800;font-size:12px}
-  .row .r{font-weight:900;font-size:14px}
+    .card {
+      background-color: var(--card);
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.06);
+      margin-bottom: 24px;
+    }
 
-  .error{margin-top:6px;color:var(--error);font-weight:800;font-size:12px;display:none}
-  .tos{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
-  .tos small{color:#a7c8de}
+    h2 {
+      font-size: 20px;
+      margin-bottom: 18px;
+      color: var(--highlight);
+    }
 
-  /* Footer fijo compacto */
-  .bar{padding:8px 10px;background:rgba(11,15,19,.98);border-top:1px solid var(--line);display:flex;justify-content:center}
-  .bar-inner{width:min(820px,100%);display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .mini{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .mini .badge{border:1px solid #17212b;background:#0c1218;border-radius:999px;padding:6px 8px;font-size:11px;font-weight:900;color:#cfe9ff}
-  .total span{color:#a7c8de;font-weight:800;margin-right:6px;font-size:12px}
-  .total strong{font-weight:900;font-size:16px}
-  .btn{background:var(--cta);color:#fff;border:2px solid var(--cta-b);border-radius:10px;padding:12px 14px;font-weight:900;text-transform:uppercase;display:flex;align-items:center;gap:8px;cursor:not-allowed;font-size:13px}
-  .btn.ready{cursor:pointer}
-  .btn img{width:16px;height:16px}
+    p {
+      margin-bottom: 12px;
+      line-height: 1.5;
+      font-size: 15px;
+      color: var(--muted);
+    }
 
-  /* Snack */
-  .snack{position:fixed;left:50%;bottom:82px;transform:translateX(-50%) translateY(10px);background:#0b0f13;border:1px solid #162028;border-radius:10px;padding:8px 12px;font-weight:900;color:#d0ecff;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s}
-  .snack.show{opacity:1;transform:translateX(-50%) translateY(0)}
-</style>
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: var(--accent);
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background: #00e075;
+    }
+
+    .alias-box {
+      background: #121212;
+      padding: 16px;
+      font-size: 18px;
+      border-radius: 6px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: var(--highlight);
+      border: 1px solid var(--highlight);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .badge {
+      background: var(--highlight);
+      color: black;
+      font-weight: bold;
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .soporte {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .soporte a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-  <div class="frame">
-    <div class="sheet">
-      <!-- HEADER -->
-      <div class="header">
-        <img src="avatar.jpeg" class="logo" alt="Lionel"><div class="title">Lionel</div>
-        <div class="pills"><div class="pill"><span class="dot"></span> 24/7</div><div class="pill">Retiros sin límite</div></div>
-      </div>
+  <div class="container">
+    
+    <header>
+      <h1>🎰 Lionel • Recarga Segura</h1>
+      <div class="badge">100% confianza</div>
+    </header>
 
-      <!-- FIT WRAPPER (escala si hace falta) -->
-      <div class="fit-wrap">
-        <div class="fit" id="fit">
-          <!-- CONTENIDO SIN SCROLL -->
-          <div class="content">
-            <!-- FORM -->
-            <div class="card">
-              <div class="label">Nombre completo</div>
-              <input id="name" class="input" type="text" maxlength="70" placeholder="Ej: Juan Pérez" autocomplete="name" autocapitalize="words">
-              <div class="error" id="eName">Ingresá un nombre válido (mínimo 3 caracteres).</div>
+    <!-- Paso 1: Registro -->
+    <section id="registro" class="card">
+      <h2>1. Crea tu cuenta</h2>
+      <p>Completá los datos para comenzar tu carga. Luego verás los datos de transferencia.</p>
+      <form id="formularioRegistro">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="tel" name="telefono" placeholder="Tu WhatsApp" required />
+        <button type="submit">Continuar</button>
+      </form>
+    </section>
 
-              <div class="label" style="margin-top:10px">Monto a cargar</div>
-              <div class="options">
-                <label class="radio"><input type="radio" name="amount" value="2000"><span class="main">$ 2.000</span></label>
-                <label class="radio"><input type="radio" name="amount" value="3000"><span class="main">$ 3.000</span></label>
-                <label class="radio"><input type="radio" name="amount" value="4000"><span class="main">$ 4.000</span></label>
-                <label class="radio"><input type="radio" name="amount" value="5000"><span class="main">$ 5.000</span></label>
-                <label class="radio full"><input type="radio" name="amount" value="custom"><span class="main">Otro monto (mínimo $ 2.000)</span></label>
-              </div>
-              <div id="customBox" style="display:none;margin-top:8px"><input id="customAmount" class="input" type="number" inputmode="numeric" min="2000" step="1" placeholder="Ej: 7500"></div>
+    <!-- Paso 2: Datos bancarios -->
+    <section id="datosBancarios" class="card hidden">
+      <h2>2. Realiza la transferencia</h2>
+      <p>Alias para transferir:</p>
+      <div class="alias-box">juegosonline.mp</div>
+      <p>💰 <strong>Monto mínimo:</strong> $3.000</p>
+      <p>📌 Luego de transferir, hacé clic en el botón para enviarnos tu comprobante por WhatsApp oficial.</p>
+      <button id="btnTransferi">Ya transferí</button>
+    </section>
 
-              <label class="tos"><input type="checkbox" id="tos"> <small>Confirmo que soy mayor de 18 años y acepto recibir el CBU por WhatsApp.</small></label>
-              <div class="error" id="eAmount">Seleccioná un monto válido (mínimo $ 2.000).</div>
-            </div>
+    <!-- Paso 3: Seguridad -->
+    <section class="card">
+      <h2>🔒 Seguridad garantizada</h2>
+      <p>✔️ Validación manual de comprobantes</p>
+      <p>✔️ Cargas acreditadas en menos de 15 minutos</p>
+      <p>✔️ WhatsApp oficial habilitado para soporte 24/7</p>
+    </section>
 
-            <!-- RESUMEN -->
-            <div class="card">
-              <div class="row"><span class="l">Casino</span><span class="r">Casino Zeus</span></div>
-              <div class="row"><span class="l">Bono estimado</span><span class="r" id="bonus">$ 0</span></div>
-              <div class="row"><span class="l">Total estimado</span><span class="r" id="totalR">$ 0</span></div>
-              <div style="margin-top:10px;display:grid;gap:6px;grid-template-columns:repeat(2,minmax(0,1fr))">
-                <div class="mini badge">🎁 100% bono 1° carga</div>
-                <div class="mini badge">⚡ Acreditación rápida</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Paso 4: Prueba social -->
+    <section class="card">
+      <h2>💬 Opiniones reales</h2>
+      <p>“Transferí y me acreditaron en 5 minutos, muy confiable”</p>
+      <p>“Ya jugué con más de 4 cargas, todo perfecto”</p>
+      <p class="badge">+12.000 jugadores activos</p>
+    </section>
 
-      <!-- FOOTER CTA SIEMPRE A LA VISTA -->
-      <div class="bar">
-        <div class="bar-inner">
-          <div class="mini">
-            <div class="badge">🛡️ Equipo verificado</div>
-            <div class="badge">📞 Soporte por WhatsApp</div>
-          </div>
-          <div class="total"><span>Total</span> <strong id="total">$ 0</strong></div>
-          <button id="go" class="btn" disabled><img src="whatsapp.png" alt="">Ir a WhatsApp</button>
-        </div>
-      </div>
+    <!-- Soporte -->
+    <div class="soporte">
+      ¿Dudas? 👉 <a href="https://wa.me/5491123456789" target="_blank">Escríbenos a WhatsApp oficial</a>
     </div>
+
+    <!-- Footer -->
+    <footer>
+      © 2025 Lionel. Todos los derechos reservados.
+    </footer>
   </div>
 
-  <div class="snack" id="snack">Copiado</div>
-
-<script>
-  // ===== CONFIG =====
-  const PHONES = ['5491139416439','5491139416439','5491154142292'];
-  const MIN_AMOUNT = 2000; const BONUS_RATE = 1.0;
-
-  // ===== HELPERS =====
-  const $ = s => document.querySelector(s); const $$ = s => Array.from(document.querySelectorAll(s));
-  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
-  const fmt = n => Number(n||0).toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});
-
-  // UTM
-  const params = new URLSearchParams(location.search);
-  const utm = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']
-    .map(k=>params.get(k) ? `${k}=${params.get(k)}` : null).filter(Boolean).join('&');
-
-  // DOM
-  const fitEl = $('#fit');
-  const nameEl = $('#name');
-  const radios = $$("input[name='amount']");
-  const customBox = $('#customBox');
-  const customInput = $('#customAmount');
-  const totalEl = $('#total'); const totalREl = $('#totalR'); const bonusEl = $('#bonus');
-  const btn = $('#go'); const eName = $('#eName'); const eAmount = $('#eAmount'); const snack = $('#snack'); const tos = $('#tos');
-
-  // Validación
-  const validName = v => v && v.trim().length >= 3;
-  const getAmount = () => { const sel = radios.find(r=>r.checked); if(!sel) return ''; return sel.value==='custom' ? (customInput.value||'') : sel.value; };
-  const validAmount = v => !!v && Number(v) >= MIN_AMOUNT;
-
-  function update(){
-    const nameOk = validName(nameEl.value);
-    const amt = getAmount(); const amtOk = validAmount(amt);
-    eName.style.display = nameOk ? 'none' : 'block'; eAmount.style.display = amtOk ? 'none' : 'block';
-    const amountNum = amtOk ? Number(amt) : 0; const bonus = Math.round(amountNum * BONUS_RATE);
-    totalEl.textContent = amtOk ? fmt(amountNum) : '$ 0'; totalREl.textContent = totalEl.textContent; bonusEl.textContent = amtOk ? fmt(bonus) : '$ 0';
-    const ok = nameOk && amtOk && tos.checked; btn.disabled = !ok; btn.classList.toggle('ready', ok);
-    fitToViewport();
-  }
-
-  // Escala automática para encajar todo en 1 pantalla
-  function fitToViewport(){
-    // reset
-    fitEl.style.transform = 'scale(1)';
-    // altura disponible = alto de la sheet menos header y footer
-    const sheet = document.querySelector('.sheet');
-    const headerH = document.querySelector('.header').offsetHeight;
-    const footerH = document.querySelector('.bar').offsetHeight;
-    const avail = sheet.clientHeight - headerH - footerH;
-    const need = fitEl.scrollHeight; // contenido real
-    if(need > avail){
-      const scale = Math.max(0.72, Math.min(1, (avail-4)/need));
-      fitEl.style.transform = `scale(${scale})`;
-    }
-  }
-
-  // Eventos
-  radios.forEach(r=>{
-    r.addEventListener('change', ()=>{
-      const custom = r.value==='custom';
-      customBox.style.display = custom ? 'block' : 'none';
-      if(!custom) customInput.value='';
-      update();
+  <!-- Script funcional -->
+  <script>
+    document.getElementById("formularioRegistro").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("registro").classList.add("hidden");
+      document.getElementById("datosBancarios").classList.remove("hidden");
     });
-  });
-  nameEl.addEventListener('input', update);
-  customInput.addEventListener('input', ()=>{ if(Number(customInput.value) < MIN_AMOUNT) customInput.value = MIN_AMOUNT; update(); });
-  tos.addEventListener('change', update);
-  window.addEventListener('resize', fitToViewport);
 
-  // Preselección
-  (function preset(){ (radios.find(r=>r.value==='5000')||radios[0]).checked = true; })();
-
-  // CTA
-  let clicking = false;
-  btn.addEventListener('click', e=>{
-    e.preventDefault(); if(clicking) return;
-    const name = nameEl.value.trim(); const amount = getAmount();
-    if(!(validName(name) && validAmount(amount) && tos.checked)) return;
-    clicking = true; const phone = pick(PHONES);
-    const parts = [`Hola, soy ${name}.`, `Quiero cargar ${amount}.`, `¿Me pasan el CBU para continuar?`];
-    if(utm) parts.push(`REF: ${utm}`);
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(parts.join(' '))}`;
-    if(navigator.vibrate) navigator.vibrate(20);
-    window.open(url, '_blank','noopener');
-    setTimeout(()=>{ clicking=false; }, 700);
-  });
-
-  // Copiar total
-  totalEl.parentElement.addEventListener('click', ()=>{
-    const amt = getAmount(); if(!validAmount(amt)) return;
-    navigator.clipboard?.writeText(`${fmt(amt)}`).then(()=>{ snack.textContent='Total copiado'; snack.classList.add('show'); setTimeout(()=>snack.classList.remove('show'), 1200); });
-  });
-
-  // Primera pasada
-  update();
-  setTimeout(fitToViewport, 50);
-</script>
+    document.getElementById("btnTransferi").addEventListener("click", function() {
+      const nombre = document.querySelector('input[name="nombre"]').value;
+      const telefono = document.querySelector('input[name="telefono"]').value;
+      const mensaje = `Hola, ya realicé mi transferencia. Te adjunto mi comprobante.\n\nNombre: ${nombre}\nTeléfono: ${telefono}`;
+      window.location.href = `https://wa.me/5491123456789?text=${encodeURIComponent(mensaje)}`;
+    });
+  </script>
 </body>
 </html>
