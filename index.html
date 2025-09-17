@@ -179,7 +179,7 @@
       <div class="alias-box">
         <div id="cbuTexto" class="blurred">CBU: 0000003100033524205721</div>
         <button type="button" class="btn-reveal" onclick="revealCBU()">🔓 Mostrar CBU</button>
-        <button type="button" class="btn-copy" onclick="copiarCBU()" disabled id="btnCopiar">📋 Copiar CBU</button>
+        <button type="button" class="btn-copy" onclick="copiarCBU()" id="btnCopiar">📋 Copiar CBU</button>
         <div class="alert">Debes copiar el CBU antes de continuar</div>
       </div>
 
@@ -199,7 +199,6 @@
       const cbu = document.getElementById("cbuTexto");
       cbu.classList.remove("blurred");
       cbuVisible = true;
-      document.getElementById("btnCopiar").disabled = false;
     }
 
     function copiarCBU() {
