@@ -3,184 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recarga Segura | Lionel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <meta name="theme-color" content="#ffffff" />
+  <title>Recarga Segura | CasinoZeus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4F46E5;
-      --success: #22c55e;
-      --text: #111827;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --bg: #f9fafb;
+      --bg: #0b0f1a;
+      --card: #121628;
+      --accent: #ffd700;
+      --text: #ffffff;
+      --muted: #bbbbbb;
+      --btn: #ff2c6d;
+      --btn-hover: #e52660;
+      --border: #2e3650;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg);
       color: var(--text);
       padding: 0;
     }
 
-    .wrapper {
-      max-width: 420px;
-      margin: 0 auto;
+    .container {
+      max-width: 480px;
+      margin: auto;
       padding: 40px 20px 100px;
     }
 
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 30px 24px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
+    header {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .step-title {
+    header h1 {
+      font-size: 30px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .card {
+      background-color: var(--card);
+      padding: 30px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+      margin-bottom: 24px;
+    }
+
+    h2 {
       font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      color: var(--accent);
     }
 
     p {
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.6;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     input {
       width: 100%;
       padding: 14px;
-      margin-bottom: 15px;
-      border: 1px solid var(--border);
+      margin-bottom: 18px;
+      border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
+      background: #1d213b;
+      color: #fff;
     }
 
     button {
       width: 100%;
-      padding: 14px;
-      background: var(--primary);
+      padding: 15px;
+      background: var(--btn);
       color: white;
       border: none;
       border-radius: 8px;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 16px;
       cursor: pointer;
       transition: 0.2s;
     }
 
     button:hover {
-      background: #4338ca;
+      background: var(--btn-hover);
     }
 
     .alias-box {
-      background: #f3f4f6;
-      border: 1px dashed #d1d5db;
+      background: #1d213b;
+      border: 1px dashed var(--accent);
       padding: 14px;
       font-size: 17px;
-      border-radius: 6px;
       text-align: center;
-      margin-bottom: 15px;
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .highlight {
-      color: var(--success);
-      font-weight: 600;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .footer-text {
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 40px;
-    }
-
-    .support {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .support a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
+      border-radius: 10px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 700;
     }
 
     .badge {
-      background: var(--success);
-      color: white;
+      background: var(--accent);
+      color: #000;
+      padding: 4px 10px;
       font-size: 13px;
-      padding: 5px 10px;
-      border-radius: 999px;
+      border-radius: 20px;
       display: inline-block;
-      margin-top: -5px;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
-    .center {
+    .hidden { display: none; }
+
+    .soporte {
       text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .soporte a {
+      color: var(--accent);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Paso 1: Registro -->
+  <div class="container">
+    <header>
+      <h1>🎰 CasinoZeus</h1>
+      <div class="badge">Recarga Segura</div>
+    </header>
+
     <section id="registro" class="card">
-      <div class="step-title">1. Crear cuenta</div>
-      <p>Completá tu nombre y WhatsApp para avanzar al pago.</p>
+      <h2>1. Crear tu cuenta</h2>
+      <p>Completá tu nombre y WhatsApp. Luego te mostraremos los datos de transferencia.</p>
       <form id="formularioRegistro">
         <input type="text" name="nombre" placeholder="Tu nombre completo" required />
-        <input type="tel" name="telefono" placeholder="WhatsApp con código de país" required />
-        <button type="submit">Siguiente</button>
+        <input type="tel" name="telefono" placeholder="Tu WhatsApp" required />
+        <button type="submit">Continuar</button>
       </form>
     </section>
 
-    <!-- Paso 2: Datos bancarios -->
     <section id="datosBancarios" class="card hidden">
-      <div class="step-title">2. Realizá la transferencia</div>
-      <div class="badge center">Alias oficial verificado</div>
+      <h2>2. Realiza la transferencia</h2>
+      <p>Alias oficial:</p>
       <div class="alias-box">juegosonline.mp</div>
-      <p>💰 Monto mínimo: <span class="highlight">$3.000</span></p>
-      <p>📌 Al transferir, hacé clic en el botón para enviarnos el comprobante por WhatsApp oficial. Validaremos en minutos.</p>
+      <p>💰 Monto mínimo: <strong>$3.000</strong></p>
+      <p>📌 Luego de transferir, hacé clic en el botón para enviarnos tu comprobante por WhatsApp oficial.</p>
       <button id="btnTransferi">Ya transferí</button>
     </section>
 
-    <!-- Paso 3: Confianza -->
     <section class="card">
-      <div class="step-title">✅ Seguridad garantizada</div>
-      <p>✔️ Acreditación manual en menos de 15 minutos.</p>
-      <p>✔️ Soporte directo vía WhatsApp oficial.</p>
-      <p>✔️ Comprobante = garantía de activación.</p>
+      <h2>🔒 Seguridad garantizada</h2>
+      <p>✔️ Validación manual del comprobante</p>
+      <p>✔️ Acreditación en menos de 15 minutos</p>
+      <p>✔️ Canal oficial 24/7 por WhatsApp</p>
     </section>
 
-    <!-- Soporte -->
-    <div class="support">
-      ¿Necesitás ayuda? <a href="https://wa.me/5491123456789" target="_blank">Contactanos por WhatsApp</a>
+    <section class="card">
+      <h2>💬 Opiniones reales</h2>
+      <p>“Cargué y me activaron rapidísimo, muy confiable.”</p>
+      <p>“Ya llevo 6 cargas, siempre todo 10 puntos.”</p>
+      <p class="badge">+12.000 jugadores activos</p>
+    </section>
+
+    <div class="soporte">
+      ¿Dudas? 👉 <a href="https://wa.me/5491123456789" target="_blank">Escribinos al WhatsApp oficial</a>
     </div>
 
-    <!-- Footer -->
-    <div class="footer-text">
-      © 2025 Lionel • Plataforma de juego verificada
-    </div>
+    <footer>
+      © 2025 CasinoZeus. Todos los derechos reservados.
+    </footer>
   </div>
 
-  <!-- Script -->
   <script>
     document.getElementById("formularioRegistro").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -191,7 +196,7 @@
     document.getElementById("btnTransferi").addEventListener("click", function() {
       const nombre = document.querySelector('input[name="nombre"]').value;
       const telefono = document.querySelector('input[name="telefono"]').value;
-      const mensaje = `Hola, ya realicé mi transferencia. Te adjunto mi comprobante.\n\nNombre: ${nombre}\nWhatsApp: ${telefono}`;
+      const mensaje = `Hola, ya realicé mi transferencia. Te adjunto mi comprobante.\n\nNombre: ${nombre}\nTeléfono: ${telefono}`;
       window.location.href = `https://wa.me/5491123456789?text=${encodeURIComponent(mensaje)}`;
     });
   </script>
