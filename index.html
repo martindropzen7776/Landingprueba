@@ -3,198 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carga Segura | Lionel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-  <meta name="theme-color" content="#121212" />
+  <title>Recarga Segura | Lionel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#ffffff" />
   <style>
     :root {
-      --bg: #0c0c0c;
-      --card: #1e1e1e;
-      --accent: #00ff88;
-      --danger: #ff4646;
-      --text: #fff;
-      --muted: #ccc;
-      --highlight: #ffcc00;
+      --primary: #4F46E5;
+      --success: #22c55e;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
       color: var(--text);
       padding: 0;
-      margin: 0;
     }
 
-    .container {
-      max-width: 460px;
+    .wrapper {
+      max-width: 420px;
       margin: 0 auto;
-      padding: 30px 20px 100px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--accent);
+      padding: 40px 20px 100px;
     }
 
     .card {
-      background-color: var(--card);
-      padding: 30px 20px;
+      background: white;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.06);
-      margin-bottom: 24px;
+      padding: 30px 24px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
     }
 
-    h2 {
+    .step-title {
       font-size: 20px;
-      margin-bottom: 18px;
-      color: var(--highlight);
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
     p {
-      margin-bottom: 12px;
-      line-height: 1.5;
       font-size: 15px;
       color: var(--muted);
+      margin-bottom: 12px;
     }
 
     input {
       width: 100%;
       padding: 14px;
       margin-bottom: 15px;
-      border: none;
+      border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 16px;
     }
 
     button {
       width: 100%;
-      padding: 15px;
-      background: var(--accent);
-      color: black;
+      padding: 14px;
+      background: var(--primary);
+      color: white;
       border: none;
       border-radius: 8px;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.2s;
     }
 
     button:hover {
-      background: #00e075;
+      background: #4338ca;
     }
 
     .alias-box {
-      background: #121212;
-      padding: 16px;
-      font-size: 18px;
+      background: #f3f4f6;
+      border: 1px dashed #d1d5db;
+      padding: 14px;
+      font-size: 17px;
       border-radius: 6px;
       text-align: center;
-      margin-bottom: 20px;
-      font-weight: bold;
-      color: var(--highlight);
-      border: 1px solid var(--highlight);
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .highlight {
+      color: var(--success);
+      font-weight: 600;
     }
 
     .hidden {
       display: none;
     }
 
-    .badge {
-      background: var(--highlight);
-      color: black;
-      font-weight: bold;
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-size: 14px;
-      margin-top: 10px;
-      margin-bottom: 15px;
-    }
-
-    .soporte {
-      margin-top: 25px;
-      text-align: center;
-    }
-
-    .soporte a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
+    .footer-text {
       text-align: center;
       font-size: 13px;
       color: var(--muted);
       margin-top: 40px;
     }
+
+    .support {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .support a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .badge {
+      background: var(--success);
+      color: white;
+      font-size: 13px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-top: -5px;
+      margin-bottom: 10px;
+    }
+
+    .center {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    
-    <header>
-      <h1>🎰 Lionel • Recarga Segura</h1>
-      <div class="badge">100% confianza</div>
-    </header>
-
+  <div class="wrapper">
     <!-- Paso 1: Registro -->
     <section id="registro" class="card">
-      <h2>1. Crea tu cuenta</h2>
-      <p>Completá los datos para comenzar tu carga. Luego verás los datos de transferencia.</p>
+      <div class="step-title">1. Crear cuenta</div>
+      <p>Completá tu nombre y WhatsApp para avanzar al pago.</p>
       <form id="formularioRegistro">
-        <input type="text" name="nombre" placeholder="Tu nombre" required />
-        <input type="tel" name="telefono" placeholder="Tu WhatsApp" required />
-        <button type="submit">Continuar</button>
+        <input type="text" name="nombre" placeholder="Tu nombre completo" required />
+        <input type="tel" name="telefono" placeholder="WhatsApp con código de país" required />
+        <button type="submit">Siguiente</button>
       </form>
     </section>
 
     <!-- Paso 2: Datos bancarios -->
     <section id="datosBancarios" class="card hidden">
-      <h2>2. Realiza la transferencia</h2>
-      <p>Alias para transferir:</p>
+      <div class="step-title">2. Realizá la transferencia</div>
+      <div class="badge center">Alias oficial verificado</div>
       <div class="alias-box">juegosonline.mp</div>
-      <p>💰 <strong>Monto mínimo:</strong> $3.000</p>
-      <p>📌 Luego de transferir, hacé clic en el botón para enviarnos tu comprobante por WhatsApp oficial.</p>
+      <p>💰 Monto mínimo: <span class="highlight">$3.000</span></p>
+      <p>📌 Al transferir, hacé clic en el botón para enviarnos el comprobante por WhatsApp oficial. Validaremos en minutos.</p>
       <button id="btnTransferi">Ya transferí</button>
     </section>
 
-    <!-- Paso 3: Seguridad -->
+    <!-- Paso 3: Confianza -->
     <section class="card">
-      <h2>🔒 Seguridad garantizada</h2>
-      <p>✔️ Validación manual de comprobantes</p>
-      <p>✔️ Cargas acreditadas en menos de 15 minutos</p>
-      <p>✔️ WhatsApp oficial habilitado para soporte 24/7</p>
-    </section>
-
-    <!-- Paso 4: Prueba social -->
-    <section class="card">
-      <h2>💬 Opiniones reales</h2>
-      <p>“Transferí y me acreditaron en 5 minutos, muy confiable”</p>
-      <p>“Ya jugué con más de 4 cargas, todo perfecto”</p>
-      <p class="badge">+12.000 jugadores activos</p>
+      <div class="step-title">✅ Seguridad garantizada</div>
+      <p>✔️ Acreditación manual en menos de 15 minutos.</p>
+      <p>✔️ Soporte directo vía WhatsApp oficial.</p>
+      <p>✔️ Comprobante = garantía de activación.</p>
     </section>
 
     <!-- Soporte -->
-    <div class="soporte">
-      ¿Dudas? 👉 <a href="https://wa.me/5491123456789" target="_blank">Escríbenos a WhatsApp oficial</a>
+    <div class="support">
+      ¿Necesitás ayuda? <a href="https://wa.me/5491123456789" target="_blank">Contactanos por WhatsApp</a>
     </div>
 
     <!-- Footer -->
-    <footer>
-      © 2025 Lionel. Todos los derechos reservados.
-    </footer>
+    <div class="footer-text">
+      © 2025 Lionel • Plataforma de juego verificada
+    </div>
   </div>
 
-  <!-- Script funcional -->
+  <!-- Script -->
   <script>
     document.getElementById("formularioRegistro").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -205,7 +191,7 @@
     document.getElementById("btnTransferi").addEventListener("click", function() {
       const nombre = document.querySelector('input[name="nombre"]').value;
       const telefono = document.querySelector('input[name="telefono"]').value;
-      const mensaje = `Hola, ya realicé mi transferencia. Te adjunto mi comprobante.\n\nNombre: ${nombre}\nTeléfono: ${telefono}`;
+      const mensaje = `Hola, ya realicé mi transferencia. Te adjunto mi comprobante.\n\nNombre: ${nombre}\nWhatsApp: ${telefono}`;
       window.location.href = `https://wa.me/5491123456789?text=${encodeURIComponent(mensaje)}`;
     });
   </script>
