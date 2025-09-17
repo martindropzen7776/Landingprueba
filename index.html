@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carga segura | CasinoZeus</title>
+  <title>🎰 Carga y Juega | CasinoZeus</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0c0c0c;
+      --bg: #0b0f1a;
       --card: #181c2f;
       --accent: #ffd700;
       --danger: #ff4646;
-      --muted: #b0b0b0;
+      --muted: #bbbbbb;
       --text: #ffffff;
       --primary: #ff2c6d;
     }
@@ -44,7 +44,7 @@
 
     h2 {
       color: var(--accent);
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 16px;
     }
 
@@ -55,7 +55,8 @@
     }
 
     input[type="text"],
-    input[type="tel"] {
+    input[type="tel"],
+    select {
       width: 100%;
       padding: 12px;
       margin-bottom: 16px;
@@ -64,24 +65,6 @@
       background: #202642;
       color: white;
       font-size: 15px;
-    }
-
-    .radio-group {
-      margin-bottom: 20px;
-    }
-
-    .radio-group label {
-      display: flex;
-      align-items: center;
-      background: #202642;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
-
-    .radio-group input {
-      margin-right: 10px;
     }
 
     .alias-box {
@@ -93,7 +76,6 @@
       color: var(--accent);
       text-align: center;
       margin-bottom: 16px;
-      display: none;
     }
 
     button {
@@ -119,20 +101,28 @@
 <body>
   <div class="container">
     <form id="checkout" class="card">
-      <h2>Completa tu pedido</h2>
+      <h2>🎰 Completá tu carga para empezar a jugar</h2>
 
       <label for="nombre">Nombre completo</label>
       <input type="text" id="nombre" name="nombre" required />
 
-      <label>Forma de pago</label>
-      <div class="radio-group">
-        <label><input type="radio" name="pago" value="efectivo" required /> Efectivo</label>
-        <label><input type="radio" name="pago" value="transferencia" /> Transferencia <span style="margin-left:auto;color:var(--muted);font-weight:normal;font-size:13px">(Ver alias y enviar comprobante)</span></label>
+      <label for="telefono">Tu WhatsApp</label>
+      <input type="tel" id="telefono" name="telefono" required />
+
+      <label for="monto">¿Cuánto querés cargar?</label>
+      <select id="monto" name="monto" required>
+        <option value="" disabled selected>Seleccioná un monto</option>
+        <option value="$3000">$3.000</option>
+        <option value="$5000">$5.000</option>
+        <option value="$10000">$10.000</option>
+      </select>
+
+      <div class="alias-box">
+        Alias para transferir: <br><strong>juegosonline.mp</strong><br>
+        💳 Recordá enviar tu comprobante al finalizar la carga
       </div>
 
-      <div class="alias-box" id="aliasBox">Alias para transferir: <br><strong>juegosonline.mp</strong></div>
-
-      <button type="submit">Realizar carga</button>
+      <button type="submit">Finalizar y Enviar Comprobante</button>
     </form>
 
     <div class="footer">
@@ -141,31 +131,13 @@
   </div>
 
   <script>
-    const form = document.getElementById('checkout');
-    const aliasBox = document.getElementById('aliasBox');
-
-    form.pago.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (radio.value === 'transferencia') {
-          aliasBox.style.display = 'block';
-        } else {
-          aliasBox.style.display = 'none';
-        }
-      });
-    });
-
-    form.addEventListener('submit', function(e) {
+    document.getElementById("checkout").addEventListener("submit", function(e) {
       e.preventDefault();
-      const nombre = form.nombre.value;
-      const metodo = form.pago.value;
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const monto = document.getElementById("monto").value;
 
-      let mensaje = `Hola, quiero cargar saldo.\nNombre: ${nombre}`;
-      if (metodo === 'transferencia') {
-        mensaje += `\nElegí transferencia. Te paso el comprobante.`;
-      } else {
-        mensaje += `\nElegí pagar en efectivo.`;
-      }
-
+      const mensaje = `Hola, quiero cargar saldo.\nNombre: ${nombre}\nWhatsApp: ${telefono}\nMonto: ${monto}\nYa realicé la transferencia y adjunto el comprobante.`;
       const url = `https://wa.me/5491123456789?text=${encodeURIComponent(mensaje)}`;
       window.location.href = url;
     });
