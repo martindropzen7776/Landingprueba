@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Lion Play</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BLACKDIAMOND</title>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -16,198 +15,230 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1378429319722640'); // tu Pixel ID
+  fbq('init', '4036606799898981'); // Pixel ID BlackDiamond
   fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1378429319722640&ev=PageView&noscript=1"
+  src="https://www.facebook.com/tr?id=4036606799898981&ev=PageView&noscript=1"
   /></noscript>
 
   <!-- Google tag (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2FVBYC2QE1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7759VBMF1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-2FVBYC2QE1');
+    gtag('config', 'G-W7759VBMF1');
   </script>
 
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600;700;800&display=swap" rel="stylesheet"/>
+
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="BLACKDIAMOND • Bonificamos tu primera carga. Juegos 24/7. Atención inmediata por WhatsApp.">
+  <meta property="og:title" content="BLACKDIAMOND • Siempre Gana">
+  <meta property="og:description" content="Bonificamos tu primera carga. Atención 24/7 por WhatsApp.">
+  <meta property="og:type" content="website">
+
   <style>
-    html, body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: white;
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a40 40%, #6a1b9a 70%, #b8860b 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden; /* bloquea scroll global */
-
-    }
-    .container {
-      max-width: 420px;
-      background: rgba(0, 0, 0, 0.65);
-      padding: 45px 25px;
-      border-radius: 18px;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
-      margin-top: -130px; /* 🔼 sube todo 30px */
-
-    }
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      border: 4px solid #FFD700;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 25px;
-      background: linear-gradient(90deg, #FFD700, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .cta-btn {
-      background-color: #000;
-      color: #FFD700;
-      padding: 20px 38px;
-      font-size: 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border: 2px solid #FFD700;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      animation: pulse 2s infinite;
-    }
-    .cta-btn:hover {
-      background-color: #FFD700;
-      color: #000;
-      transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(255, 215, 0, 1);
-    }
-    .whatsapp-icon {
-      width: 32px;
-      height: 32px;
-    }
-    .footer {
-      margin-top: 35px;
-      font-size: 18px;
-    }
-    .footer p {
-      margin: 8px 0;
-      color: #eee;
-    }
-    .footer p:first-child {
-      font-weight: bold;
-      color: #FFD700;
-      font-size: 20px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    :root{
+      --bg:#0a0a0a;
+      --bg2:#141414;
+      --silver-1:#d9d9d9;
+      --silver-2:#9e9e9e;
+      --silver-3:#6f6f6f;
+      --gold:#ffd700;
+      --txt:#ffffff;
+      --accent:#18c55d;
     }
 
-.user-box input {
-  width: 100%;
-  box-sizing: border-box; /* 👈 cuenta el padding dentro del 100% */
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 2px solid #FFD700; /* borde dorado */
-  background: rgba(0,0,0,0.75); /* fondo negro semi-transparente */
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  outline: none;
-  margin-bottom: 15px;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--txt); font-family:'Kanit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(80% 60% at 50% 0%, #1e1e1e 0%, var(--bg) 55%) ,
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      letter-spacing:.2px;
+    }
 
-.user-box input::placeholder {
-  color: #FFD700; /* placeholder dorado */
-  opacity: 0.8;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
-}
+    .container{
+      width:min(520px, 92vw);
+      padding:48px 22px 36px;
+      border:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.25));
+      border-radius:28px;
+      box-shadow:0 20px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+    }
 
-    
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255, 215, 0, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+    .logo{
+      width:min(260px, 70vw);
+      height:auto;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.6));
+      margin:0 auto 14px;
+      display:block;
+    }
+
+    h1{
+      font-size:clamp(22px, 3.8vw, 30px);
+      margin:2px 0 12px;
+      font-weight:800;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+
+    .tagline{
+      font-size:clamp(14px, 2.8vw, 16px);
+      color:#cfcfcf; margin-bottom:26px;
+    }
+
+    /* Input estilo BlackDiamond */
+    .user-box{
+      margin-bottom:20px;
+      text-align:left;
+    }
+    .user-box label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      font-weight:700;
+      color:var(--silver-1);
+      letter-spacing:.4px;
+    }
+    .user-box input{
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.65);
+      color:var(--txt);
+      font-family:'Kanit',sans-serif;
+      font-size:16px;
+      outline:none;
+      box-shadow:inset 0 1px 2px rgba(255,255,255,.05), 0 0 10px rgba(0,0,0,.45);
+      transition:border .2s ease, box-shadow .2s ease;
+    }
+    .user-box input::placeholder{
+      color:var(--silver-2);
+      font-weight:500;
+      letter-spacing:.5px;
+      opacity:.85;
+    }
+    .user-box input:focus{
+      border:1px solid var(--gold);
+      box-shadow:0 0 12px rgba(255,215,0,.4);
+    }
+
+    .cta-btn{
+      width:100%;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:18px 20px;
+      border:none; border-radius:14px;
+      font-weight:800; font-size:20px; text-decoration:none; cursor:pointer;
+      color:#0b0b0b;
+      background:linear-gradient(135deg, var(--silver-1), var(--silver-2) 60%, var(--silver-3));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.65),
+        0 10px 24px rgba(0,0,0,.45);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      animation:pulse 2.2s infinite;
+    }
+    .cta-btn:hover{ transform:translateY(-1px); filter:saturate(1.08); box-shadow:inset 0 1px 0 rgba(255,255,255,.75), 0 14px 28px rgba(0,0,0,.55)}
+    .wa-icon{ width:26px; height:26px; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)) }
+
+    .badges{
+      display:grid; gap:10px; margin:22px 0 10px;
+      grid-template-columns:repeat(3,1fr);
+    }
+    .badge{
+      font-size:12px; padding:8px 10px; border-radius:10px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .footer{
+      margin-top:16px; font-size:14px; color:#d8d8d8; line-height:1.5;
+    }
+    .minimo{color:#bdbdbd; font-size:13px}
+
+    @keyframes pulse{
+      0%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 0 rgba(217,217,217,.28) }
+      55%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 16px rgba(217,217,217,0) }
+      100%{ box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 0 rgba(217,217,217,0) }
+    }
+
+    @media (max-width:380px){
+      .badges{ grid-template-columns:1fr 1fr }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <img src="avatar.jpeg" alt="Avatar" class="avatar">
-    <h1>ENVIANOS UN WHATSAPP PARA CREAR TU CUENTA</h1>
+  <main class="container">
+    <img src="avatar.jpeg" alt="BLACKDIAMOND" class="logo" loading="eager"/>
+    <h1>CREÁ TU CUENTA HOY</h1>
+    <p class="tagline">Bonificamos tu primera carga • Atención <strong>24/7</strong> por WhatsApp</p>
 
-<div class="user-box">
-  <label for="usuario">Usuario Deseado*:</label>
-  <input type="text" id="usuario" name="usuario" placeholder="Ej: Juanperez">
+    <!-- Input con placeholder -->
+    <div class="user-box">
+      <label for="usuario">Usuario deseado*:</label>
+      <input type="text" id="usuario" name="usuario" placeholder="Ej: BlackDiamond123">
+    </div>
 
-  <a href="#" class="cta-btn" onclick="openRandomLink()">
-    <span>¡QUIERO MI BONO!</span>
-    <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
-  </a>
-</div>
+    <a href="#" class="cta-btn" onclick="openRandomLink()" aria-label="Obtener bono por WhatsApp">
+      <svg class="wa-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M19.11 17.26c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.8-1.67-2.1-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.5-.5-.67-.5h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.47 1.08 2.86 1.23 3.06c.15.2 2.13 3.25 5.16 4.56.72.31 1.29.5 1.73.64.73.23 1.39.2 1.92.12.59-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/><path fill="#25D366" d="M16.01 2.67c-7.36 0-13.33 5.97-13.33 13.33 0 2.35.61 4.56 1.69 6.47L2.67 29.33l6.98-1.83a13.25 13.25 0 0 0 6.36 1.63c7.36 0 13.33-5.97 13.33-13.33 0-7.36-5.97-13.33-13.33-13.33zm0 24.13c-2.28 0-4.41-.66-6.19-1.79l-.44-.28-4.14 1.09 1.11-4.03-.29-.46a10.63 10.63 0 0 1-1.64-5.69c0-5.9 4.79-10.69 10.69-10.69S26.7 9.03 26.7 14.93 21.91 26.8 16.01 26.8z"/></svg>
+      <span>OBTENER BONO AHORA</span>
+    </a>
 
-  <div class="footer">
-    <p>30% DE BONUS EN TU PRIMERA CARGA!!</p>
-    <p>Mínimo de Carga $2000</p>
-    <p>Ruleta en Vivo · Slots · Apuestas Deportivas y más</p>
-  </div>
-</div>
+    <div class="badges" aria-hidden="true">
+      <div class="badge">🎯 Juegos exclusivos</div>
+      <div class="badge">⚡ Alta velocidad</div>
+      <div class="badge">🛎️ Soporte 24/7</div>
+    </div>
 
-<script>
-  function pickNumber() {
-    const numbers = [
-      '5491164885332',
-      '5491166040115',
-      '5491151044419'
-    ];
-    return numbers[Math.floor(Math.random() * numbers.length)];
-  }
+    <div class="footer">
+      <p><strong>Bonificamos tu primera carga</strong></p>
+      <p class="minimo">Mínimo de carga $1.000</p>
+    </div>
+  </main>
 
-  function openRandomLink() {
-    const number = pickNumber();
-    const ref = "LD_" + Math.random().toString(36).substring(2,8).toUpperCase();
-    const usuario = document.getElementById("usuario").value || "SinUsuario";
-
-    const msg = `Hola, quiero registrarme.\nMi usuario es: ${usuario}\nMi código promocional es: ${ref}`;
-    const url = `https://wa.me/${number}?text=${encodeURIComponent(msg)}&ref=${encodeURIComponent(ref)}`;
-
-    // 🎯 Tracking en Meta Pixel
-    if (typeof fbq === "function") {
-      fbq("track", "Lead", { destino: number, ref: ref });
+  <script>
+    function pickNumber() {
+      const numbers = [
+        '5491137592049',
+        '5491138034387'
+      ];
+      return numbers[Math.floor(Math.random() * numbers.length)];
     }
 
-    // 🎯 Tracking en GA4
-    if (typeof gtag === "function") {
-      gtag("event", "generate_lead", {
-        event_category: "engagement",
-        event_label: "WhatsApp",
-        value: 1,
-        ref: ref,
-        number: number
-      });
+    function openRandomLink() {
+      const number = pickNumber();
+      const ref = "BD_" + Math.random().toString(36).substring(2,8).toUpperCase();
+      const usuario = document.getElementById("usuario").value || "SinUsuario";
+
+      const msg = `Hola, quiero registrarme.\nMi usuario es: ${usuario}\nMi código promocional es: ${ref}`;
+      const url = `https://wa.me/${number}?text=${encodeURIComponent(msg)}&ref=${encodeURIComponent(ref)}`;
+
+      // 🎯 Tracking en Meta Pixel
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", { destino:number, ref, usuario });
+      }
+
+      // 🎯 Tracking en GA4
+      if (typeof gtag === "function") {
+        gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: "WhatsApp",
+          value: 1,
+          ref: ref,
+          number: number,
+          usuario: usuario
+        });
+      }
+
+      window.location.href = url;
     }
-
-    // abrir WhatsApp
-    window.open(url, '_blank');
-  }
-</script>
-
+  </script>
 </body>
 </html>
