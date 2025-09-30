@@ -183,19 +183,14 @@
   function openRandomLink() {
     const number = pickNumber();
     const ref = "LD_" + Math.random().toString(36).substring(2,8).toUpperCase();
-
-    // Captura el usuario ingresado
     const usuario = document.getElementById("usuario").value || "SinUsuario";
 
     const msg = `Hola, quiero registrarme.\nMi usuario es: ${usuario}\nMi código promocional es: ${ref}`;
     const url = `https://wa.me/${number}?text=${encodeURIComponent(msg)}&ref=${encodeURIComponent(ref)}`;
 
-    window.open(url, '_blank');
-  }
-
     // 🎯 Tracking en Meta Pixel
     if (typeof fbq === "function") {
-      fbq("track", "Lead", { destino:number, ref });
+      fbq("track", "Lead", { destino: number, ref: ref });
     }
 
     // 🎯 Tracking en GA4
@@ -209,8 +204,10 @@
       });
     }
 
-    window.location.href = url;
+    // abrir WhatsApp
+    window.open(url, '_blank');
   }
 </script>
+
 </body>
 </html>
