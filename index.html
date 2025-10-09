@@ -57,6 +57,7 @@ body{
 h1{
   font-size:22px;
   font-weight:700;
+  margin-bottom:6px;
 }
 .subtitle{
   color:var(--muted);
@@ -64,10 +65,22 @@ h1{
   margin-bottom:20px;
 }
 
-/* FORMULARIO */
-form{
-  text-align:left;
+/* CONDICIONES */
+.condiciones{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.4;
+  text-align:center;
+  margin-bottom:22px;
 }
+.condiciones strong{color:var(--accent);}
+
+/* FORMULARIO */
+form{text-align:left;}
 label{
   display:block;
   font-size:13px;
@@ -126,6 +139,7 @@ footer{
   .container{padding:20px 16px;}
   h1{font-size:19px;}
   .logo{width:60px;height:60px;font-size:22px;}
+  .condiciones{font-size:12px;padding:8px 10px;}
 }
 </style>
 </head>
@@ -135,6 +149,13 @@ footer{
     <div class="logo">L</div>
     <h1>Retiro 24hs</h1>
     <div class="subtitle">Completá tus datos para retirar tus ganancias</div>
+
+    <div class="condiciones">
+      <strong>Condiciones:</strong><br>
+      Se restan los bonus del saldo total.<br>
+      Retiros habilitados las <strong>24 hs</strong>.<br>
+      Máximo <strong>1 retiro diario</strong> por persona.
+    </div>
 
     <form id="retiroForm" 
       action="https://docs.google.com/forms/d/e/1FAIpQLSeHDkmKGo2BKitUK0_BDJtvOVwgVCJS0L_Tn-Wd6ktsGWKtHQ/formResponse" 
@@ -160,7 +181,7 @@ footer{
       onload="if(submitted){document.getElementById('msgOK').style.display='block';document.getElementById('retiroForm').reset();}">
     </iframe>
 
-    <footer>Atendemos 24/7 — Un retiro por día</footer>
+    <footer>Atendemos 24/7 — Lionel Oficial</footer>
   </div>
 
 <script>let submitted=false;</script>
