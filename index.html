@@ -8,10 +8,14 @@
 
 <style>
 :root{
-  --bg1:#08142a; --bg2:#06253f;
+  --bg1:#08142a;
+  --bg2:#06253f;
   --card:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.06));
-  --accent:#00d1ff; --accent2:#00a3ff;
-  --white:#fff; --muted:#bfc9d9; --glass:rgba(255,255,255,.05);
+  --accent:#00d1ff;
+  --accent2:#00a3ff;
+  --white:#fff;
+  --muted:#bfc9d9;
+  --glass:rgba(255,255,255,.05);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -19,58 +23,155 @@ body{
   font-family:'Montserrat',system-ui,Arial;
   background:linear-gradient(180deg,var(--bg1),var(--bg2));
   color:var(--white);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:22px;
 }
+
+/* CONTENEDOR PRINCIPAL */
 .container{
-  width:100%;max-width:960px;border-radius:22px;overflow:hidden;
-  background:var(--card); border:1px solid rgba(255,255,255,.06);
+  width:100%;
+  max-width:960px;
+  border-radius:22px;
+  overflow:hidden;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
   box-shadow:0 20px 60px rgba(2,6,23,.65);
-  display:grid;grid-template-columns:1fr 420px;
+  display:grid;
+  grid-template-columns:1fr 420px;
 }
-@media (max-width:880px){.container{grid-template-columns:1fr}}
+@media (max-width:880px){
+  .container{grid-template-columns:1fr}
+}
+
+/* LADO IZQUIERDO */
 .left{
   padding:34px;
-  background:radial-gradient(600px 200px at 12% 10%, rgba(0,209,255,.06), transparent 50%),
-             linear-gradient(135deg, rgba(0,160,255,.08), rgba(0,112,204,.04));
+  background:
+    radial-gradient(600px 200px at 12% 10%, rgba(0,209,255,.06), transparent 50%),
+    linear-gradient(135deg, rgba(0,160,255,.08), rgba(0,112,204,.04));
 }
-.brand{display:flex;gap:14px;align-items:center;margin-bottom:12px}
-.logo{width:56px;height:56px;border-radius:14px;
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-bottom:12px;
+}
+.logo{
+  width:56px;height:56px;border-radius:14px;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;color:#012;font-weight:900;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  color:#012;font-weight:900;font-size:20px;
   box-shadow:0 6px 22px rgba(0,209,255,.12) inset;
 }
 h1{font-size:22px;margin:0}
 .subtitle{color:var(--muted);font-size:13px;margin-top:4px}
-.left h2{margin:16px 0 8px 0;font-size:28px;line-height:1.05}
-.lead{color:var(--muted);margin-bottom:18px}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.info-card{background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.05);font-size:13px}
-.info-card strong{display:block;color:var(--white);font-size:15px;margin-bottom:6px}
-.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-weight:600;font-size:12px}
-.note{font-size:12px;color:var(--muted);margin-top:8px}
+.left h2{margin:16px 0 8px;font-size:28px;line-height:1.1}
+.lead{color:var(--muted);margin-bottom:18px;font-size:14px}
 
-.right{padding:28px;background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(255,255,255,.02))}
-label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
-input,textarea,select{
-  width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);
-  background:transparent;color:var(--white);font-size:15px;outline:none;
+/* TARJETAS DE INFO */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
-input:focus,textarea:focus,select:focus{box-shadow:0 6px 20px rgba(0,209,255,.12); border-color:var(--accent)}
-.row{display:flex;gap:12px}.col{flex:1}
+.info-card{
+  background:var(--glass);
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.05);
+  font-size:13px;
+}
+.info-card strong{
+  display:block;
+  color:var(--white);
+  font-size:15px;
+  margin-bottom:6px;
+}
+.pill{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  font-weight:600;
+  font-size:12px;
+}
+.note{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+/* FORMULARIO DERECHA */
+.right{
+  padding:28px;
+  background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(255,255,255,.02));
+}
+.right h3{
+  margin:0 0 10px;
+  font-size:20px;
+  font-weight:700;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  color:var(--muted);
+  margin:12px 0 6px;
+}
+input,textarea,select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:transparent;
+  color:var(--white);
+  font-size:15px;
+  outline:none;
+}
+input:focus,textarea:focus,select:focus{
+  box-shadow:0 6px 20px rgba(0,209,255,.12);
+  border-color:var(--accent);
+}
+.row{display:flex;gap:12px}
+.col{flex:1}
+
 button{
-  width:100%;padding:14px 18px;border-radius:12px;border:none;cursor:pointer;
+  width:100%;
+  margin-top:18px;
+  padding:14px 18px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#012;font-weight:800;font-size:15px;box-shadow:0 10px 30px rgba(0,160,255,.16);
+  color:#012;
+  font-weight:800;
+  font-size:15px;
+  box-shadow:0 10px 30px rgba(0,160,255,.16);
 }
 button:hover{opacity:.9}
-.success{color:#b6ffda;font-size:13px;margin-top:10px;display:none;text-align:center}
-footer{margin-top:18px;text-align:center;font-size:12px;color:var(--muted);}
+
+.success{
+  color:#b6ffda;
+  font-size:13px;
+  margin-top:10px;
+  display:none;
+  text-align:center;
+}
+footer{
+  margin-top:18px;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
 </style>
 </head>
+
 <body>
   <div class="container" role="main" aria-labelledby="title">
-    <!-- LEFT INFO -->
+    <!-- IZQUIERDA -->
     <section class="left">
       <div class="brand">
         <div class="logo">L</div>
@@ -96,11 +197,10 @@ footer{margin-top:18px;text-align:center;font-size:12px;color:var(--muted);}
       </div>
     </section>
 
-    <!-- RIGHT FORM -->
+    <!-- DERECHA -->
     <section class="right" aria-labelledby="formTitle">
-      <h3 id="formTitle" style="margin:0 0 6px 0">Formulario de retiro</h3>
+      <h3 id="formTitle">Formulario de retiro</h3>
 
-      <!-- ✅ Form conectado a Google Forms -->
       <form id="retiroForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeHDkmKGo2BKitUK0_BDJtvOVwgVCJS0L_Tn-Wd6ktsGWKtHQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
         
         <label>Teléfono donde jugaste</label>
@@ -114,6 +214,7 @@ footer{margin-top:18px;text-align:center;font-size:12px;color:var(--muted);}
             <label>Monto ganado</label>
             <input name="entry.1496976553" type="number" placeholder="Ej: 1500" required>
           </div>
+        </div>
 
         <label>Alias o CBU (para depósito)</label>
         <input name="entry.1727441583" type="text" placeholder="Alias o CBU" required>
