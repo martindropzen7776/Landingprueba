@@ -4,407 +4,104 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Solicitud de Retiro — Lionel</title>
-<meta name="description" content="Retiros 24hs, todos los días. 1 por persona por día. Estilo Lionel.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- ✅ Meta Pixel (reemplaza TU_PIXEL_ID) -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-try{ fbq('init','TU_PIXEL_ID'); fbq('track','PageView'); }catch(e){}
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=TU_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
 
 <style>
 :root{
   --bg1:#08142a; --bg2:#06253f;
-  --card:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.06));
-  --accent:#00d1ff; --accent2:#00a3ff; --gold:#ffd166;
-  --white:#fff; --muted:#bfc9d9; --glass:rgba(255,255,255,.05);
+  --accent:#00d1ff; --accent2:#0077ff;
+  --white:#fff; --muted:#bfc9d9;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
 body{
-  font-family:'Montserrat',system-ui,Arial;
+  font-family:'Montserrat',sans-serif;
   background:linear-gradient(180deg,var(--bg1),var(--bg2));
   color:var(--white);
   display:flex;align-items:center;justify-content:center;
-  padding:22px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;padding:30px;
 }
 .container{
-  width:100%;max-width:980px;border-radius:22px;overflow:hidden;
-  background:var(--card); border:1px solid rgba(255,255,255,.06);
-  box-shadow:0 20px 60px rgba(2,6,23,.65);
-  display:grid;grid-template-columns:1fr 440px;
+  width:100%;max-width:480px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:22px;
+  padding:32px 28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
 }
-@media (max-width:940px){.container{grid-template-columns:1fr}}
-.left{
-  padding:34px; background:
-    radial-gradient(600px 200px at 12% 10%, rgba(0,209,255,.06), transparent 50%),
-    linear-gradient(135deg, rgba(0,160,255,.08), rgba(0,112,204,.04));
-}
-.brand{display:flex;gap:14px;align-items:center;margin-bottom:12px}
-.logo{width:56px;height:56px;border-radius:14px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;color:#012;font-weight:900;font-size:20px;
-  box-shadow:0 6px 22px rgba(0,209,255,.12) inset;
-}
-h1{font-size:22px;margin:0}
-.subtitle{color:var(--muted);font-size:13px;margin-top:4px}
-.left h2{margin:16px 0 8px 0;font-size:28px;line-height:1.05}
-.lead{color:var(--muted);margin-bottom:18px}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.info-card{background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.05);font-size:13px}
-.info-card strong{display:block;color:var(--white);font-size:15px;margin-bottom:6px}
-.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-weight:600;font-size:12px}
-.note{font-size:12px;color:var(--muted);margin-top:8px}
-
-.right{padding:28px;background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(255,255,255,.02))}
-label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
+h1{text-align:center;font-size:26px;margin-bottom:10px}
+p.sub{text-align:center;font-size:14px;color:var(--muted);margin-bottom:20px}
+label{display:block;margin-top:14px;font-size:14px;color:var(--muted)}
 input,textarea,select{
-  width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);
-  background:transparent;color:var(--white);font-size:15px;outline:none;
+  width:100%;padding:12px 14px;margin-top:6px;
+  background:rgba(255,255,255,0.08);
+  border:none;border-radius:10px;color:var(--white);
+  font-size:15px;outline:none;
 }
-input:focus,textarea:focus,select:focus{box-shadow:0 6px 20px rgba(0,209,255,.12); border-color:var(--accent)}
-.row{display:flex;gap:12px}.col{flex:1}
-.small{font-size:12px;color:var(--muted);margin-top:6px}
-
-.actions{display:flex;gap:10px;align-items:center;margin-top:16px}
-.btn{
-  flex:1;padding:14px 18px;border-radius:12px;border:none;cursor:pointer;
+input:focus,textarea:focus,select:focus{box-shadow:0 0 0 2px var(--accent)}
+button{
+  width:100%;padding:14px;margin-top:24px;
+  border:none;border-radius:12px;
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#012;font-weight:800;font-size:15px;box-shadow:0 10px 30px rgba(0,160,255,.16);
+  color:#012;font-weight:800;font-size:16px;
+  cursor:pointer;transition:0.2s;
 }
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn-ghost{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:transparent;color:var(--white);font-weight:700;cursor:pointer}
-.error{color:#ff7b7b;font-size:13px;margin-top:10px;display:none}
-.success{color:#b6ffda;font-size:13px;margin-top:10px;display:none}
-.legal{font-size:12px;color:var(--muted);margin-top:12px}
-.legal a{color:var(--accent);text-decoration:none}
-
-.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,.6);display:none;align-items:center;justify-content:center;z-index:9999}
-.modal{background:linear-gradient(180deg,#071526,#0b2b3f);padding:22px;border-radius:16px;max-width:520px;width:92%;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.modal h3{margin:0 0 8px 0}
-.modal .row{margin-top:12px}
+button:hover{opacity:0.9}
+.success{
+  display:none;margin-top:18px;text-align:center;
+  color:#7fffba;font-size:14px;
+}
+footer{
+  margin-top:18px;text-align:center;
+  font-size:12px;color:var(--muted);
+}
 </style>
 </head>
 <body>
-  <div class="container" role="main" aria-labelledby="title">
-    <!-- LEFT / INFO -->
-    <section class="left">
-      <div class="brand">
-        <div class="logo">L</div>
-        <div>
-          <h1 id="title">Lionel — Retiros 24hs</h1>
-          <div class="subtitle">Retiros todos los días · 1 por persona por día</div>
-        </div>
-      </div>
 
-      <h2>Solicitá tu retiro en menos de 1 minuto</h2>
-      <p class="lead">Ingresá el número donde jugaste, tu usuario, el monto ganado y tu alias/CBU para que depositemos. Procesamos 24/7.</p>
+<div class="container">
+  <h1>Solicitud de Retiro</h1>
+  <p class="sub">Retiros 24 hs — 1 por persona por día</p>
 
-      <div class="info-grid" aria-hidden="false">
-        <div class="info-card"><strong>24/7</strong>Retirás en cualquier horario, todos los días.</div>
-        <div class="info-card"><strong>1 por día</strong>Limitamos 1 solicitud por persona cada 24 horas.</div>
-        <div class="info-card"><strong>Validación</strong>Verificamos usuario y comprobantes antes de acreditar.</div>
-        <div class="info-card"><strong>Soporte</strong>Si falla, podés terminar por WhatsApp automáticamente.</div>
-      </div>
+  <!-- 🔗 Reemplazá la URL y los entry.X por los tuyos -->
+  <form id="retiroForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeHDkmKGo2BKitUK0_BDJtvOVwgVCJS0L_Tn-Wd6ktsGWKtHQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    
+    <label>Teléfono donde jugaste</label>
+    <input name="entry.801042146" type="text" placeholder="Ej: 11 6543 2211" required>
 
-      <div style="margin-top:18px">
-        <span class="pill">Importante</span>
-        <div class="note">Los datos deben ser exactos para evitar demoras o rechazos.</div>
-      </div>
-    </section>
+    <label>Usuario (en la plataforma)</label>
+    <input name="entry.502804130" type="text" placeholder="Tu usuario" required>
 
-    <!-- RIGHT / FORM -->
-    <section class="right" aria-labelledby="formTitle">
-      <h3 id="formTitle" style="margin:0 0 6px 0">Formulario de retiro</h3>
+    <label>Monto ganado</label>
+    <input name="entry.1496976553" type="number" placeholder="Ej: 1500" required>
 
-      <form id="withdrawForm" autocomplete="off" novalidate>
-        <label for="phone">Teléfono donde jugaste</label>
-        <input id="phone" name="phone" type="tel" placeholder="Ej: 11 6XXX XXXX" required>
+    <label>Moneda</label>
+    <select name="entry.4444444444" required>
+      <option value="ARS">ARS</option>
+      <option value="USD">USD</option>
+    </select>
 
-        <label for="username">Usuario (en la plataforma)</label>
-        <input id="username" name="username" type="text" placeholder="Tu usuario" required>
+    <label>Alias o CBU (para depósito)</label>
+    <input name="entry.1727441583" type="text" placeholder="Alias o CBU" required>
 
-        <div class="row">
-          <div class="col">
-            <label for="amount">Monto ganado</label>
-            <input id="amount" name="amount" type="number" min="1" step="0.01" placeholder="Ej: 1500" required>
-          </div>
-          <div class="col">
-            <label for="currency">Moneda</label>
-            <select id="currency" name="currency" required>
-              <option value="ARS">ARS</option>
-              <option value="USD">USD</option>
-            </select>
-          </div>
-        </div>
+    <label>Banco (opcional)</label>
+    <input name="entry.2129937933" type="text" placeholder="Banco o entidad financiera">
 
-        <label for="alias">Alias o CBU (para depósito)</label>
-        <input id="alias" name="alias" type="text" placeholder="Alias o CBU (22 dígitos)" required>
-        <div class="small">Si ingresás CBU, debe tener 22 dígitos. Si es alias, verificá ortografía.</div>
+    <label>Comentario / Comprobante (opcional)</label>
+    <textarea name="entry.1565138427" rows="2" placeholder="Referencia o aclaración"></textarea>
 
-        <label for="bank">Banco (opcional)</label>
-        <input id="bank" name="bank" type="text" placeholder="Banco / entidad (opcional)">
+    <button type="submit">Solicitar retiro</button>
+    <div id="msgOK" class="success">✅ Solicitud enviada correctamente</div>
+  </form>
 
-        <label for="note">Comentario / Comprobante (opcional)</label>
-        <textarea id="note" name="note" rows="2" placeholder="Referencia de comprobante u observaciones"></textarea>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+    onload="if(submitted){document.getElementById('msgOK').style.display='block';document.getElementById('retiroForm').reset();}">
+  </iframe>
 
-        <div class="row" style="align-items:center;margin-top:10px">
-          <input id="terms" type="checkbox" required style="width:auto;margin-right:8px">
-          <label for="terms" style="margin:0;font-size:12px;color:var(--muted)">Confirmo que mis datos son correctos y acepto 1 retiro por día.</label>
-        </div>
+  <footer>
+    Procesamos todos los días — Limitado a 1 retiro diario por usuario.
+  </footer>
+</div>
 
-        <div id="formError" class="error" role="alert"></div>
-        <div id="formSuccess" class="success" role="status"></div>
-
-        <div class="actions">
-          <button id="submitBtn" class="btn" type="submit">Solicitar retiro</button>
-          <button id="whatsBtn" type="button" class="btn-ghost">Abrir WhatsApp</button>
-        </div>
-
-        <div class="legal">
-          Procesamos 24hs, TODOS los días. Límite: 1 solicitud por persona cada 24 horas.
-          <br>¿Problemas? <a href="#" id="supportWa">Contactar soporte por WhatsApp</a>
-        </div>
-      </form>
-    </section>
-  </div>
-
-  <!-- Modal de confirmación -->
-  <div class="modal-backdrop" id="modal">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h3 id="modalTitle">Solicitud enviada</h3>
-      <p id="modalText">Recibimos tu solicitud. Te avisamos por WhatsApp cuando esté aprobada y acreditada.</p>
-      <div class="row" style="gap:8px">
-        <button id="modalOk" class="btn" type="button">Perfecto</button>
-        <button id="modalClose" class="btn-ghost" type="button">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-/* =================== CONFIG =================== */
-const API_URL   = "https://script.google.com/macros/s/AKfycbxvs69iwhCapcLmghxZ3E7uathnGYsDeUfi8EO9jXxvP0rUWIUa6L6GqNyDYH8VbiXc/exec"; // <- tu Apps Script /exec
-const WA_NUMBER = "54911XXXXYYYY"; // <- tu WhatsApp soporte sin '+'
-/* ============================================== */
-
-/* ---------- Utilidades ---------- */
-const $ = (id)=>document.getElementById(id);
-const form = $('withdrawForm');
-const submitBtn = $('submitBtn');
-const whatsBtn = $('whatsBtn');
-const errorBox = $('formError');
-const successBox = $('formSuccess');
-const modal = $('modal'), modalOk=$('modalOk'), modalClose=$('modalClose');
-const supportWa = $('supportWa');
-
-function showError(msg){ errorBox.style.display='block'; errorBox.textContent=msg; successBox.style.display='none'; }
-function showSuccess(msg){ successBox.style.display='block'; successBox.textContent=msg; errorBox.style.display='none'; }
-function clearMsgs(){ errorBox.style.display='none'; successBox.style.display='none'; }
-
-function sanitizePhone(v){ return (v||"").replace(/[^0-9]/g,''); }
-function isValidPhone(v){ const n=sanitizePhone(v); return n.length>=8 && n.length<=15; }
-function isValidAmount(v){ return !isNaN(v) && Number(v)>0; }
-function isValidCBUorAlias(v){
-  const x=(v||"").trim(); if(!x) return false;
-  const digits=x.replace(/\D/g,''); if(digits.length===22) return true; // CBU
-  return x.length>=4 && x.length<=50; // alias razonable
-}
-
-function getToday(){ return new Date().toISOString().slice(0,10); }
-function keyFor(phone){ return 'retiro:'+sanitizePhone(phone); }
-function canRequestToday(phone){
-  const raw=localStorage.getItem(keyFor(phone)); if(!raw) return true;
-  try{ const o=JSON.parse(raw); return o.date!==getToday(); }catch(e){ return true; }
-}
-function markRequestedToday(phone,payload){
-  localStorage.setItem(keyFor(phone), JSON.stringify({date:getToday(),ts:Date.now(),payload}));
-}
-
-/* ---------- Captura de UTM / Meta ---------- */
-function parseQuery(){
-  const out={}; const q=location.search.substring(1).split('&');
-  for(const pair of q){ if(!pair) continue; const [k,v]=pair.split('='); out[decodeURIComponent(k||'')]=decodeURIComponent(v||''); }
-  return out;
-}
-const Q = parseQuery();
-
-/* IP pública (no bloquea si falla) */
-let CLIENT_IP = null;
-fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(j=>CLIENT_IP=j.ip).catch(()=>{});
-
-/* ---------- WhatsApp helpers ---------- */
-function buildWhatsText(data){
-  return encodeURIComponent(
-`Solicitud de RETIRO
-Teléfono: ${data.phone}
-Usuario: ${data.username}
-Monto: ${data.amount} ${data.currency}
-Alias/CBU: ${data.alias}
-Banco: ${data.bank || '-'}
-Nota: ${data.note || '-'}
-(UTM: ${data.utm_source||'-'}/${data.utm_medium||'-'}/${data.utm_campaign||'-'})
-Ref: ${location.href}
-Acepto: 1 retiro por día.`
-  );
-}
-function openWhats(data){
-  const url=`https://wa.me/${WA_NUMBER}?text=${buildWhatsText(data)}`;
-  window.open(url,'_blank');
-}
-
-/* ---------- Events Pixel helpers ---------- */
-function pixelAddToCartZero(){
-  try{ fbq('track','AddToCart',{value:0,currency:'USD',content_name:'Retiro Lionel'}); }catch(e){}
-}
-function pixelCompleteRegistration(value,currency){
-  try{ fbq('track','CompleteRegistration',{value:Number(value)||0,currency:currency||'ARS',content_name:'Retiro Lionel'}); }catch(e){}
-}
-
-/* ---------- UI bindings ---------- */
-submitBtn.addEventListener('click', ()=>{ pixelAddToCartZero(); });
-whatsBtn.addEventListener('click', ()=>{
-  const payload = collectData({allowIncomplete:true});
-  openWhats(payload);
-});
-supportWa.addEventListener('click', (e)=>{ e.preventDefault(); openWhats({phone:'--',username:'--',amount:'--',currency:'ARS',alias:'--',bank:'--',note:'Soporte'}) });
-
-modalOk.addEventListener('click', ()=> modal.style.display='none');
-modalClose.addEventListener('click', ()=> modal.style.display='none');
-modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
-
-/* ---------- Form logic ---------- */
-function collectData({allowIncomplete=false}={}){
-  const phone = $('phone').value.trim();
-  const username = $('username').value.trim();
-  const amount = $('amount').value.trim();
-  const currency = $('currency').value;
-  const alias = $('alias').value.trim();
-  const bank = $('bank').value.trim();
-  const note = $('note').value.trim();
-
-  return {
-    phone: sanitizePhone(phone) || (allowIncomplete?'--':''),
-    username: username || (allowIncomplete?'--':''),
-    amount: amount || (allowIncomplete?'--':''),
-    currency,
-    alias: alias || (allowIncomplete?'--':''),
-    bank, note,
-    // metadata
-    utm_source: Q.utm_source || '',
-    utm_medium: Q.utm_medium || '',
-    utm_campaign: Q.utm_campaign || '',
-    utm_term: Q.utm_term || '',
-    utm_content: Q.utm_content || '',
-    fbclid: Q.fbclid || '',
-    gclid: Q.gclid || '',
-    referrer: document.referrer || '',
-    page_url: location.href,
-    ip: CLIENT_IP,
-    user_agent: navigator.userAgent,
-    tz: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
-    lang: navigator.language || ''
-  };
-}
-
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault(); clearMsgs();
-
-  const terms = $('terms').checked;
-  const data = collectData();
-
-  // Validaciones
-  if(!isValidPhone(data.phone)) { showError('Teléfono inválido. Ingresá solo números y código.'); return; }
-  if((data.username||'').length<2) { showError('Ingresá tu usuario.'); return; }
-  if(!isValidAmount(data.amount)) { showError('Ingresá un monto válido mayor a 0.'); return; }
-  if(!isValidCBUorAlias(data.alias)) { showError('Ingresá un Alias válido o un CBU (22 dígitos).'); return; }
-  if(!terms){ showError('Debes confirmar que los datos son correctos.'); return; }
-
-  // 1 por día
-  if(!canRequestToday(data.phone)){ showError('Ya registraste un retiro hoy con ese teléfono. Solo 1 por persona por día.'); return; }
-
-  submitBtn.disabled=true; const prevLabel=submitBtn.textContent; submitBtn.textContent='Enviando...';
-
-  try{
-    const res = await fetch(API_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(data)
-    });
-
-    if(res.ok){
-      markRequestedToday(data.phone, data);
-      showSuccess('Solicitud enviada correctamente. Te avisaremos por WhatsApp cuando se procese.');
-      pixelCompleteRegistration(data.amount, data.currency);
-      modal.style.display='flex';
-      form.reset();
-    }else{
-      showError('Servidor rechazó la solicitud. Se abrirá WhatsApp para finalizar manualmente.');
-      setTimeout(()=>openWhats(data), 400);
-    }
-  }catch(err){
-    console.warn('[withdraw error]', err);
-    showError('No se pudo conectar al servidor. Abrimos WhatsApp para completar la solicitud.');
-    openWhats(data);
-    // Opcional: marcar igual localmente para UX
-    markRequestedToday(data.phone, data);
-  }finally{
-    submitBtn.disabled=false; submitBtn.textContent=prevLabel;
-  }
-});
-
-// UX: permitir solo dígitos/espacios/guiones en teléfono
-$('phone').addEventListener('input',(e)=>{
-  e.target.value = e.target.value.replace(/[^\d\s\-]/g,'').replace(/\s{2,}/g,' ');
-});
-</script>
-
-<!--
-==================== APPS SCRIPT (PEGAR EN TU SHEET) ====================
-En tu Google Sheet -> Extensiones -> Apps Script -> pegar esto y publicar como Web App (acceso: cualquiera)
-
-function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Hoja 1'); // cambia si tu hoja se llama distinto
-  const data = JSON.parse(e.postData.contents || '{}');
-  const ts = new Date();
-
-  // Asegurate de tener estas columnas en el orden exacto:
-  // Fecha | Teléfono | Usuario | Monto | Moneda | Alias/CBU | Banco | Nota | ID Registro | IP | User Agent | UTM Source | UTM Medium | UTM Campaign | UTM Term | UTM Content | fbclid | gclid | Referrer | Page URL | TZ | Lang
-
-  sheet.appendRow([
-    ts,
-    data.phone || '',
-    data.username || '',
-    data.amount || '',
-    data.currency || '',
-    data.alias || '',
-    data.bank || '',
-    data.note || '',
-    Utilities.getUuid(),
-    data.ip || '',
-    data.user_agent || '',
-    data.utm_source || '',
-    data.utm_medium || '',
-    data.utm_campaign || '',
-    data.utm_term || '',
-    data.utm_content || '',
-    data.fbclid || '',
-    data.gclid || '',
-    data.referrer || '',
-    data.page_url || '',
-    data.tz || '',
-    data.lang || ''
-  ]);
-
-  return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
-}
-========================================================================
--->
+<script>let submitted=false;</script>
 </body>
 </html>
