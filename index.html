@@ -41,18 +41,22 @@ body{
 
 /* LOGO IMAGEN */
 .logo{
-  width:160px;   /* más ancho */
-  height:90px;   /* misma altura o un poco menos */
+  width:90px;
+  height:90px;
   margin:0 auto 14px;
-  border-radius:50%; /* mantiene forma ovalada */
+  border-radius:50%;
   border:3px solid #fff;
   overflow:hidden;
   box-shadow:0 0 25px rgba(0,209,255,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
 }
 .logo img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain; /* 🔥 mantiene proporción horizontal */
 }
 
 /* TITULO Y SUBTITULO */
